@@ -7,7 +7,6 @@ import emmaImg from "@/assets/emma-illustration.svg";
 import broadvoiceLogo from "@/assets/broadvoice-logo.png";
 import dotsImg from "@/assets/dots.png";
 import bvIcon from "@/assets/bv-icon.png";
-import bvIcon from "@/assets/bv-icon.png";
 
 interface NarrativeScreenProps {
   visible: boolean;
