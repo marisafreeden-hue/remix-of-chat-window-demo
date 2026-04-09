@@ -28,7 +28,7 @@ interface ChatInterfaceProps {
   onDemoFinished?: () => void;
 }
 
-
+/* Audio removed — demo runs without narration */
 const ChatInterface = forwardRef<ChatInterfaceHandle, ChatInterfaceProps>(({ onDemoFinished }, ref) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
