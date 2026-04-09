@@ -26,7 +26,6 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ visible }) => {
           <div className="absolute top-[30%] right-[15%] w-[300px] h-[300px] rounded-full bg-[hsl(185,55%,50%)]/15 blur-[80px]" />
           {/* Small purple accent */}
           <div className="absolute bottom-[25%] left-[10%] w-[250px] h-[250px] rounded-full bg-[hsl(280,50%,50%)]/12 blur-[90px]" />
-        >
           <motion.img
             src={broadvoiceLogo}
             alt="Broadvoice"
