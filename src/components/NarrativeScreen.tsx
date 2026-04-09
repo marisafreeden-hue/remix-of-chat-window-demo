@@ -31,7 +31,7 @@ const TitleSlide: React.FC = () => (
     <div className="absolute left-[55px] top-[calc(30%+170px)] -translate-y-1/2">
       <img src={broadvoiceLogo} alt="Broadvoice" className="h-7 mb-6" style={{ filter: "brightness(0) saturate(100%) invert(22%) sepia(12%) saturate(640%) hue-rotate(169deg) brightness(96%) contrast(89%)" }} />
       <h1>
-        <span className="text-5xl font-medium block" style={{ fontFamily: "'Instrument Sans', sans-serif", background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>GoEngage <span style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400 }}>Voice</span></span>
+        <span className="text-5xl font-medium block pb-2" style={{ fontFamily: "'Instrument Sans', sans-serif", lineHeight: '1.3', background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>GoEngage <span style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400 }}>Voice</span></span>
         <span className="text-sm font-medium uppercase tracking-[0.2em] text-[hsl(220,15%,25%)] block mt-3 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>Product Preview</span>
       </h1>
     </div>
