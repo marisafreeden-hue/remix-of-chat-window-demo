@@ -15,27 +15,21 @@ interface NarrativeScreenProps {
 /* Slide 0: Title screen — "GoInsights Product Preview" */
 const TitleSlide: React.FC = () => (
   <div className="absolute inset-0 bg-white overflow-hidden">
-    {/* Large teal wash — top left */}
-    <div className="absolute -top-[450px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[#38bdcd]/25 blur-[180px]" />
-    {/* Deep blue accent — top center */}
-    <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[#1f6eac]/12 blur-[120px]" />
-    {/* Warm teal — lower right */}
-    <div className="absolute bottom-[-150px] right-[-100px] w-[800px] h-[800px] rounded-full bg-[#38bdcd]/22 blur-[180px]" />
-    {/* Small concentrated teal — mid left */}
-    <div className="absolute top-[45%] left-[8%] w-[250px] h-[250px] rounded-full bg-[#38bdcd]/18 blur-[80px]" />
-    {/* Blue-teal blend — center right */}
-    <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/15 blur-[140px]" />
-    {/* Deep blue whisper — bottom left */}
-    <div className="absolute bottom-[5%] left-[15%] w-[350px] h-[350px] rounded-full bg-[#1f6eac]/8 blur-[100px]" />
-    {/* Small bright accent — upper right */}
-    <div className="absolute top-[15%] right-[25%] w-[200px] h-[200px] rounded-full bg-[#38bdcd]/20 blur-[60px]" />
-    {/* Soft teal fill — center */}
-    <div className="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/12 blur-[140px]" />
+    {/* Teal blur orbs */}
+    <div className="absolute -top-[450px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[hsl(180,60%,50%)]/25 blur-[180px]" />
+    <div className="absolute bottom-[-150px] right-[-100px] w-[800px] h-[800px] rounded-full bg-[hsl(185,55%,50%)]/22 blur-[180px]" />
+    <div className="absolute top-[45%] left-[8%] w-[250px] h-[250px] rounded-full bg-[hsl(175,60%,50%)]/18 blur-[80px]" />
+    {/* Purple blur orbs */}
+    <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[hsl(270,55%,55%)]/12 blur-[120px]" />
+    <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[hsl(280,50%,55%)]/15 blur-[140px]" />
+    <div className="absolute bottom-[5%] left-[15%] w-[350px] h-[350px] rounded-full bg-[hsl(265,50%,50%)]/8 blur-[100px]" />
+    <div className="absolute top-[15%] right-[25%] w-[200px] h-[200px] rounded-full bg-[hsl(275,55%,55%)]/20 blur-[60px]" />
+    <div className="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[hsl(180,55%,50%)]/12 blur-[140px]" />
 
     <div className="absolute left-[55px] top-[calc(30%+170px)] -translate-y-1/2">
       <img src={broadvoiceLogo} alt="Broadvoice" className="h-7 mb-6" style={{ filter: "brightness(0) saturate(100%) invert(22%) sepia(12%) saturate(640%) hue-rotate(169deg) brightness(96%) contrast(89%)" }} />
       <h1>
-        <span className="text-5xl font-bold text-[#38bdcd] block">AI Analyst</span>
+        <span className="text-5xl font-bold text-[hsl(180,60%,50%)] block">GoEngage Voice</span>
         <span className="text-5xl font-light text-[hsl(220,15%,25%)] block mt-1">Product Preview</span>
       </h1>
     </div>
