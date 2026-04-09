@@ -2,12 +2,11 @@ import React, { useState, useEffect } from "react";
 import '@fontsource/besley/400-italic.css';
 import '@fontsource/instrument-sans/500.css';
 import { motion, AnimatePresence } from "framer-motion";
-import { Sparkles } from "lucide-react";
 import dashboardPreview from "@/assets/dashboard-preview.svg";
 import emmaImg from "@/assets/emma-illustration.svg";
 import broadvoiceLogo from "@/assets/broadvoice-logo.png";
-import goLogo from "@/assets/go-logo.png";
 import dotsImg from "@/assets/dots.png";
+import bvIcon from "@/assets/bv-icon.png";
 import bvIcon from "@/assets/bv-icon.png";
 
 interface NarrativeScreenProps {
