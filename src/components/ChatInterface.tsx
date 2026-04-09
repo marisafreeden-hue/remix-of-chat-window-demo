@@ -28,9 +28,6 @@ interface ChatInterfaceProps {
   onDemoFinished?: () => void;
 }
 
-// Module-level audio timer to prevent duplicates
-let globalAudio: HTMLAudioElement | null = null;
-let audioTimerId: number | null = null;
 
 const ChatInterface = forwardRef<ChatInterfaceHandle, ChatInterfaceProps>(({ onDemoFinished }, ref) => {
   const [messages, setMessages] = useState<Message[]>([]);

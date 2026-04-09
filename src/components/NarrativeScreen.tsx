@@ -36,7 +36,7 @@ const TitleSlide: React.FC = () => (
     </div>
 
     {/* Dashboard preview — right side */}
-    <div className="absolute right-[-200px] top-1/2 -translate-y-1/2 w-[580px] rounded-[2rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.15),0_8px_24px_rgba(0,0,0,0.08)]">
+    <div className="absolute right-[-200px] top-1/2 -translate-y-1/2 w-[750px] rounded-[2rem] overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.15),0_8px_24px_rgba(0,0,0,0.08)]">
       <img src={dashboardPreview} alt="GoEngage Voice Dashboard" className="w-full h-auto" />
     </div>
   </div>
