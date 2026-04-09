@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import '@fontsource/besley/400-italic.css';
 import { motion, AnimatePresence } from "framer-motion";
 import { Sparkles, TrendingDown, Users, Clock, MessageSquare } from "lucide-react";
 import emmaImg from "@/assets/emma-illustration.svg";
@@ -29,7 +30,7 @@ const TitleSlide: React.FC = () => (
     <div className="absolute left-[55px] top-[calc(30%+170px)] -translate-y-1/2">
       <img src={broadvoiceLogo} alt="Broadvoice" className="h-7 mb-6" style={{ filter: "brightness(0) saturate(100%) invert(22%) sepia(12%) saturate(640%) hue-rotate(169deg) brightness(96%) contrast(89%)" }} />
       <h1>
-        <span className="text-5xl font-bold text-[hsl(180,60%,50%)] block">GoEngage Voice</span>
+        <span className="text-5xl font-light italic block" style={{ fontFamily: "'Besley', serif", background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>GoEngage Voice</span>
         <span className="text-5xl font-light text-[hsl(220,15%,25%)] block mt-1">Product Preview</span>
       </h1>
     </div>
