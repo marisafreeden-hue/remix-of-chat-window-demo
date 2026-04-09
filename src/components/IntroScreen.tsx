@@ -16,7 +16,16 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ visible }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6 }}
-          className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-background"
+          className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-background overflow-hidden"
+        >
+          {/* Teal blur orb */}
+          <div className="absolute -top-[200px] -left-[100px] w-[500px] h-[500px] rounded-full bg-[hsl(180,60%,50%)]/20 blur-[120px]" />
+          {/* Purple blur orb */}
+          <div className="absolute -bottom-[150px] -right-[100px] w-[600px] h-[600px] rounded-full bg-[hsl(270,60%,55%)]/20 blur-[140px]" />
+          {/* Small teal accent */}
+          <div className="absolute top-[30%] right-[15%] w-[300px] h-[300px] rounded-full bg-[hsl(185,55%,50%)]/15 blur-[80px]" />
+          {/* Small purple accent */}
+          <div className="absolute bottom-[25%] left-[10%] w-[250px] h-[250px] rounded-full bg-[hsl(280,50%,50%)]/12 blur-[90px]" />
         >
           <motion.img
             src={broadvoiceLogo}
@@ -40,7 +49,7 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ visible }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0, duration: 0.5 }}
           >
-            AI Analyst
+            GoEngage Voice
           </motion.h1>
           <motion.p
             className="text-sm text-muted-foreground mt-1"
@@ -48,7 +57,7 @@ const IntroScreen: React.FC<IntroScreenProps> = ({ visible }) => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.3, duration: 0.5 }}
           >
-            AI-Powered Contact Center Analytics
+            Product Preview
           </motion.p>
         </motion.div>
       )}
