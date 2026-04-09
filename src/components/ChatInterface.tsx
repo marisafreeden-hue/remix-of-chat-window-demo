@@ -28,9 +28,6 @@ interface ChatInterfaceProps {
   onDemoFinished?: () => void;
 }
 
-// Module-level audio timer to prevent duplicates
-let globalAudio: HTMLAudioElement | null = null;
-let audioTimerId: number | null = null;
 
 const ChatInterface = forwardRef<ChatInterfaceHandle, ChatInterfaceProps>(({ onDemoFinished }, ref) => {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -51,14 +48,6 @@ const ChatInterface = forwardRef<ChatInterfaceHandle, ChatInterfaceProps>(({ onD
   useEffect(() => {
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
-      if (globalAudio) {
-        globalAudio.pause();
-        globalAudio = null;
-      }
-      if (audioTimerId) {
-        clearTimeout(audioTimerId);
-        audioTimerId = null;
-      }
     };
   }, []);
 
@@ -169,15 +158,6 @@ const ChatInterface = forwardRef<ChatInterfaceHandle, ChatInterfaceProps>(({ onD
   }, [playing, scriptIndex, phase]);
 
   const startDemo = useCallback(() => {
-    // Stop any existing audio and pending audio timer
-    if (globalAudio) {
-      globalAudio.pause();
-      globalAudio = null;
-    }
-    if (audioTimerId) {
-      clearTimeout(audioTimerId);
-      audioTimerId = null;
-    }
     setMessages([]);
     setInput("");
     setScriptIndex(0);
@@ -189,16 +169,6 @@ const ChatInterface = forwardRef<ChatInterfaceHandle, ChatInterfaceProps>(({ onD
 
   // Called when user clicks the title slide
   const handleTitleClick = useCallback(() => {
-    // Start audio immediately
-    if (globalAudio) {
-      globalAudio.pause();
-      globalAudio = null;
-    }
-    const audio = new Audio(`/audio/narration.mp3?v=${Date.now()}`);
-    audio.play().catch(() => {});
-    globalAudio = audio;
-
-    // Start the script (first pause = Emma slide duration)
     setPlaying(true);
     playingRef.current = true;
   }, []);
@@ -210,14 +180,6 @@ const ChatInterface = forwardRef<ChatInterfaceHandle, ChatInterfaceProps>(({ onD
     setMessages([]);
     setInput("");
     setPhase("narrative");
-    if (globalAudio) {
-      globalAudio.pause();
-      globalAudio = null;
-    }
-    if (audioTimerId) {
-      clearTimeout(audioTimerId);
-      audioTimerId = null;
-    }
   }, []);
 
   useImperativeHandle(ref, () => ({
