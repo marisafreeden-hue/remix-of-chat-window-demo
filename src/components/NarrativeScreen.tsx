@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import '@fontsource/besley/400-italic.css';
 import '@fontsource/instrument-sans/500.css';
 import { motion, AnimatePresence } from "framer-motion";
-import { motion, AnimatePresence } from "framer-motion";
 import dashboardPreview from "@/assets/dashboard-preview.png";
 import emmaImg from "@/assets/emma-illustration.svg";
 import broadvoiceLogo from "@/assets/broadvoice-logo.png";
