@@ -136,45 +136,36 @@ const NarrativeScreen: React.FC<NarrativeScreenProps> = ({ visible, onTitleClick
   const SlideComponent = slides[currentSlide];
 
   return (
-    <div className="absolute inset-0 z-50 flex items-center justify-center overflow-hidden">
-      {/* Left arrow — outside content */}
-      <div className="flex-shrink-0 w-14 flex items-center justify-center">
-        {currentSlide > 0 && (
-          <button
-            onClick={goPrev}
-            className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors"
-          >
-            <ChevronLeft className="w-5 h-5 text-[hsl(220,15%,25%)]" />
-          </button>
-        )}
-      </div>
+    <div className="absolute inset-0 z-50 overflow-hidden">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentSlide}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.6 }}
+          className="absolute inset-0"
+        >
+          <SlideComponent />
+        </motion.div>
+      </AnimatePresence>
 
-      {/* Slide content */}
-      <div className="relative flex-1 h-full overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentSlide}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.6 }}
-            className="absolute inset-0"
-          >
-            <SlideComponent />
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Right arrow — outside content */}
-      <div className="flex-shrink-0 w-14 flex items-center justify-center">
-        {currentSlide < slides.length - 1 && (
-          <button
-            onClick={goNext}
-            className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors"
-          >
-            <ChevronRight className="w-5 h-5 text-[hsl(220,15%,25%)]" />
-          </button>
-        )}
+      {/* Navigation arrows — bottom center */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[60] flex items-center gap-4">
+        <button
+          onClick={goPrev}
+          disabled={currentSlide === 0}
+          className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+        >
+          <ChevronLeft className="w-5 h-5 text-[hsl(220,15%,25%)]" />
+        </button>
+        <button
+          onClick={goNext}
+          disabled={currentSlide >= slides.length - 1}
+          className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+        >
+          <ChevronRight className="w-5 h-5 text-[hsl(220,15%,25%)]" />
+        </button>
       </div>
     </div>
   );
