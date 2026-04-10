@@ -163,23 +163,6 @@ const NarrativeScreen: React.FC<NarrativeScreenProps> = ({ visible, onTitleClick
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation arrows — bottom center */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-[60] flex items-center gap-4">
-        <button
-          onClick={goPrev}
-          disabled={currentSlide === 0}
-          className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-        >
-          <ChevronLeft className="w-5 h-5 text-[hsl(220,15%,25%)]" />
-        </button>
-        <button
-          onClick={goNext}
-          disabled={currentSlide >= slides.length - 1}
-          className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
-        >
-          <ChevronRight className="w-5 h-5 text-[hsl(220,15%,25%)]" />
-        </button>
-      </div>
     </div>
   );
 };
