@@ -136,37 +136,46 @@ const NarrativeScreen: React.FC<NarrativeScreenProps> = ({ visible, onTitleClick
   const SlideComponent = slides[currentSlide];
 
   return (
-    <div className="absolute inset-0 z-50 overflow-hidden">
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentSlide}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.6 }}
-          className="absolute inset-0"
-        >
-          <SlideComponent />
-        </motion.div>
-      </AnimatePresence>
+    <div className="absolute inset-0 z-50 flex items-center justify-center overflow-hidden">
+      {/* Left arrow — outside content */}
+      <div className="flex-shrink-0 w-14 flex items-center justify-center">
+        {currentSlide > 0 && (
+          <button
+            onClick={goPrev}
+            className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors"
+          >
+            <ChevronLeft className="w-5 h-5 text-[hsl(220,15%,25%)]" />
+          </button>
+        )}
+      </div>
 
-      {/* Navigation arrows */}
-      {currentSlide > 0 && (
-        <button
-          onClick={goPrev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-[60] w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors"
-        >
-          <ChevronLeft className="w-5 h-5 text-[hsl(220,15%,25%)]" />
-        </button>
-      )}
-      {currentSlide < slides.length - 1 && (
-        <button
-          onClick={goNext}
-          className="absolute right-4 top-1/2 -translate-y-1/2 z-[60] w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors"
-        >
-          <ChevronRight className="w-5 h-5 text-[hsl(220,15%,25%)]" />
-        </button>
-      )}
+      {/* Slide content */}
+      <div className="relative flex-1 h-full overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6 }}
+            className="absolute inset-0"
+          >
+            <SlideComponent />
+          </motion.div>
+        </AnimatePresence>
+      </div>
+
+      {/* Right arrow — outside content */}
+      <div className="flex-shrink-0 w-14 flex items-center justify-center">
+        {currentSlide < slides.length - 1 && (
+          <button
+            onClick={goNext}
+            className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors"
+          >
+            <ChevronRight className="w-5 h-5 text-[hsl(220,15%,25%)]" />
+          </button>
+        )}
+      </div>
     </div>
   );
 };
