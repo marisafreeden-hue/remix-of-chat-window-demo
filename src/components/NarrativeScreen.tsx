@@ -107,7 +107,20 @@ const EmmaSlide: React.FC = () => (
   </div>
 );
 
-const slides = [TitleSlide, EmmaSlide];
+/* Slide 2: Video */
+const VideoSlide: React.FC = () => (
+  <div className="absolute inset-0 bg-black flex items-center justify-center">
+    <video
+      src="/videos/intro-video.mov"
+      autoPlay
+      muted
+      playsInline
+      className="w-full h-full object-cover"
+    />
+  </div>
+);
+
+const slides = [TitleSlide, EmmaSlide, VideoSlide];
 
 const NarrativeScreen: React.FC<NarrativeScreenProps> = ({ visible, onTitleClick }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
