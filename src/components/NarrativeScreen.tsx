@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import '@fontsource/besley/400-italic.css';
 import '@fontsource/instrument-sans/500.css';
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import dashboardPreview from "@/assets/dashboard-preview.png";
 import emmaImg from "@/assets/emma-illustration.svg";
 import broadvoiceLogo from "@/assets/broadvoice-logo.png";
@@ -30,13 +31,14 @@ const TitleSlide: React.FC = () => (
     <div className="absolute left-[55px] top-[calc(30%+170px)] -translate-y-1/2">
       <img src={broadvoiceLogo} alt="Broadvoice" className="h-7 mb-6" style={{ filter: "brightness(0) saturate(100%) invert(22%) sepia(12%) saturate(640%) hue-rotate(169deg) brightness(96%) contrast(89%)" }} />
       <h1>
-        <span className="text-5xl font-medium block pb-2" style={{ fontFamily: "'Instrument Sans', sans-serif", lineHeight: '1.3', background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>GoEngage <span style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400 }}>Voice</span></span>
+        <span className="text-7xl font-medium block pb-2" style={{ fontFamily: "'Instrument Sans', sans-serif", lineHeight: '1.2', background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>GoEngage</span>
+        <span className="text-7xl font-medium block pb-2" style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400, lineHeight: '1.2', background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Voice</span>
         <span className="text-sm font-medium uppercase tracking-[0.2em] text-[hsl(220,15%,25%)] block mt-3 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>Product Preview</span>
       </h1>
     </div>
 
     {/* Dashboard preview — right side */}
-    <div className="absolute right-[-80px] top-1/2 -translate-y-1/2 w-[500px]">
+    <div className="absolute right-[20px] top-1/2 -translate-y-1/2 w-[500px]">
       <img src={dashboardPreview} alt="GoEngage Voice Dashboard" className="w-full h-auto" />
     </div>
   </div>
@@ -110,21 +112,24 @@ const slides = [TitleSlide, EmmaSlide];
 const NarrativeScreen: React.FC<NarrativeScreenProps> = ({ visible, onTitleClick }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  const goNext = () => {
+    if (currentSlide < slides.length - 1) {
+      setCurrentSlide(prev => prev + 1);
+      if (currentSlide === 0) onTitleClick?.();
+    }
+  };
+
+  const goPrev = () => {
+    if (currentSlide > 0) {
+      setCurrentSlide(prev => prev - 1);
+    }
+  };
+
   useEffect(() => {
     if (!visible) {
       setCurrentSlide(0);
-      return;
     }
-
-    if (currentSlide === 0) {
-      const handleClick = () => {
-        setCurrentSlide(1);
-        onTitleClick?.();
-      };
-      window.addEventListener("click", handleClick);
-      return () => window.removeEventListener("click", handleClick);
-    }
-  }, [visible, currentSlide, onTitleClick]);
+  }, [visible]);
 
   if (!visible) return null;
 
@@ -145,6 +150,23 @@ const NarrativeScreen: React.FC<NarrativeScreenProps> = ({ visible, onTitleClick
         </motion.div>
       </AnimatePresence>
 
+      {/* Navigation arrows */}
+      {currentSlide > 0 && (
+        <button
+          onClick={goPrev}
+          className="absolute left-4 top-1/2 -translate-y-1/2 z-[60] w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors"
+        >
+          <ChevronLeft className="w-5 h-5 text-[hsl(220,15%,25%)]" />
+        </button>
+      )}
+      {currentSlide < slides.length - 1 && (
+        <button
+          onClick={goNext}
+          className="absolute right-4 top-1/2 -translate-y-1/2 z-[60] w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors"
+        >
+          <ChevronRight className="w-5 h-5 text-[hsl(220,15%,25%)]" />
+        </button>
+      )}
     </div>
   );
 };
