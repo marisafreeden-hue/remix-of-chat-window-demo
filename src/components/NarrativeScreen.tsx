@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import '@fontsource/besley/400-italic.css';
 import '@fontsource/instrument-sans/500.css';
 import { motion, AnimatePresence } from "framer-motion";
-import dashboardPreview from "@/assets/dashboard-preview.svg";
+import dashboardPreview from "@/assets/dashboard-preview.png";
 import emmaImg from "@/assets/emma-illustration.svg";
 import broadvoiceLogo from "@/assets/broadvoice-logo.png";
 import dotsImg from "@/assets/dots.png";
@@ -36,7 +36,7 @@ const TitleSlide: React.FC = () => (
     </div>
 
     {/* Dashboard preview — right side */}
-    <div className="absolute right-[-80px] top-1/2 -translate-y-1/2 w-[500px] shadow-[0_20px_60px_rgba(0,0,0,0.15),0_8px_24px_rgba(0,0,0,0.08)]">
+    <div className="absolute right-[-80px] top-1/2 -translate-y-1/2 w-[500px]">
       <img src={dashboardPreview} alt="GoEngage Voice Dashboard" className="w-full h-auto" />
     </div>
   </div>
