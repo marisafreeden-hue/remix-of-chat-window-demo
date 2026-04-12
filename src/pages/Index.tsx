@@ -323,6 +323,7 @@ const SCENE_LABELS = [
   "Voice: Intent Capture",
   "Voice: API Execution",
   "Voice: Escalation",
+  "Voice: Flow Builder",
   "Voice: Speed",
   "Summary",
 ];
@@ -336,6 +337,7 @@ const SCENE_COMPONENTS: React.FC[] = [
   VoiceScene2_IntentCapture,
   VoiceScene3_APIExecution,
   VoiceScene4_Escalation,
+  FlowBuilderSlide,
   VoiceScene5_Speed,
   () => <SummaryScreen visible />,
 ];
