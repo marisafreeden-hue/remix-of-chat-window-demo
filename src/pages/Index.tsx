@@ -572,6 +572,8 @@ const SCENE_LABELS = [
   "Title",
   "Meet Rob",
   "Dashboard",
+  "Routine Calls",
+  "Cost",
   "Mad Rob",
   "GoEngage Intro",
   "Voice: Natural Call",
@@ -609,6 +611,8 @@ const SCENE_COMPONENTS: React.FC[] = [
   TitleSlide,
   EmmaSlide,
   DashboardSlide,
+  RoutineCallsSlide,
+  CostSlide,
   MadRobSlide,
   GoEngageIntroSlide,
   VoiceScene1_NaturalCall,
@@ -626,25 +630,26 @@ const SCENE_COMPONENTS: React.FC[] = [
 // Audio cue points: [sceneIndex] = audio currentTime in seconds
 // Scene 0 (Title) has no audio — it's a visual-only intro with a delay.
 // Audio starts at scene 1 (Meet Rob). Cue times are relative to audio start (0s = "Meet Rob").
-// Title shows for TITLE_DELAY_MS before advancing to Meet Rob + starting audio.
 const TITLE_DELAY_MS = 3000;
 
 // Maps scene index → audio currentTime. Scene 0 (Title) = -1 means "before audio".
 const SCENE_CUE_TIMES = [
   -1,   // 0: Title (no audio)
   0,    // 1: Meet Rob
-  5,    // 2: Dashboard
-  13,   // 3: Mad Rob
-  19,   // 4: GoEngage Intro
-  25,   // 5: Natural Call
-  33,   // 6: Intent Capture
-  39,   // 7: API Execution
-  45,   // 8: Escalation
-  52,   // 9: Flow Builder
-  63,   // 10: Speed
-  69,   // 11: Results
-  75,   // 12: Tagline
-  81,   // 13: Logo
+  5,    // 2: Dashboard (40 locations, routine calls)
+  9,    // 3: Routine Calls (vaccination, teeth, nails)
+  13,   // 4: Cost ($8-$12)
+  17,   // 5: Mad Rob (hiring pain)
+  21,   // 6: GoEngage Intro
+  27,   // 7: Natural Call
+  35,   // 8: Intent Capture
+  41,   // 9: API Execution
+  47,   // 10: Escalation
+  54,   // 11: Flow Builder
+  65,   // 12: Speed
+  71,   // 13: Results
+  77,   // 14: Tagline
+  83,   // 15: Logo
 ];
 
 const Index = () => {
