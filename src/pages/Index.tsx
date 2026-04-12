@@ -692,8 +692,7 @@ const TaglineSlide: React.FC = () => (
         transition={{ delay: 1.2, duration: 0.5 }}
         className="mt-10 flex items-center gap-3"
       >
-        <img src={goLogo} alt="Go" className="h-8 rounded" />
-        <span className="text-sm font-semibold text-[hsl(220,15%,25%)]" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>GoEngage Voice</span>
+        <img src={broadvoiceLogo} alt="Broadvoice" className="h-7" style={{ filter: "brightness(0) saturate(100%) invert(22%) sepia(12%) saturate(640%) hue-rotate(169deg) brightness(96%) contrast(89%)" }} />
       </motion.div>
     </div>
   </div>
