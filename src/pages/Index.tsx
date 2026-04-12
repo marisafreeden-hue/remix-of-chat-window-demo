@@ -116,48 +116,27 @@ const EmmaSlideOverlay: React.FC = () => (
   </div>
 );
 
-const VideoSlide: React.FC = () => (
-  <div className="absolute inset-0 bg-black flex items-center justify-center">
-    <video src="/videos/intro-video.mov" autoPlay muted playsInline className="w-full h-full object-cover" />
-  </div>
-);
+/* EmmaBackground - no longer needed, Rob is persistent */
 
-/* Emma background shared by dashboard + tabs scenes */
-const EmmaBackground: React.FC<{ children: React.ReactNode; robOffset?: number }> = ({ children, robOffset = 0 }) => (
-  <div className="absolute inset-0 overflow-hidden">
-    <div className="absolute inset-0 bg-white">
-      <div className="absolute -top-[300px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[#38bdcd]/25 blur-[180px] will-change-transform" />
-      <div className="absolute bottom-[-150px] right-[20%] w-[600px] h-[600px] rounded-full bg-[#1f6eac]/15 blur-[160px] will-change-transform" />
-      <div className="absolute top-[20%] left-[30%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/10 blur-[140px] will-change-transform" />
-    </div>
-    <div className="absolute inset-0 flex items-end justify-center z-10" style={{ paddingLeft: 8 + robOffset }}>
-      <img src={robImg} alt="Rob" className="h-[95%] w-auto object-contain" style={{ transform: 'translateZ(0)' }} />
-    </div>
-    {children}
+const DashboardSlideOverlay: React.FC = () => (
+  <div className="absolute inset-0 z-20 flex items-end justify-between px-16 pb-8">
+    <motion.img
+      src={corgiImg}
+      alt="Corgi"
+      initial={{ opacity: 0, x: -80, scale: 0.8 }}
+      animate={{ opacity: 1, x: -50, scale: 1 }}
+      transition={{ delay: 0.3, duration: 0.7, type: "spring", stiffness: 80 }}
+      className="h-[55%] w-auto object-contain"
+    />
+    <motion.img
+      src={catImg}
+      alt="Cat"
+      initial={{ opacity: 0, x: 80, scale: 0.8 }}
+      animate={{ opacity: 1, x: 0, scale: 1 }}
+      transition={{ delay: 0.6, duration: 0.7, type: "spring", stiffness: 80 }}
+      className="h-[50%] w-auto object-contain"
+    />
   </div>
-);
-
-const DashboardSlide: React.FC = () => (
-  <EmmaBackground>
-    <div className="absolute inset-0 z-20 flex items-end justify-between px-16 pb-8">
-      <motion.img
-        src={corgiImg}
-        alt="Corgi"
-        initial={{ opacity: 0, x: -80, scale: 0.8 }}
-        animate={{ opacity: 1, x: -50, scale: 1 }}
-        transition={{ delay: 0.3, duration: 0.7, type: "spring", stiffness: 80 }}
-        className="h-[55%] w-auto object-contain"
-      />
-      <motion.img
-        src={catImg}
-        alt="Cat"
-        initial={{ opacity: 0, x: 80, scale: 0.8 }}
-        animate={{ opacity: 1, x: 0, scale: 1 }}
-        transition={{ delay: 0.6, duration: 0.7, type: "spring", stiffness: 80 }}
-        className="h-[50%] w-auto object-contain"
-      />
-    </div>
-  </EmmaBackground>
 );
 
 /* ── Routine Calls Slide — call center dashboard style ── */
