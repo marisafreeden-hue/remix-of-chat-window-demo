@@ -56,7 +56,7 @@ const EmmaSlide: React.FC = () => (
     <div className="absolute bottom-[5%] left-[15%] w-[350px] h-[350px] rounded-full bg-[#1f6eac]/8 blur-[100px]" />
     <div className="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/12 blur-[140px]" />
     <div className="absolute inset-0 flex items-end justify-center">
-      <img src={emmaImg} alt="Emma" className="h-[95%] w-auto object-contain" />
+      <img src={robImg} alt="Rob" className="h-[95%] w-auto object-contain" />
     </div>
     <div className="absolute left-10 top-1/2 -translate-y-1/2 z-10">
       <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }}>
