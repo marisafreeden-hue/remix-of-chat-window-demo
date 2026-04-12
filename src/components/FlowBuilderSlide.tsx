@@ -51,12 +51,22 @@ const Connector: React.FC<{ delay: number; height?: number }> = ({ delay, height
   <motion.div
     initial={{ scaleY: 0 }}
     animate={{ scaleY: 1 }}
-    transition={{ delay, duration: 0.3 }}
+    transition={{ delay, duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
     className="flex flex-col items-center origin-top"
     style={{ height }}
   >
-    <div className="w-[2px] flex-1 bg-[hsl(220,15%,82%)]" />
-    <div className="w-0 h-0 border-l-[5px] border-r-[5px] border-t-[6px] border-l-transparent border-r-transparent border-t-[hsl(220,15%,82%)]" />
+    <svg width="4" height="100%" className="flex-1">
+      <defs>
+        <linearGradient id="conn-grad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor="#43B5BF" />
+          <stop offset="100%" stopColor="#C686F8" />
+        </linearGradient>
+      </defs>
+      <rect x="1" y="0" width="2" height="100%" fill="url(#conn-grad)" rx="1" />
+    </svg>
+    <svg width="12" height="8" viewBox="0 0 12 8">
+      <polygon points="6,8 0,0 12,0" fill="#C686F8" />
+    </svg>
   </motion.div>
 );
 
@@ -65,13 +75,23 @@ const BranchConnectors: React.FC<{ delay: number }> = ({ delay }) => (
   <motion.svg
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
-    transition={{ delay, duration: 0.4 }}
+    transition={{ delay, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     width="320" height="60" viewBox="0 0 320 60" className="mx-auto"
   >
-    <path d="M160 0 L160 15 Q160 25 100 35 L80 45" stroke="hsl(220,15%,82%)" strokeWidth="2" fill="none" />
-    <path d="M160 0 L160 15 Q160 25 220 35 L240 45" stroke="hsl(220,15%,82%)" strokeWidth="2" fill="none" />
-    <polygon points="77,42 83,42 80,48" fill="hsl(220,15%,82%)" />
-    <polygon points="237,42 243,42 240,48" fill="hsl(220,15%,82%)" />
+    <defs>
+      <linearGradient id="branch-grad-l" x1="160" y1="0" x2="80" y2="48" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#43B5BF" />
+        <stop offset="100%" stopColor="#C686F8" />
+      </linearGradient>
+      <linearGradient id="branch-grad-r" x1="160" y1="0" x2="240" y2="48" gradientUnits="userSpaceOnUse">
+        <stop offset="0%" stopColor="#43B5BF" />
+        <stop offset="100%" stopColor="#C686F8" />
+      </linearGradient>
+    </defs>
+    <path d="M160 0 L160 15 Q160 25 100 35 L80 45" stroke="url(#branch-grad-l)" strokeWidth="2" fill="none" strokeLinecap="round" />
+    <path d="M160 0 L160 15 Q160 25 220 35 L240 45" stroke="url(#branch-grad-r)" strokeWidth="2" fill="none" strokeLinecap="round" />
+    <polygon points="77,42 83,42 80,48" fill="#C686F8" />
+    <polygon points="237,42 243,42 240,48" fill="#C686F8" />
   </motion.svg>
 );
 
@@ -207,10 +227,10 @@ export const FlowBuilderSlide: React.FC = () => {
                 <div className="flex items-start gap-20 -mt-1">
                   <FlowNode
                     label="Transfer"
-                    icon={<Phone className="w-3.5 h-3.5 text-[#c0392b]" />}
-                    color="#c0392b"
-                    borderColor="#f5b7b1"
-                    bgColor="#fdf2f0"
+                    icon={<Phone className="w-3.5 h-3.5 text-[#e67e22]" />}
+                    color="#e67e22"
+                    borderColor="#f5cba7"
+                    bgColor="#fef5ec"
                     delay={0.1}
                   />
                   <FlowNode
