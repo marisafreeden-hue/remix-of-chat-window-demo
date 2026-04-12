@@ -796,6 +796,9 @@ const Index = () => {
         <span className="text-xs text-[hsl(220,10%,45%)] font-medium min-w-[80px] text-center">
           {sceneIndex + 1} / {SCENE_COMPONENTS.length}
         </span>
+        <span className="text-xs font-mono text-[hsl(220,10%,45%)] bg-white/80 backdrop-blur-sm shadow-md px-3 py-2 rounded-full min-w-[60px] text-center">
+          {Math.floor(audioTime / 60)}:{String(Math.floor(audioTime % 60)).padStart(2, '0')}.{Math.floor((audioTime % 1) * 10)}
+        </span>
         <button
           onClick={goNext}
           disabled={sceneIndex >= SCENE_COMPONENTS.length - 1}
