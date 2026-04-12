@@ -183,7 +183,7 @@ const RoutineCallsSlide: React.FC = () => {
   ];
 
   return (
-    <EmmaBackground robOffset={-50}>
+    <EmmaBackground robOffset={-150}>
       <div className="absolute inset-0 z-20 flex items-center justify-end pr-12">
         <div className="flex flex-col gap-3 w-[360px]">
           {/* Header */}
@@ -238,14 +238,17 @@ const RoutineCallsSlide: React.FC = () => {
                 transition={{ delay: t.delay, duration: 0.5, type: "spring", stiffness: 120 }}
                 className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-3.5 flex items-center gap-3"
               >
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${t.color}15` }}>
-                  <IconComp className="w-4.5 h-4.5" style={{ color: t.color }} />
-                </div>
+                <svg width="0" height="0" className="absolute">
+                  <defs>
+                    <linearGradient id={`icon-grad-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#43B5BF" />
+                      <stop offset="100%" stopColor="#C686F8" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <IconComp className="w-5 h-5 flex-shrink-0" style={{ stroke: `url(#icon-grad-${i})` }} />
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between gap-2">
-                    <span className="text-sm font-semibold text-[hsl(220,15%,20%)] truncate" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>{t.title}</span>
-                    <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#43B5BF]/10 text-[#27698F] flex-shrink-0">{t.tag}</span>
-                  </div>
+                  <span className="text-sm font-semibold text-[hsl(220,15%,20%)] truncate block" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>{t.title}</span>
                   <div className="flex items-center justify-between mt-0.5">
                     <p className="text-[11px] text-[hsl(220,10%,50%)]">{t.desc}</p>
                     <span className="text-[11px] font-bold text-[hsl(220,15%,30%)] ml-2 flex-shrink-0">{t.pct}</span>
