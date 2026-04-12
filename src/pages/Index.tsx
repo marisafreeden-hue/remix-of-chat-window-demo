@@ -452,10 +452,10 @@ const SpeechToSpeechSlide: React.FC = () => {
     return () => timers.forEach(clearTimeout);
   }, []);
 
-  const features = [
-    { label: "No Latency", desc: "Responses in under 500ms", icon: "⚡" },
-    { label: "Natural Tone", desc: "Human-like voice synthesis", icon: "🎙️" },
-    { label: "Real-Time Understanding", desc: "Processes speech as it's spoken", icon: "🧠" },
+  const features: { label: string; desc: string; Icon: React.FC<any> }[] = [
+    { label: "No Latency", desc: "Responses in under 500ms", Icon: Zap },
+    { label: "Natural Tone", desc: "Human-like voice synthesis", Icon: Mic },
+    { label: "Real-Time Understanding", desc: "Processes speech as it's spoken", Icon: Search },
   ];
 
   return (
@@ -534,7 +534,7 @@ const SpeechToSpeechSlide: React.FC = () => {
                   transition={{ delay: i * 0.3, duration: 0.5, type: "spring" }}
                   className="flex items-start gap-3 p-3 rounded-xl bg-white/80 border border-[hsl(220,15%,90%)] shadow-sm"
                 >
-                  <span className="text-lg">{f.icon}</span>
+                  <f.Icon className="w-5 h-5 text-[#43B5BF] flex-shrink-0 mt-0.5" />
                   <div>
                     <span className="text-sm font-semibold text-[hsl(220,15%,25%)] block">{f.label}</span>
                     <span className="text-xs text-[hsl(220,10%,50%)]">{f.desc}</span>
@@ -677,8 +677,8 @@ const SCENE_LABELS = [
   "Voice: Escalation",
   "Voice: Flow Builder",
   "Voice: Speed",
-  "Speech-to-Speech AI",
   "Results",
+  "Speech-to-Speech AI",
   "Tagline",
   "Logo",
 ];
@@ -718,8 +718,8 @@ const SCENE_COMPONENTS: React.FC[] = [
   VoiceScene4_Escalation,
   FlowBuilderSlide,
   VoiceScene5_Speed,
-  SpeechToSpeechSlide,
   ResultsSlide,
+  SpeechToSpeechSlide,
   TaglineSlide,
   LogoSlide,
 ];
@@ -742,9 +742,9 @@ const SCENE_CUE_TIMES = [
   53.3,  // 7: API Execution — held 1.3s longer (was 52)
   68.1,  // 8: Escalation — shifted accordingly (was 66.8)
   76.5,  // 9: Flow Builder — "no-code flow builder"
-  100.7, // 10: Speed — "speech-to-speech AI, responses are immediate"
-  105,   // 11: Speech-to-Speech AI — new visual slide
-  109,   // 12: Results — "The result? Fewer routine calls"
+  100.7, // 10: Speed
+  105,   // 11: Results
+  109,   // 12: Speech-to-Speech AI
   115,   // 13: Tagline — "Your IVR routes calls. Go Engage resolves them."
   116.5, // 14: Logo
 ];
