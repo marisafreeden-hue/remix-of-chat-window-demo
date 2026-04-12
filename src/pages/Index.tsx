@@ -11,6 +11,7 @@ import WelcomeScreen from "@/components/WelcomeScreen";
 import AbstractDashboard from "@/components/AbstractDashboard";
 import ClutteredTabs from "@/components/ClutteredTabs";
 import SummaryScreen from "@/components/SummaryScreen";
+import { VoiceScene1_NaturalCall, VoiceScene2_IntentCapture, VoiceScene3_APIExecution, VoiceScene4_Escalation, VoiceScene5_Speed } from "@/components/VoiceAgentSlides";
 
 import dashboardPreview from "@/assets/dashboard-preview.png";
 import emmaImg from "@/assets/emma-illustration.svg";
