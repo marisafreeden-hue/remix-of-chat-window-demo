@@ -619,7 +619,7 @@ const SCENE_CUE_TIMES = [
   21,   // 5: GoEngage Intro
   35,   // 6: Natural Call — demo begins
   78,   // 7: Intent Capture — "Hi thanks for calling" simulated call
-  88,   // 8: API Execution
+  85,   // 8: API Execution
   98,   // 9: Escalation
   104,  // 10: Flow Builder
   108,  // 11: Speed ("This isn't just automation")
