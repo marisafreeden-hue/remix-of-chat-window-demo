@@ -559,29 +559,35 @@ const Index = () => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const audioVersionRef = useRef(Date.now());
   const manualOverrideRef = useRef(false);
 
   const goNext = useCallback(() => {
     manualOverrideRef.current = true;
-    setSceneIndex(i => Math.min(i + 1, SCENE_COMPONENTS.length - 1));
+    setSceneIndex((i) => Math.min(i + 1, SCENE_COMPONENTS.length - 1));
   }, []);
 
   const goPrev = useCallback(() => {
     manualOverrideRef.current = true;
-    setSceneIndex(i => Math.max(i - 1, 0));
+    setSceneIndex((i) => Math.max(i - 1, 0));
   }, []);
 
-  const togglePlay = useCallback(() => {
+  const togglePlay = useCallback(async () => {
     const audio = audioRef.current;
     if (!audio) return;
-    if (isPlaying) {
-      audio.pause();
-    } else {
+
+    if (audio.paused) {
       manualOverrideRef.current = false;
-      audio.play();
+      try {
+        await audio.play();
+      } catch (error) {
+        console.error("Audio playback failed", error);
+      }
+      return;
     }
-    setIsPlaying(!isPlaying);
-  }, [isPlaying]);
+
+    audio.pause();
+  }, []);
 
   const toggleMute = useCallback(() => {
     if (audioRef.current) {
@@ -590,15 +596,14 @@ const Index = () => {
     setIsMuted(!isMuted);
   }, [isMuted]);
 
-  // Auto-advance scenes based on audio currentTime
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
     const onTime = () => {
       if (manualOverrideRef.current) return;
+
       const t = audio.currentTime;
-      // Find the highest cue index whose time has passed
       let target = 0;
       for (let i = SCENE_CUE_TIMES.length - 1; i >= 0; i--) {
         if (t >= SCENE_CUE_TIMES[i]) {
@@ -606,19 +611,34 @@ const Index = () => {
           break;
         }
       }
-      setSceneIndex(prev => (prev !== target ? target : prev));
+
+      setSceneIndex((prev) => (prev !== target ? target : prev));
     };
 
-    const onEnd = () => setIsPlaying(false);
-    const onPlay = () => { manualOverrideRef.current = false; };
+    const onPlay = () => {
+      manualOverrideRef.current = false;
+      setIsPlaying(true);
+    };
+
+    const onPause = () => setIsPlaying(false);
+    const onEnded = () => {
+      setIsPlaying(false);
+      manualOverrideRef.current = false;
+    };
+    const onError = () => console.error("Narration audio failed to load");
 
     audio.addEventListener("timeupdate", onTime);
-    audio.addEventListener("ended", onEnd);
     audio.addEventListener("play", onPlay);
+    audio.addEventListener("pause", onPause);
+    audio.addEventListener("ended", onEnded);
+    audio.addEventListener("error", onError);
+
     return () => {
       audio.removeEventListener("timeupdate", onTime);
-      audio.removeEventListener("ended", onEnd);
       audio.removeEventListener("play", onPlay);
+      audio.removeEventListener("pause", onPause);
+      audio.removeEventListener("ended", onEnded);
+      audio.removeEventListener("error", onError);
     };
   }, []);
 
@@ -626,7 +646,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-white relative overflow-hidden">
-      <audio ref={audioRef} src={`/audio/narration.mp3?v=${Date.now()}`} preload="metadata" />
+      <audio ref={audioRef} src={`/audio/narration.mp3?v=${audioVersionRef.current}`} preload="auto" />
       <div className="absolute inset-0 sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 w-full h-full sm:w-[1024px] sm:h-[768px] overflow-hidden sm:rounded-[40px] sm:border-[16px] border-white/40 shadow-none sm:shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] backdrop-blur-md bg-white/10">
         <AnimatePresence mode="wait">
           <motion.div
