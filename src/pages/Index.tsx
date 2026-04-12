@@ -59,9 +59,9 @@ const EmmaSlide: React.FC = () => (
       <img src={robImg} alt="Rob" className="h-[95%] w-auto object-contain" />
     </div>
     <div className="absolute left-10 top-1/2 -translate-y-1/2 z-10">
-      <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }}>
-        <span style={{ fontFamily: "'Instrument Sans', sans-serif", fontSize: '3rem', fontWeight: 500, background: 'linear-gradient(90deg, #43B5BF, #27698F, #C686F8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Meet </span>
-        <span style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400, fontSize: '3rem', background: 'linear-gradient(90deg, #43B5BF, #27698F, #C686F8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Rob</span>
+      <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }} style={{ background: 'linear-gradient(90deg, #43B5BF, #27698F, #C686F8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+        <span style={{ fontFamily: "'Instrument Sans', sans-serif", fontSize: '3rem', fontWeight: 500 }}>Meet </span>
+        <span style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400, fontSize: '3rem' }}>Rob</span>
       </motion.h2>
       <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.6 }} className="text-sm text-[hsl(220,10%,45%)] mt-3 max-w-xs leading-relaxed">
         Call Center Operations Manager<br />Multilocation Veterinary Clinic
