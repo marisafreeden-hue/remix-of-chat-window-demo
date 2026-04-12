@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Send, Search, HelpCircle, Bell, Settings, X } from "lucide-react";
 import '@fontsource/besley/400-italic.css';
@@ -335,6 +335,9 @@ const SCENE_COMPONENTS: React.FC[] = [
 
 const Index = () => {
   const [sceneIndex, setSceneIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const goNext = useCallback(() => {
     setSceneIndex(i => Math.min(i + 1, SCENE_COMPONENTS.length - 1));
@@ -344,10 +347,37 @@ const Index = () => {
     setSceneIndex(i => Math.max(i - 1, 0));
   }, []);
 
+  const togglePlay = useCallback(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (isPlaying) {
+      audio.pause();
+    } else {
+      audio.play();
+    }
+    setIsPlaying(!isPlaying);
+  }, [isPlaying]);
+
+  const toggleMute = useCallback(() => {
+    if (audioRef.current) {
+      audioRef.current.muted = !isMuted;
+    }
+    setIsMuted(!isMuted);
+  }, [isMuted]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    const onEnd = () => setIsPlaying(false);
+    audio.addEventListener("ended", onEnd);
+    return () => audio.removeEventListener("ended", onEnd);
+  }, []);
+
   const SceneComponent = SCENE_COMPONENTS[sceneIndex];
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-white relative overflow-hidden">
+      <audio ref={audioRef} src="/audio/narration.mp3" preload="metadata" />
       <div className="absolute inset-0 sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 w-full h-full sm:w-[1024px] sm:h-[768px] overflow-hidden sm:rounded-[40px] sm:border-[16px] border-white/40 shadow-none sm:shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] backdrop-blur-md bg-white/10">
         <AnimatePresence mode="wait">
           <motion.div
@@ -371,6 +401,18 @@ const Index = () => {
           className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
         >
           <ChevronLeft className="w-5 h-5 text-[hsl(220,15%,25%)]" />
+        </button>
+        <button
+          onClick={togglePlay}
+          className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors"
+        >
+          {isPlaying ? <Pause className="w-4 h-4 text-[hsl(220,15%,25%)]" /> : <Play className="w-4 h-4 text-[hsl(220,15%,25%)]" />}
+        </button>
+        <button
+          onClick={toggleMute}
+          className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm shadow-md flex items-center justify-center hover:bg-white transition-colors"
+        >
+          {isMuted ? <VolumeX className="w-4 h-4 text-[hsl(220,15%,25%)]" /> : <Volume2 className="w-4 h-4 text-[hsl(220,15%,25%)]" />}
         </button>
         <span className="text-xs text-[hsl(220,10%,45%)] font-medium min-w-[80px] text-center">
           {sceneIndex + 1} / {SCENE_COMPONENTS.length}
