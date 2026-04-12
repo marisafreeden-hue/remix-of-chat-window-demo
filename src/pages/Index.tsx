@@ -101,16 +101,10 @@ const TitleSlide: React.FC = () => {
   );
 };
 
-const EmmaSlide: React.FC = () => (
-  <div className="absolute inset-0 bg-white">
-    <div className="absolute -top-[450px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[#38bdcd]/25 blur-[180px] will-change-transform" />
-    <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[#1f6eac]/12 blur-[120px] will-change-transform" />
-    <div className="absolute bottom-[-150px] right-[-100px] w-[800px] h-[800px] rounded-full bg-[#38bdcd]/22 blur-[180px] will-change-transform" />
-    <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/15 blur-[140px] will-change-transform" />
-    <div className="absolute inset-0 flex items-end justify-center" style={{ willChange: 'auto' }}>
-      <img src={robImg} alt="Rob" className="h-[95%] w-auto object-contain" style={{ willChange: 'auto', transform: 'translateZ(0)' }} />
-    </div>
-    <div className="absolute left-10 top-1/2 -translate-y-1/2 z-10">
+/* Overlay-only slides for Rob scenes (Rob + bg rendered persistently outside AnimatePresence) */
+const EmmaSlideOverlay: React.FC = () => (
+  <div className="absolute inset-0 z-20">
+    <div className="absolute left-10 top-1/2 -translate-y-1/2">
       <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }} style={{ background: 'linear-gradient(90deg, #43B5BF, #27698F, #C686F8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
         <span style={{ fontFamily: "'Instrument Sans', sans-serif", fontSize: '3rem', fontWeight: 500 }}>Meet </span>
         <span style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400, fontSize: '3rem' }}>Rob</span>
