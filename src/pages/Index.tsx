@@ -17,6 +17,7 @@ import emmaImg from "@/assets/emma-illustration.svg";
 import broadvoiceLogo from "@/assets/broadvoice-logo.png";
 import goLogo from "@/assets/go-logo.png";
 import robImg from "@/assets/rob-illustration.png";
+import dotsImg from "@/assets/dots.png";
 import bvIcon from "@/assets/bv-icon.png";
 
 /* ── Individual Scene Components ── */
