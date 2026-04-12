@@ -315,12 +315,16 @@ const MadRobSlide: React.FC = () => (
 
 const SCENE_LABELS = [
   "Title",
-  "Meet Emma",
-  "Video",
+  "Meet Rob",
   "Dashboard",
   "Mad Rob",
   "Welcome",
   "Chat",
+  "Voice: Natural Call",
+  "Voice: Intent Capture",
+  "Voice: API Execution",
+  "Voice: Escalation",
+  "Voice: Speed",
   "Summary",
 ];
 
@@ -331,6 +335,11 @@ const SCENE_COMPONENTS: React.FC[] = [
   MadRobSlide,
   WelcomeSlide,
   ChatSlide,
+  VoiceScene1_NaturalCall,
+  VoiceScene2_IntentCapture,
+  VoiceScene3_APIExecution,
+  VoiceScene4_Escalation,
+  VoiceScene5_Speed,
   () => <SummaryScreen visible />,
 ];
 
