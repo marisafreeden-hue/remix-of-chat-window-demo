@@ -292,7 +292,7 @@ export const VoiceScene3_APIExecution: React.FC = () => {
                   transition={{ delay: 0.3 + i * 0.4, duration: 0.4 }}
                   className={`flex items-center gap-4 px-5 py-3.5 rounded-xl border transition-all duration-500 ${
                     step.status === "done"
-                      ? "bg-green-50 border-green-200"
+                      ? "bg-[#43B5BF]/5 border-[#C686F8]/20"
                       : step.status === "active"
                       ? "bg-[#43B5BF]/5 border-[#43B5BF]/30 shadow-sm shadow-[#43B5BF]/10"
                       : "bg-white/60 border-[hsl(220,15%,90%)]"
@@ -308,11 +308,11 @@ export const VoiceScene3_APIExecution: React.FC = () => {
                   </svg>
                   <step.Icon className="w-5 h-5 flex-shrink-0" style={{ stroke: `url(#api-icon-grad-${i})` }} />
                   <span className={`text-sm font-medium flex-1 ${
-                    step.status === "done" ? "text-green-700" : step.status === "active" ? "text-[#27698F]" : "text-[hsl(220,10%,55%)]"
+                    step.status === "done" ? "text-[#27698F]" : step.status === "active" ? "text-[#27698F]" : "text-[hsl(220,10%,55%)]"
                   }`}>{step.label}</span>
                   {step.status === "done" && (
                     <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: "spring", stiffness: 200 }}>
-                      <CheckCircle className="w-5 h-5 text-green-500" />
+                      <CheckCircle className="w-5 h-5 text-[#C686F8]" />
                     </motion.div>
                   )}
                   {step.status === "active" && (
