@@ -183,9 +183,23 @@ const RoutineCallsSlide: React.FC = () => {
   ];
 
   return (
-    <EmmaBackground robOffset={-150}>
-      <div className="absolute inset-0 z-20 flex items-center justify-end pr-12">
-        <div className="flex flex-col gap-3 w-[360px]">
+    <div className="absolute inset-0 overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-white">
+        <div className="absolute -top-[300px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[#38bdcd]/25 blur-[180px]" />
+        <div className="absolute -top-[100px] left-[20%] w-[600px] h-[600px] rounded-full bg-[#38bdcd]/15 blur-[160px]" />
+        <div className="absolute bottom-[-150px] right-[20%] w-[600px] h-[600px] rounded-full bg-[#1f6eac]/15 blur-[160px]" />
+        <div className="absolute top-[20%] left-[30%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/10 blur-[140px]" />
+      </div>
+
+      {/* Rob on the left */}
+      <div className="absolute left-0 bottom-0 z-10 h-full flex items-end" style={{ paddingLeft: 40 }}>
+        <img src={robImg} alt="Rob" className="h-[90%] w-auto object-contain" />
+      </div>
+
+      {/* Call queue on the right */}
+      <div className="absolute right-0 top-0 bottom-0 z-20 flex items-center pr-12" style={{ width: '420px' }}>
+        <div className="flex flex-col gap-3 w-full">
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -259,7 +273,7 @@ const RoutineCallsSlide: React.FC = () => {
           })}
         </div>
       </div>
-    </EmmaBackground>
+    </div>
   );
 };
 
