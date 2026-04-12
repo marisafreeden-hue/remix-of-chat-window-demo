@@ -183,7 +183,7 @@ const RoutineCallsSlide: React.FC = () => {
   ];
 
   return (
-    <EmmaBackground>
+    <EmmaBackground robOffset={-50}>
       <div className="absolute inset-0 z-20 flex items-center justify-end pr-12">
         <div className="flex flex-col gap-3 w-[360px]">
           {/* Header */}
