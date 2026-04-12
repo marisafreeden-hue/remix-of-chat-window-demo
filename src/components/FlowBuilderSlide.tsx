@@ -76,22 +76,26 @@ const BranchConnectors: React.FC<{ delay: number }> = ({ delay }) => (
     initial={{ opacity: 0 }}
     animate={{ opacity: 1 }}
     transition={{ delay, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-    width="320" height="60" viewBox="0 0 320 60" className="mx-auto"
+    width="320" height="80" viewBox="0 0 320 80" className="mx-auto"
   >
     <defs>
-      <linearGradient id="branch-grad-l" x1="160" y1="0" x2="80" y2="48" gradientUnits="userSpaceOnUse">
+      <linearGradient id="branch-grad-l" x1="160" y1="0" x2="80" y2="70" gradientUnits="userSpaceOnUse">
         <stop offset="0%" stopColor="#43B5BF" />
         <stop offset="100%" stopColor="#C686F8" />
       </linearGradient>
-      <linearGradient id="branch-grad-r" x1="160" y1="0" x2="240" y2="48" gradientUnits="userSpaceOnUse">
+      <linearGradient id="branch-grad-r" x1="160" y1="0" x2="240" y2="70" gradientUnits="userSpaceOnUse">
         <stop offset="0%" stopColor="#43B5BF" />
         <stop offset="100%" stopColor="#C686F8" />
       </linearGradient>
+      <marker id="arrow-l" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto">
+        <polygon points="0,0 8,3 0,6" fill="#C686F8" />
+      </marker>
+      <marker id="arrow-r" markerWidth="8" markerHeight="6" refX="4" refY="3" orient="auto">
+        <polygon points="0,0 8,3 0,6" fill="#C686F8" />
+      </marker>
     </defs>
-    <path d="M160 0 L160 15 Q160 25 100 35 L80 45" stroke="url(#branch-grad-l)" strokeWidth="2" fill="none" strokeLinecap="round" />
-    <path d="M160 0 L160 15 Q160 25 220 35 L240 45" stroke="url(#branch-grad-r)" strokeWidth="2" fill="none" strokeLinecap="round" />
-    <polygon points="77,42 83,42 80,48" fill="#C686F8" />
-    <polygon points="237,42 243,42 240,48" fill="#C686F8" />
+    <path d="M160 0 L160 20 C160 40, 80 40, 80 60 L80 70" stroke="url(#branch-grad-l)" strokeWidth="2" fill="none" strokeLinecap="round" markerEnd="url(#arrow-l)" />
+    <path d="M160 0 L160 20 C160 40, 240 40, 240 60 L240 70" stroke="url(#branch-grad-r)" strokeWidth="2" fill="none" strokeLinecap="round" markerEnd="url(#arrow-r)" />
   </motion.svg>
 );
 
