@@ -617,7 +617,7 @@ const SCENE_CUE_TIMES = [
   11,   // 3: Routine Calls (vaccination, teeth, nails)
   15,   // 4: Mad Rob (hiring pain)
   19,   // 5: GoEngage Intro
-  25,   // 6: Natural Call
+  29,   // 6: Natural Call
   33,   // 7: Intent Capture
   39,   // 8: API Execution
   45,   // 9: Escalation
