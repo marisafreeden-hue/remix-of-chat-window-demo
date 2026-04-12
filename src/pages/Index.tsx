@@ -17,6 +17,7 @@ import emmaImg from "@/assets/emma-illustration.svg";
 import broadvoiceLogo from "@/assets/broadvoice-logo.png";
 import goLogo from "@/assets/go-logo.png";
 import robImg from "@/assets/rob-illustration.png";
+import madRobImg from "@/assets/mad-rob.png";
 import corgiImg from "@/assets/corgi.png";
 import catImg from "@/assets/cat.png";
 import dotsImg from "@/assets/dots.png";
