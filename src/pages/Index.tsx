@@ -1,9 +1,10 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Send, Search, HelpCircle, Bell, Settings, X, Phone } from "lucide-react";
+import { Send, Search, HelpCircle, Bell, Settings, X, Phone, Mic, Zap } from "lucide-react";
 import '@fontsource/besley/400-italic.css';
 import '@fontsource/instrument-sans/500.css';
+import VoiceWaveform from "@/components/VoiceWaveform";
 
 import ChatMessage, { RichContent } from "@/components/ChatMessage";
 import conversationScript, { ScriptStep } from "@/components/conversationScript";
@@ -27,29 +28,104 @@ import bvIcon from "@/assets/bv-icon.png";
 
 /* ── Individual Scene Components ── */
 
-const TitleSlide: React.FC = () => (
-  <div className="absolute inset-0 bg-white overflow-hidden">
-    <div className="absolute -top-[450px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[hsl(180,60%,50%)]/25 blur-[180px]" />
-    <div className="absolute bottom-[-150px] right-[-100px] w-[800px] h-[800px] rounded-full bg-[hsl(185,55%,50%)]/22 blur-[180px]" />
-    <div className="absolute top-[45%] left-[8%] w-[250px] h-[250px] rounded-full bg-[hsl(175,60%,50%)]/18 blur-[80px]" />
-    <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[hsl(270,55%,55%)]/12 blur-[120px]" />
-    <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[hsl(280,50%,55%)]/15 blur-[140px]" />
-    <div className="absolute bottom-[5%] left-[15%] w-[350px] h-[350px] rounded-full bg-[hsl(265,50%,50%)]/8 blur-[100px]" />
-    <div className="absolute top-[15%] right-[25%] w-[200px] h-[200px] rounded-full bg-[hsl(275,55%,55%)]/20 blur-[60px]" />
-    <div className="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[hsl(180,55%,50%)]/12 blur-[140px]" />
-    <div className="absolute left-[55px] top-[calc(30%+140px)] -translate-y-1/2">
-      <img src={broadvoiceLogo} alt="Broadvoice" className="h-7 mb-6" style={{ filter: "brightness(0) saturate(100%) invert(22%) sepia(12%) saturate(640%) hue-rotate(169deg) brightness(96%) contrast(89%)" }} />
-      <h1>
-        <span className="text-7xl font-medium block pb-2" style={{ fontFamily: "'Instrument Sans', sans-serif", lineHeight: '1.2', background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>GoEngage</span>
-        <span className="text-7xl font-medium block pb-2" style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400, lineHeight: '1.2', background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Voice</span>
-        <span className="text-sm font-medium uppercase tracking-[0.2em] text-[hsl(220,15%,25%)] block mt-3 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>Product Preview</span>
-      </h1>
+const TitleSlide: React.FC = () => {
+  const [phase, setPhase] = useState(0);
+  useEffect(() => {
+    const timers = [
+      setTimeout(() => setPhase(1), 600),
+      setTimeout(() => setPhase(2), 1400),
+      setTimeout(() => setPhase(3), 2200),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const bubbles = [
+    { role: "ai" as const, text: "Hi! Thanks for calling Happy Paws Veterinary. How can I help you today?" },
+    { role: "caller" as const, text: "Hi, I'd like to schedule an appointment for my dog, Max." },
+    { role: "ai" as const, text: "Of course! I can help with that. What type of appointment does Max need?" },
+  ];
+
+  return (
+    <div className="absolute inset-0 bg-white overflow-hidden">
+      <div className="absolute -top-[450px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[hsl(180,60%,50%)]/25 blur-[180px]" />
+      <div className="absolute bottom-[-150px] right-[-100px] w-[800px] h-[800px] rounded-full bg-[hsl(185,55%,50%)]/22 blur-[180px]" />
+      <div className="absolute top-[45%] left-[8%] w-[250px] h-[250px] rounded-full bg-[hsl(175,60%,50%)]/18 blur-[80px]" />
+      <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[hsl(270,55%,55%)]/12 blur-[120px]" />
+      <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[hsl(280,50%,55%)]/15 blur-[140px]" />
+      <div className="absolute bottom-[5%] left-[15%] w-[350px] h-[350px] rounded-full bg-[hsl(265,50%,50%)]/8 blur-[100px]" />
+      <div className="absolute top-[15%] right-[25%] w-[200px] h-[200px] rounded-full bg-[hsl(275,55%,55%)]/20 blur-[60px]" />
+      <div className="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[hsl(180,55%,50%)]/12 blur-[140px]" />
+
+      {/* Left: Title */}
+      <div className="absolute left-[55px] top-[calc(30%+140px)] -translate-y-1/2">
+        <img src={broadvoiceLogo} alt="Broadvoice" className="h-7 mb-6" style={{ filter: "brightness(0) saturate(100%) invert(22%) sepia(12%) saturate(640%) hue-rotate(169deg) brightness(96%) contrast(89%)" }} />
+        <h1>
+          <span className="text-7xl font-medium block pb-2" style={{ fontFamily: "'Instrument Sans', sans-serif", lineHeight: '1.2', background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>GoEngage</span>
+          <span className="text-7xl font-medium block pb-2" style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400, lineHeight: '1.2', background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>Voice</span>
+          <span className="text-sm font-medium uppercase tracking-[0.2em] text-[hsl(220,15%,25%)] block mt-3 mb-6" style={{ fontFamily: "'Inter', sans-serif" }}>Product Preview</span>
+        </h1>
+      </div>
+
+      {/* Right: Conversation preview */}
+      <div className="absolute right-[20px] top-[8%] w-[480px] h-[84%] flex flex-col">
+        {/* Conversation bubbles */}
+        <div className="flex-1 px-4 py-4 space-y-4 overflow-hidden">
+          {bubbles.map((b, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 16, scale: 0.95 }}
+              animate={{ opacity: phase >= i + 1 ? 1 : 0, y: phase >= i + 1 ? 0 : 16, scale: phase >= i + 1 ? 1 : 0.95 }}
+              transition={{ duration: 0.5, type: "spring", stiffness: 120 }}
+              className={`flex items-start gap-3 ${b.role === "caller" ? "flex-row-reverse" : ""}`}
+            >
+              <div className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 ${
+                b.role === "caller" ? "bg-[hsl(220,15%,90%)]" : "bg-gradient-to-br from-[#43B5BF] to-[#27698F]"
+              }`}>
+                {b.role === "caller"
+                  ? <span className="text-[hsl(220,15%,45%)] text-xs font-bold">C</span>
+                  : <Mic className="w-4 h-4 text-white" />
+                }
+              </div>
+              <div className={`max-w-[75%] ${b.role === "caller" ? "text-right" : ""}`}>
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-[hsl(220,10%,55%)] mb-1 block">
+                  {b.role === "caller" ? "Customer" : "GoEngage Voice"}
+                </span>
+                <div className={`px-4 py-3 rounded-2xl text-sm leading-relaxed ${
+                  b.role === "caller"
+                    ? "bg-[hsl(220,15%,94%)] text-[hsl(220,15%,25%)] rounded-tr-sm"
+                    : "bg-gradient-to-r from-[#43B5BF]/10 to-[#27698F]/10 text-[hsl(220,15%,25%)] border border-[#43B5BF]/20 rounded-tl-sm"
+                }`}>
+                  {b.text}
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Speech-to-Speech card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: phase >= 1 ? 1 : 0, scale: phase >= 1 ? 1 : 0.9 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
+          className="mx-4 mb-4 bg-gradient-to-br from-[#43B5BF]/5 to-[#27698F]/5 rounded-2xl border border-[#43B5BF]/15 p-5 flex flex-col items-center gap-3"
+        >
+          <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#43B5BF] to-[#27698F] flex items-center justify-center shadow-lg shadow-[#43B5BF]/20">
+            <Mic className="w-6 h-6 text-white" />
+          </div>
+          <VoiceWaveform active={phase >= 1} color="#43B5BF" barCount={24} />
+          <span className="text-xs font-medium text-[hsl(220,10%,45%)]">Speech-to-Speech AI</span>
+          <div className="flex items-center gap-1.5">
+            <Zap className="w-3.5 h-3.5 text-[#C686F8]" />
+            <span className="text-[10px] text-[#C686F8] font-semibold">Real-time responses</span>
+          </div>
+        </motion.div>
+      </div>
+
+      <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
+      <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
     </div>
-    <div className="absolute right-[20px] top-1/2 -translate-y-1/2 w-[500px]">
-      <img src={dashboardPreview} alt="GoEngage Voice Dashboard" className="w-full h-auto" />
-    </div>
-  </div>
-);
+  );
+};
 
 const EmmaSlide: React.FC = () => (
   <div className="absolute inset-0 bg-white">
