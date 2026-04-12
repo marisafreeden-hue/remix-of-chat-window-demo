@@ -5,8 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import dashboardPreview from "@/assets/dashboard-preview.png";
 import emmaImg from "@/assets/emma-illustration.svg";
 import broadvoiceLogo from "@/assets/broadvoice-logo.png";
-import dotsImg from "@/assets/dots.png";
-import bvIcon from "@/assets/bv-icon.png";
 
 interface NarrativeScreenProps {
   visible: boolean;
@@ -86,7 +84,6 @@ const EmmaSlide: React.FC = () => (
 
     {/* Decorative dots — lower left */}
     <motion.img
-      src={dotsImg}
       alt=""
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -96,7 +93,6 @@ const EmmaSlide: React.FC = () => (
 
     {/* BV icon — lower right */}
     <motion.img
-      src={bvIcon}
       alt=""
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
