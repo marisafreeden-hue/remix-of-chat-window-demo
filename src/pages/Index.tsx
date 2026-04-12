@@ -617,7 +617,7 @@ const SCENE_CUE_TIMES = [
   8,     // 3: Routine Calls — "large portion of his calls are routine"
   14.5,  // 4: Mad Rob — "every live interaction can cost 8-12 dollars"
   22.5,  // 5: GoEngage Intro — "So Rob implemented Go Engage Voice"
-  38,    // 6: Natural Call — "no IVR, no menus, just a natural conversation"
+  35.8,  // 6: Natural Call — "no IVR, no menus, just a natural conversation"
   47,    // 7: Intent Capture — "Hi, thanks for calling..."
   52,    // 8: API Execution — "schedules the appointment directly"
   67.7,  // 9: Escalation — "emergency, the AI recognizes it instantly"
