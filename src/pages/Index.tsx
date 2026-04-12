@@ -132,13 +132,12 @@ const VideoSlide: React.FC = () => (
 const EmmaBackground: React.FC<{ children: React.ReactNode; robOffset?: number }> = ({ children, robOffset = 0 }) => (
   <div className="absolute inset-0 overflow-hidden">
     <div className="absolute inset-0 bg-white">
-      <div className="absolute -top-[300px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[#38bdcd]/25 blur-[180px]" />
-      <div className="absolute -top-[100px] left-[20%] w-[600px] h-[600px] rounded-full bg-[#38bdcd]/15 blur-[160px]" />
-      <div className="absolute bottom-[-150px] right-[20%] w-[600px] h-[600px] rounded-full bg-[#1f6eac]/15 blur-[160px]" />
-      <div className="absolute top-[20%] left-[30%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/10 blur-[140px]" />
+      <div className="absolute -top-[300px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[#38bdcd]/25 blur-[180px] will-change-transform" />
+      <div className="absolute bottom-[-150px] right-[20%] w-[600px] h-[600px] rounded-full bg-[#1f6eac]/15 blur-[160px] will-change-transform" />
+      <div className="absolute top-[20%] left-[30%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/10 blur-[140px] will-change-transform" />
     </div>
     <div className="absolute inset-0 flex items-end justify-center z-10" style={{ paddingLeft: 8 + robOffset }}>
-      <img src={robImg} alt="Rob" className="h-[95%] w-auto object-contain" />
+      <img src={robImg} alt="Rob" className="h-[95%] w-auto object-contain" style={{ transform: 'translateZ(0)' }} />
     </div>
     {children}
   </div>
