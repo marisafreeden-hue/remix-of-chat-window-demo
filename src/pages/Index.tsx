@@ -816,19 +816,37 @@ const Index = () => {
   }, []);
 
   const SceneComponent = SCENE_COMPONENTS[sceneIndex];
+  const isRobScene = ROB_SCENE_INDICES.has(sceneIndex);
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-white relative overflow-hidden">
       <audio ref={audioElRef} src="/audio/narration.mp3" preload="auto" />
       <div className="absolute inset-0 sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 w-full h-full sm:w-[1024px] sm:h-[768px] overflow-hidden sm:rounded-[40px] sm:border-[16px] border-white/40 shadow-none sm:shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] backdrop-blur-md bg-white/10">
+
+        {/* Persistent Rob + background layer for scenes 1-5 */}
+        <div
+          className="absolute inset-0 z-0 transition-opacity duration-500"
+          style={{ opacity: isRobScene ? 1 : 0, pointerEvents: isRobScene ? 'auto' : 'none' }}
+        >
+          <div className="absolute inset-0 bg-white">
+            <div className="absolute -top-[300px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[#38bdcd]/25 blur-[180px] will-change-transform" />
+            <div className="absolute bottom-[-150px] right-[20%] w-[600px] h-[600px] rounded-full bg-[#1f6eac]/15 blur-[160px] will-change-transform" />
+            <div className="absolute top-[20%] left-[30%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/10 blur-[140px] will-change-transform" />
+          </div>
+          <div className="absolute inset-0 flex items-end justify-center z-10">
+            <img src={robImg} alt="Rob" className="h-[95%] w-auto object-contain" style={{ transform: 'translateZ(0)' }} />
+          </div>
+        </div>
+
         <AnimatePresence mode="wait">
           <motion.div
             key={sceneIndex}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.01 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="w-full h-full relative"
+            style={{ zIndex: isRobScene ? 20 : 0 }}
           >
             <SceneComponent />
           </motion.div>
