@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Mic, Calendar, MapPin, Clock, User, Send as SendIcon, CheckCircle, AlertTriangle, Zap, ArrowRight, MessageSquare } from "lucide-react";
+import { Phone, Mic, Calendar, MapPin, Clock, User, CheckCircle, AlertTriangle, Zap, ArrowRight, MessageSquare } from "lucide-react";
 import VoiceWaveform from "./VoiceWaveform";
 import broadvoiceLogo from "@/assets/broadvoice-logo.png";
 import goLogo from "@/assets/go-logo.png";
