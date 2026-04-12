@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Send, Search, HelpCircle, Bell, Settings, X } from "lucide-react";
+import { Send, Search, HelpCircle, Bell, Settings, X, Phone } from "lucide-react";
 import '@fontsource/besley/400-italic.css';
 import '@fontsource/instrument-sans/500.css';
 
@@ -121,6 +121,17 @@ const DashboardSlide: React.FC = () => (
         className="h-[50%] w-auto object-contain"
       />
     </div>
+    {/* Cost overlay */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1.2, duration: 0.6 }}
+      className="absolute top-8 right-8 z-30 bg-white/90 backdrop-blur-md rounded-2xl border border-[hsl(220,15%,88%)] shadow-lg p-5 max-w-[260px]"
+    >
+      <span className="text-[10px] font-bold uppercase tracking-wider text-[hsl(0,60%,50%)] block mb-2">Cost per live interaction</span>
+      <span className="text-3xl font-bold text-[hsl(220,15%,20%)]" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>$8 – $12</span>
+      <p className="text-xs text-[hsl(220,10%,50%)] mt-2 leading-relaxed">Every routine call costs time and money — even the simple ones.</p>
+    </motion.div>
   </EmmaBackground>
 );
 
@@ -311,6 +322,174 @@ const MadRobSlide: React.FC = () => (
     </div>
     <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
     <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
+    {/* Pain point overlay */}
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 0.8, duration: 0.6 }}
+      className="absolute top-12 left-10 z-30 bg-white/90 backdrop-blur-md rounded-2xl border border-[hsl(220,15%,88%)] shadow-lg p-5 max-w-[280px]"
+    >
+      <span className="text-[10px] font-bold uppercase tracking-wider text-[hsl(25,80%,50%)] block mb-3">The Problem</span>
+      <p className="text-sm text-[hsl(220,15%,25%)] leading-relaxed font-medium" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>
+        Hiring more agents only increases cost.
+      </p>
+      <p className="text-xs text-[hsl(220,10%,50%)] mt-2 leading-relaxed">
+        35% of calls are routine — simple requests that still tie up live agents at $8–$12 each.
+      </p>
+    </motion.div>
+  </div>
+);
+
+/* ── GoEngage Intro Slide ── */
+const GoEngageIntroSlide: React.FC = () => (
+  <div className="absolute inset-0 bg-white overflow-hidden">
+    <div className="absolute -top-[450px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[hsl(180,60%,50%)]/25 blur-[180px]" />
+    <div className="absolute bottom-[-150px] right-[-100px] w-[800px] h-[800px] rounded-full bg-[hsl(185,55%,50%)]/22 blur-[180px]" />
+    <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[hsl(270,55%,55%)]/12 blur-[120px]" />
+    <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[hsl(280,50%,55%)]/15 blur-[140px]" />
+    <div className="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[hsl(180,55%,50%)]/12 blur-[140px]" />
+    <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
+    <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
+    <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-12">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+        className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#43B5BF] to-[#27698F] flex items-center justify-center mb-8 shadow-lg"
+      >
+        <Phone className="w-9 h-9 text-white" />
+      </motion.div>
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3, duration: 0.5 }}
+        className="text-sm uppercase tracking-[0.25em] text-[hsl(220,10%,55%)] mb-4"
+        style={{ fontFamily: "'Inter', sans-serif" }}
+      >
+        The Solution
+      </motion.p>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.6 }}
+      >
+        <span className="text-4xl font-medium block text-center" style={{ fontFamily: "'Instrument Sans', sans-serif", background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+          So Rob implemented
+        </span>
+        <span className="text-5xl block text-center mt-2" style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400, background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+          GoEngage Voice
+        </span>
+      </motion.h2>
+      <motion.p
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.5 }}
+        className="text-sm text-[hsl(220,10%,45%)] mt-6 max-w-md text-center leading-relaxed"
+      >
+        An AI-powered inbound voice assistant that doesn't just route calls — it resolves them.
+      </motion.p>
+    </div>
+  </div>
+);
+
+/* ── Results Slide ── */
+const ResultsSlide: React.FC = () => {
+  const [phase, setPhase] = useState(0);
+  useEffect(() => {
+    const timers = [
+      setTimeout(() => setPhase(1), 600),
+      setTimeout(() => setPhase(2), 1200),
+      setTimeout(() => setPhase(3), 1800),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const results = [
+    { icon: "📉", label: "Fewer routine calls", desc: "AI handles the simple stuff" },
+    { icon: "💰", label: "Lower costs", desc: "No more $8–$12 per routine call" },
+    { icon: "⚡", label: "Faster resolution", desc: "Seconds, not minutes" },
+  ];
+
+  return (
+    <div className="absolute inset-0 bg-white overflow-hidden">
+      <div className="absolute -top-[450px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[hsl(180,60%,50%)]/25 blur-[180px]" />
+      <div className="absolute bottom-[-150px] right-[-100px] w-[800px] h-[800px] rounded-full bg-[hsl(185,55%,50%)]/22 blur-[180px]" />
+      <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[hsl(270,55%,55%)]/12 blur-[120px]" />
+      <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[hsl(280,50%,55%)]/15 blur-[140px]" />
+      <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
+      <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
+      <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-12">
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          className="text-sm uppercase tracking-[0.25em] text-[hsl(220,10%,55%)] mb-6"
+        >
+          The Result
+        </motion.p>
+        <div className="flex flex-col gap-6 w-full max-w-lg">
+          {results.map((r, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: phase >= i + 1 ? 1 : 0, x: phase >= i + 1 ? 0 : -30 }}
+              transition={{ duration: 0.5, type: "spring", stiffness: 120 }}
+              className="flex items-center gap-5 bg-white/80 backdrop-blur-md rounded-2xl border border-[hsl(220,15%,88%)] shadow-sm p-6"
+            >
+              <span className="text-3xl">{r.icon}</span>
+              <div>
+                <span className="text-lg font-bold text-[hsl(220,15%,20%)] block" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>{r.label}</span>
+                <span className="text-xs text-[hsl(220,10%,50%)]">{r.desc}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+/* ── Tagline Slide ── */
+const TaglineSlide: React.FC = () => (
+  <div className="absolute inset-0 bg-white overflow-hidden">
+    <div className="absolute -top-[450px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[hsl(180,60%,50%)]/25 blur-[180px]" />
+    <div className="absolute bottom-[-150px] right-[-100px] w-[800px] h-[800px] rounded-full bg-[hsl(185,55%,50%)]/22 blur-[180px]" />
+    <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[hsl(270,55%,55%)]/12 blur-[120px]" />
+    <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[hsl(280,50%,55%)]/15 blur-[140px]" />
+    <div className="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[hsl(180,55%,50%)]/12 blur-[140px]" />
+    <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
+    <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
+    <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-12">
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="text-center"
+      >
+        <span className="text-3xl text-[hsl(220,10%,50%)] block mb-2" style={{ fontFamily: "'Instrument Sans', sans-serif", fontWeight: 400 }}>
+          Your IVR routes calls.
+        </span>
+      </motion.h2>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.6 }}
+        className="text-center"
+      >
+        <span className="text-5xl font-medium block" style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400, background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+          GoEngage resolves them.
+        </span>
+      </motion.h2>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.5 }}
+        className="mt-10 flex items-center gap-3"
+      >
+        <img src={goLogo} alt="Go" className="h-8 rounded" />
+        <span className="text-sm font-semibold text-[hsl(220,15%,25%)]" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>GoEngage Voice</span>
+      </motion.div>
+    </div>
   </div>
 );
 
@@ -319,12 +498,15 @@ const SCENE_LABELS = [
   "Meet Rob",
   "Dashboard",
   "Mad Rob",
+  "GoEngage Intro",
   "Voice: Natural Call",
   "Voice: Intent Capture",
   "Voice: API Execution",
   "Voice: Escalation",
   "Voice: Flow Builder",
   "Voice: Speed",
+  "Results",
+  "Tagline",
   "Logo",
 ];
 
@@ -353,12 +535,15 @@ const SCENE_COMPONENTS: React.FC[] = [
   EmmaSlide,
   DashboardSlide,
   MadRobSlide,
+  GoEngageIntroSlide,
   VoiceScene1_NaturalCall,
   VoiceScene2_IntentCapture,
   VoiceScene3_APIExecution,
   VoiceScene4_Escalation,
   FlowBuilderSlide,
   VoiceScene5_Speed,
+  ResultsSlide,
+  TaglineSlide,
   LogoSlide,
 ];
 
