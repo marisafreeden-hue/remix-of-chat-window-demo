@@ -696,8 +696,9 @@ const Index = () => {
     if (!audio) return;
 
     const onTime = () => {
-      if (manualOverrideRef.current) return;
       const t = audio.currentTime;
+      setAudioTime(t);
+      if (manualOverrideRef.current) return;
       let target = 0;
       for (let i = SCENE_CUE_TIMES.length - 1; i >= 0; i--) {
         if (SCENE_CUE_TIMES[i] >= 0 && t >= SCENE_CUE_TIMES[i]) {
