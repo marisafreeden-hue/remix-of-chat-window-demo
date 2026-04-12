@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Phone, Mic, Calendar, MapPin, Clock, User, CheckCircle, AlertTriangle, Zap, ArrowRight, MessageSquare } from "lucide-react";
+import { Phone, Mic, Calendar, MapPin, Clock, User, CheckCircle, AlertTriangle, Zap, ArrowRight, MessageSquare, Search, ClipboardList } from "lucide-react";
 import VoiceWaveform from "./VoiceWaveform";
 import broadvoiceLogo from "@/assets/broadvoice-logo.png";
 import goLogo from "@/assets/go-logo.png";
@@ -261,10 +261,10 @@ export const VoiceScene3_APIExecution: React.FC = () => {
   }, []);
 
   const apiSteps = [
-    { label: "Verify Availability", status: phase >= 1 ? "done" : "pending", icon: "🔍" },
-    { label: "Schedule Appointment", status: phase >= 2 ? "done" : phase >= 1 ? "active" : "pending", icon: "📅" },
-    { label: "Update Patient Record", status: phase >= 3 ? "done" : phase >= 2 ? "active" : "pending", icon: "📋" },
-    { label: "Send SMS Confirmation", status: phase >= 4 ? "done" : phase >= 3 ? "active" : "pending", icon: "💬" },
+    { label: "Verify Availability", status: phase >= 1 ? "done" : "pending", Icon: Search },
+    { label: "Schedule Appointment", status: phase >= 2 ? "done" : phase >= 1 ? "active" : "pending", Icon: Calendar },
+    { label: "Update Patient Record", status: phase >= 3 ? "done" : phase >= 2 ? "active" : "pending", Icon: ClipboardList },
+    { label: "Send SMS Confirmation", status: phase >= 4 ? "done" : phase >= 3 ? "active" : "pending", Icon: MessageSquare },
   ];
 
   return (
@@ -298,7 +298,15 @@ export const VoiceScene3_APIExecution: React.FC = () => {
                       : "bg-white/60 border-[hsl(220,15%,90%)]"
                   }`}
                 >
-                  <span className="text-lg">{step.icon}</span>
+                  <svg width="0" height="0" className="absolute">
+                    <defs>
+                      <linearGradient id={`api-icon-grad-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#43B5BF" />
+                        <stop offset="100%" stopColor="#C686F8" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <step.Icon className="w-5 h-5 flex-shrink-0" style={{ stroke: `url(#api-icon-grad-${i})` }} />
                   <span className={`text-sm font-medium flex-1 ${
                     step.status === "done" ? "text-green-700" : step.status === "active" ? "text-[#27698F]" : "text-[hsl(220,10%,55%)]"
                   }`}>{step.label}</span>
