@@ -444,14 +444,6 @@ const MadRobSlideOverlay: React.FC = () => (
           </motion.div>
         ))}
       </div>
-      <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 0.5 }}
-        className="text-xs text-[hsl(220,10%,50%)] leading-relaxed mt-1 italic"
-      >
-        Simple requests still tie up live agents — there has to be a better way.
-      </motion.p>
     </div>
   </div>
 );
