@@ -615,8 +615,8 @@ const SCENE_CUE_TIMES = [
   0,    // 1: Meet Rob
   3.5,  // 2: Dashboard — animals appear as VO says "veterinary clinic"
   11,   // 3: Routine Calls (vaccination, teeth, nails)
-  13,   // 4: Mad Rob (hiring pain)
-  19,   // 5: GoEngage Intro
+  11,   // 4: Mad Rob (hiring pain)
+  21,   // 5: GoEngage Intro
   29,   // 6: Natural Call
   33,   // 7: Intent Capture
   39,   // 8: API Execution
