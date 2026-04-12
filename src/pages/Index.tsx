@@ -29,16 +29,6 @@ import bvIcon from "@/assets/bv-icon.png";
 /* ── Individual Scene Components ── */
 
 const TitleSlide: React.FC = () => {
-  const [phase, setPhase] = useState(0);
-  useEffect(() => {
-    const timers = [
-      setTimeout(() => setPhase(1), 600),
-      setTimeout(() => setPhase(2), 1400),
-      setTimeout(() => setPhase(3), 2200),
-    ];
-    return () => timers.forEach(clearTimeout);
-  }, []);
-
   const bubbles = [
     { role: "ai" as const, text: "Hi! Thanks for calling Happy Paws Veterinary. How can I help you today?" },
     { role: "caller" as const, text: "Hi, I'd like to schedule an appointment for my dog, Max." },
@@ -66,16 +56,12 @@ const TitleSlide: React.FC = () => {
         </h1>
       </div>
 
-      {/* Right: Conversation preview */}
+      {/* Right: Static conversation preview */}
       <div className="absolute right-[20px] top-[8%] w-[480px] h-[84%] flex flex-col">
-        {/* Conversation bubbles */}
         <div className="flex-1 px-4 py-4 space-y-4 overflow-hidden">
           {bubbles.map((b, i) => (
-            <motion.div
+            <div
               key={i}
-              initial={{ opacity: 0, y: 16, scale: 0.95 }}
-              animate={{ opacity: phase >= i + 1 ? 1 : 0, y: phase >= i + 1 ? 0 : 16, scale: phase >= i + 1 ? 1 : 0.95 }}
-              transition={{ duration: 0.5, type: "spring", stiffness: 120 }}
               className={`flex items-start gap-3 ${b.role === "caller" ? "flex-row-reverse" : ""}`}
             >
               <div className={`w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0 ${
@@ -98,27 +84,22 @@ const TitleSlide: React.FC = () => {
                   {b.text}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Speech-to-Speech card */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: phase >= 1 ? 1 : 0, scale: phase >= 1 ? 1 : 0.9 }}
-          transition={{ delay: 0.5, duration: 0.6 }}
-          className="mx-4 mb-4 bg-gradient-to-br from-[#43B5BF]/5 to-[#27698F]/5 rounded-2xl border border-[#43B5BF]/15 p-5 flex flex-col items-center gap-3"
-        >
+        <div className="mx-4 mb-4 bg-gradient-to-br from-[#43B5BF]/5 to-[#27698F]/5 rounded-2xl border border-[#43B5BF]/15 p-5 flex flex-col items-center gap-3">
           <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#43B5BF] to-[#27698F] flex items-center justify-center shadow-lg shadow-[#43B5BF]/20">
             <Mic className="w-6 h-6 text-white" />
           </div>
-          <VoiceWaveform active={phase >= 1} color="#43B5BF" barCount={24} />
+          <VoiceWaveform active color="#43B5BF" barCount={24} />
           <span className="text-xs font-medium text-[hsl(220,10%,45%)]">Speech-to-Speech AI</span>
           <div className="flex items-center gap-1.5">
             <Zap className="w-3.5 h-3.5 text-[#C686F8]" />
             <span className="text-[10px] text-[#C686F8] font-semibold">Real-time responses</span>
           </div>
-        </motion.div>
+        </div>
       </div>
 
       <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
