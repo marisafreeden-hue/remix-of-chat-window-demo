@@ -142,14 +142,14 @@ const DashboardSlideOverlay: React.FC = () => (
 /* ── Routine Calls Slide — overlay only ── */
 const RoutineCallsSlideOverlay: React.FC = () => {
   const tickets = [
-    { icon: ClipboardList, title: "Vaccination Records", desc: "Request for Max's vaccination history", tag: "Records", pct: "12%", delay: 0.4, color: "#43B5BF" },
-    { icon: Stethoscope, title: "Teeth Cleaning", desc: "Schedule dental cleaning for Bella", tag: "Grooming", pct: "9%", delay: 0.7, color: "#27698F" },
-    { icon: Scissors, title: "Nail Clipping", desc: "Book a nail trim for Charlie", tag: "Grooming", pct: "8%", delay: 1.0, color: "#C686F8" },
-    { icon: Calendar, title: "Annual Checkup", desc: "Schedule yearly wellness exam", tag: "Appointment", pct: "6%", delay: 1.3, color: "#43B5BF" },
+    { icon: ClipboardList, title: "Vaccination Records", desc: "Request for Max's vaccination history", tag: "Records", delay: 0.4, color: "#43B5BF" },
+    { icon: Stethoscope, title: "Teeth Cleaning", desc: "Schedule dental cleaning for Bella", tag: "Grooming", delay: 0.7, color: "#27698F" },
+    { icon: Scissors, title: "Nail Clipping", desc: "Book a nail trim for Charlie", tag: "Grooming", delay: 1.0, color: "#C686F8" },
+    { icon: Calendar, title: "Annual Checkup", desc: "Schedule yearly wellness exam", tag: "Appointment", delay: 1.3, color: "#43B5BF" },
   ];
 
   return (
-    <div className="absolute top-0 bottom-0 z-20 flex items-center pr-8" style={{ left: '55%', right: 0 }}>
+    <div className="absolute top-0 bottom-0 z-20 flex items-center pr-6" style={{ left: '60%', right: 0 }}>
       <div className="flex flex-col gap-3 w-full">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -209,10 +209,7 @@ const RoutineCallsSlideOverlay: React.FC = () => {
               <IconComp className="w-5 h-5 flex-shrink-0" style={{ stroke: `url(#icon-grad-${i})` }} />
               <div className="flex-1 min-w-0">
                 <span className="text-sm font-semibold text-[hsl(220,15%,20%)] truncate block" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>{t.title}</span>
-                <div className="flex items-center justify-between mt-0.5">
-                  <p className="text-[11px] text-[hsl(220,10%,50%)]">{t.desc}</p>
-                  <span className="text-[11px] font-bold text-[hsl(220,15%,30%)] ml-2 flex-shrink-0">{t.pct}</span>
-                </div>
+                <p className="text-[11px] text-[hsl(220,10%,50%)] mt-0.5">{t.desc}</p>
               </div>
             </motion.div>
           );
@@ -224,7 +221,7 @@ const RoutineCallsSlideOverlay: React.FC = () => {
 
 /* ── Cost Slide — overlay only ── */
 const CostSlideOverlay: React.FC = () => (
-  <div className="absolute top-0 bottom-0 z-20 flex items-center justify-center" style={{ left: '55%', right: 0 }}>
+  <div className="absolute top-0 bottom-0 z-20 flex items-center justify-center" style={{ left: '60%', right: 0 }}>
     <motion.div
       initial={{ opacity: 0, scale: 0.85 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -420,7 +417,7 @@ const ChatSlide: React.FC = () => {
 
 /* ── MadRob Slide — overlay only ── */
 const MadRobSlideOverlay: React.FC = () => (
-  <div className="absolute top-0 bottom-0 z-20 flex items-center pr-8" style={{ left: '50%', right: 0 }}>
+  <div className="absolute top-0 bottom-0 z-20 flex items-center pr-6" style={{ left: '60%', right: 0 }}>
     <div className="flex flex-col gap-4 w-full">
       <motion.p
         initial={{ opacity: 0, y: -10 }}
