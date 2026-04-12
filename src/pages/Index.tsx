@@ -492,24 +492,75 @@ const MadRobSlide: React.FC = () => (
       <div className="absolute bottom-[-150px] right-[20%] w-[600px] h-[600px] rounded-full bg-[#1f6eac]/15 blur-[160px]" />
       <div className="absolute top-[20%] left-[30%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/10 blur-[140px]" />
     </div>
-    <div className="absolute inset-0 flex items-end justify-center z-10" style={{ paddingLeft: 8 }}>
-      <img src={madRobImg} alt="Rob" className="h-[95%] w-auto object-contain" />
+    {/* Rob on left */}
+    <div className="absolute left-0 bottom-0 z-10 h-full flex items-end" style={{ paddingLeft: 40 }}>
+      <img src={robImg} alt="Rob" className="h-[90%] w-auto object-contain" />
     </div>
-    {/* Pain point overlay */}
-    <motion.div
-      initial={{ opacity: 0, x: -30 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ delay: 0.8, duration: 0.6 }}
-      className="absolute top-12 left-10 z-30 bg-white/90 backdrop-blur-md rounded-2xl border border-[hsl(220,15%,88%)] shadow-lg p-5 max-w-[280px]"
-    >
-      <span className="text-[10px] font-bold uppercase tracking-wider text-[hsl(25,80%,50%)] block mb-3">The Problem</span>
-      <p className="text-sm text-[hsl(220,15%,25%)] leading-relaxed font-medium" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>
-        Hiring more agents only increases cost.
-      </p>
-      <p className="text-xs text-[hsl(220,10%,50%)] mt-2 leading-relaxed">
-        35% of calls are routine — simple requests that still tie up live agents at $8–$12 each.
-      </p>
-    </motion.div>
+
+    {/* Stats on right */}
+    <div className="absolute right-0 top-0 bottom-0 z-20 flex items-center pr-12" style={{ width: '480px' }}>
+      <div className="flex flex-col gap-4 w-full">
+        <motion.p
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="text-[10px] font-bold uppercase tracking-[0.2em] text-[hsl(25,80%,50%)] mb-1"
+        >
+          The Problem
+        </motion.p>
+        <motion.h3
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="text-xl font-semibold text-[hsl(220,15%,20%)] leading-snug"
+          style={{ fontFamily: "'Instrument Sans', sans-serif" }}
+        >
+          Hiring more agents<br />only increases cost.
+        </motion.h3>
+
+        {/* Stat cards */}
+        <div className="grid grid-cols-2 gap-3 mt-2">
+          {[
+            { label: "Routine Calls", value: "35%", desc: "of daily volume", delay: 0.6, color: "#C686F8" },
+            { label: "Cost Per Call", value: "$8–12", desc: "live agent rate", delay: 0.8, color: "#43B5BF" },
+            { label: "Agent Utilization", value: "62%", desc: "on repetitive tasks", delay: 1.0, color: "#27698F" },
+            { label: "Annual Waste", value: "$140K+", desc: "on automatable calls", delay: 1.2, color: "#C686F8" },
+          ].map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 20, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ delay: s.delay, duration: 0.5, type: "spring", stiffness: 120 }}
+              className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-4"
+            >
+              <p className="text-[9px] font-bold uppercase tracking-wider text-[hsl(220,10%,55%)] mb-2">{s.label}</p>
+              <span
+                className="text-2xl font-bold block"
+                style={{
+                  fontFamily: "'Instrument Sans', sans-serif",
+                  background: `linear-gradient(135deg, ${s.color}, #27698F)`,
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
+                }}
+              >
+                {s.value}
+              </span>
+              <p className="text-[10px] text-[hsl(220,10%,50%)] mt-1">{s.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.6, duration: 0.5 }}
+          className="text-xs text-[hsl(220,10%,50%)] leading-relaxed mt-1 italic"
+        >
+          Simple requests still tie up live agents — there has to be a better way.
+        </motion.p>
+      </div>
+    </div>
   </div>
 );
 
