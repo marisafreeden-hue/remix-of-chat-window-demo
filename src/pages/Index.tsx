@@ -101,16 +101,10 @@ const TitleSlide: React.FC = () => {
   );
 };
 
-const EmmaSlide: React.FC = () => (
-  <div className="absolute inset-0 bg-white">
-    <div className="absolute -top-[450px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[#38bdcd]/25 blur-[180px] will-change-transform" />
-    <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[#1f6eac]/12 blur-[120px] will-change-transform" />
-    <div className="absolute bottom-[-150px] right-[-100px] w-[800px] h-[800px] rounded-full bg-[#38bdcd]/22 blur-[180px] will-change-transform" />
-    <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/15 blur-[140px] will-change-transform" />
-    <div className="absolute inset-0 flex items-end justify-center" style={{ willChange: 'auto' }}>
-      <img src={robImg} alt="Rob" className="h-[95%] w-auto object-contain" style={{ willChange: 'auto', transform: 'translateZ(0)' }} />
-    </div>
-    <div className="absolute left-10 top-1/2 -translate-y-1/2 z-10">
+/* Overlay-only slides for Rob scenes (Rob + bg rendered persistently outside AnimatePresence) */
+const EmmaSlideOverlay: React.FC = () => (
+  <div className="absolute inset-0 z-20">
+    <div className="absolute left-10 top-1/2 -translate-y-1/2">
       <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }} style={{ background: 'linear-gradient(90deg, #43B5BF, #27698F, #C686F8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
         <span style={{ fontFamily: "'Instrument Sans', sans-serif", fontSize: '3rem', fontWeight: 500 }}>Meet </span>
         <span style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400, fontSize: '3rem' }}>Rob</span>
@@ -122,52 +116,31 @@ const EmmaSlide: React.FC = () => (
   </div>
 );
 
-const VideoSlide: React.FC = () => (
-  <div className="absolute inset-0 bg-black flex items-center justify-center">
-    <video src="/videos/intro-video.mov" autoPlay muted playsInline className="w-full h-full object-cover" />
+
+
+const DashboardSlideOverlay: React.FC = () => (
+  <div className="absolute inset-0 z-20 flex items-end justify-between px-16 pb-8">
+    <motion.img
+      src={corgiImg}
+      alt="Corgi"
+      initial={{ opacity: 0, x: -80, scale: 0.8 }}
+      animate={{ opacity: 1, x: -50, scale: 1 }}
+      transition={{ delay: 0.3, duration: 0.7, type: "spring", stiffness: 80 }}
+      className="h-[55%] w-auto object-contain"
+    />
+    <motion.img
+      src={catImg}
+      alt="Cat"
+      initial={{ opacity: 0, x: 80, scale: 0.8 }}
+      animate={{ opacity: 1, x: 0, scale: 1 }}
+      transition={{ delay: 0.6, duration: 0.7, type: "spring", stiffness: 80 }}
+      className="h-[50%] w-auto object-contain"
+    />
   </div>
 );
 
-/* Emma background shared by dashboard + tabs scenes */
-const EmmaBackground: React.FC<{ children: React.ReactNode; robOffset?: number }> = ({ children, robOffset = 0 }) => (
-  <div className="absolute inset-0 overflow-hidden">
-    <div className="absolute inset-0 bg-white">
-      <div className="absolute -top-[300px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[#38bdcd]/25 blur-[180px] will-change-transform" />
-      <div className="absolute bottom-[-150px] right-[20%] w-[600px] h-[600px] rounded-full bg-[#1f6eac]/15 blur-[160px] will-change-transform" />
-      <div className="absolute top-[20%] left-[30%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/10 blur-[140px] will-change-transform" />
-    </div>
-    <div className="absolute inset-0 flex items-end justify-center z-10" style={{ paddingLeft: 8 + robOffset }}>
-      <img src={robImg} alt="Rob" className="h-[95%] w-auto object-contain" style={{ transform: 'translateZ(0)' }} />
-    </div>
-    {children}
-  </div>
-);
-
-const DashboardSlide: React.FC = () => (
-  <EmmaBackground>
-    <div className="absolute inset-0 z-20 flex items-end justify-between px-16 pb-8">
-      <motion.img
-        src={corgiImg}
-        alt="Corgi"
-        initial={{ opacity: 0, x: -80, scale: 0.8 }}
-        animate={{ opacity: 1, x: -50, scale: 1 }}
-        transition={{ delay: 0.3, duration: 0.7, type: "spring", stiffness: 80 }}
-        className="h-[55%] w-auto object-contain"
-      />
-      <motion.img
-        src={catImg}
-        alt="Cat"
-        initial={{ opacity: 0, x: 80, scale: 0.8 }}
-        animate={{ opacity: 1, x: 0, scale: 1 }}
-        transition={{ delay: 0.6, duration: 0.7, type: "spring", stiffness: 80 }}
-        className="h-[50%] w-auto object-contain"
-      />
-    </div>
-  </EmmaBackground>
-);
-
-/* ── Routine Calls Slide — call center dashboard style ── */
-const RoutineCallsSlide: React.FC = () => {
+/* ── Routine Calls Slide — overlay only ── */
+const RoutineCallsSlideOverlay: React.FC = () => {
   const tickets = [
     { icon: ClipboardList, title: "Vaccination Records", desc: "Request for Max's vaccination history", tag: "Records", pct: "12%", delay: 0.4, color: "#43B5BF" },
     { icon: Stethoscope, title: "Teeth Cleaning", desc: "Schedule dental cleaning for Bella", tag: "Grooming", pct: "9%", delay: 0.7, color: "#27698F" },
@@ -176,139 +149,108 @@ const RoutineCallsSlide: React.FC = () => {
   ];
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-white">
-        <div className="absolute -top-[300px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[#38bdcd]/25 blur-[180px]" />
-        <div className="absolute -top-[100px] left-[20%] w-[600px] h-[600px] rounded-full bg-[#38bdcd]/15 blur-[160px]" />
-        <div className="absolute bottom-[-150px] right-[20%] w-[600px] h-[600px] rounded-full bg-[#1f6eac]/15 blur-[160px]" />
-        <div className="absolute top-[20%] left-[30%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/10 blur-[140px]" />
-      </div>
-
-      {/* Rob on the left */}
-      <div className="absolute left-0 bottom-0 z-10 h-full flex items-end" style={{ paddingLeft: 40 }}>
-        <img src={robImg} alt="Rob" className="h-[90%] w-auto object-contain" />
-      </div>
-
-      {/* Call queue on the right */}
-      <div className="absolute right-0 top-0 bottom-0 z-20 flex items-center pr-12" style={{ width: '420px' }}>
-        <div className="flex flex-col gap-3 w-full">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="flex items-center justify-between mb-1"
-          >
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(220,10%,55%)]">
-              Today's Call Queue
-            </p>
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#43B5BF]/10 border border-[#43B5BF]/20">
-              <Phone className="w-3 h-3 text-[#27698F]" />
-              <span className="text-[10px] font-bold text-[#27698F]">127 calls today</span>
+    <div className="absolute right-0 top-0 bottom-0 z-20 flex items-center pr-12" style={{ width: '420px' }}>
+      <div className="flex flex-col gap-3 w-full">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="flex items-center justify-between mb-1"
+        >
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(220,10%,55%)]">
+            Today's Call Queue
+          </p>
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#43B5BF]/10 border border-[#43B5BF]/20">
+            <Phone className="w-3 h-3 text-[#27698F]" />
+            <span className="text-[10px] font-bold text-[#27698F]">127 calls today</span>
+          </div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          style={{ transformOrigin: "left" }}
+          className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-3 flex items-center gap-4"
+        >
+          <div className="flex-1">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-[hsl(220,10%,55%)]">Routine Call Volume</p>
+            <div className="flex items-baseline gap-1.5 mt-1">
+              <span className="text-2xl font-bold text-[hsl(220,15%,20%)]" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>35%</span>
+              <span className="text-[10px] text-[hsl(220,10%,50%)]">of total calls</span>
             </div>
-          </motion.div>
-
-          {/* Stat bar */}
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            style={{ transformOrigin: "left" }}
-            className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-3 flex items-center gap-4"
-          >
-            <div className="flex-1">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-[hsl(220,10%,55%)]">Routine Call Volume</p>
-              <div className="flex items-baseline gap-1.5 mt-1">
-                <span className="text-2xl font-bold text-[hsl(220,15%,20%)]" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>35%</span>
-                <span className="text-[10px] text-[hsl(220,10%,50%)]">of total calls</span>
-              </div>
-            </div>
-            <div className="w-[100px] h-2 rounded-full bg-[hsl(220,15%,92%)] overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: "35%" }}
-                transition={{ delay: 0.6, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="h-full rounded-full bg-gradient-to-r from-[#43B5BF] to-[#27698F]"
-              />
-            </div>
-          </motion.div>
-
-          {/* Ticket cards */}
-          {tickets.map((t, i) => {
-            const IconComp = t.icon;
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: 60, scale: 0.9 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ delay: t.delay, duration: 0.5, type: "spring", stiffness: 120 }}
-                className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-3.5 flex items-center gap-3"
-              >
-                <svg width="0" height="0" className="absolute">
-                  <defs>
-                    <linearGradient id={`icon-grad-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#43B5BF" />
-                      <stop offset="100%" stopColor="#C686F8" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-                <IconComp className="w-5 h-5 flex-shrink-0" style={{ stroke: `url(#icon-grad-${i})` }} />
-                <div className="flex-1 min-w-0">
-                  <span className="text-sm font-semibold text-[hsl(220,15%,20%)] truncate block" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>{t.title}</span>
-                  <div className="flex items-center justify-between mt-0.5">
-                    <p className="text-[11px] text-[hsl(220,10%,50%)]">{t.desc}</p>
-                    <span className="text-[11px] font-bold text-[hsl(220,15%,30%)] ml-2 flex-shrink-0">{t.pct}</span>
-                  </div>
+          </div>
+          <div className="w-[100px] h-2 rounded-full bg-[hsl(220,15%,92%)] overflow-hidden">
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "35%" }}
+              transition={{ delay: 0.6, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="h-full rounded-full bg-gradient-to-r from-[#43B5BF] to-[#27698F]"
+            />
+          </div>
+        </motion.div>
+        {tickets.map((t, i) => {
+          const IconComp = t.icon;
+          return (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: 60, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ delay: t.delay, duration: 0.5, type: "spring", stiffness: 120 }}
+              className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-3.5 flex items-center gap-3"
+            >
+              <svg width="0" height="0" className="absolute">
+                <defs>
+                  <linearGradient id={`icon-grad-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#43B5BF" />
+                    <stop offset="100%" stopColor="#C686F8" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <IconComp className="w-5 h-5 flex-shrink-0" style={{ stroke: `url(#icon-grad-${i})` }} />
+              <div className="flex-1 min-w-0">
+                <span className="text-sm font-semibold text-[hsl(220,15%,20%)] truncate block" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>{t.title}</span>
+                <div className="flex items-center justify-between mt-0.5">
+                  <p className="text-[11px] text-[hsl(220,10%,50%)]">{t.desc}</p>
+                  <span className="text-[11px] font-bold text-[hsl(220,15%,30%)] ml-2 flex-shrink-0">{t.pct}</span>
                 </div>
-              </motion.div>
-            );
-          })}
-        </div>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
 };
 
-/* ── Cost Slide — shows cost per interaction ── */
-const CostSlide: React.FC = () => (
-  <EmmaBackground>
-    <div className="absolute inset-0 z-20 flex items-center justify-end pr-16">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.3, duration: 0.6, type: "spring", stiffness: 100 }}
-        className="bg-white/90 backdrop-blur-md rounded-2xl border border-[hsl(220,15%,88%)] shadow-xl p-8 max-w-[320px] text-center"
+/* ── Cost Slide — overlay only ── */
+const CostSlideOverlay: React.FC = () => (
+  <div className="absolute inset-0 z-20 flex items-center justify-end pr-16">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.85 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 0.3, duration: 0.6, type: "spring", stiffness: 100 }}
+      className="bg-white/90 backdrop-blur-md rounded-2xl border border-[hsl(220,15%,88%)] shadow-xl p-8 max-w-[320px] text-center"
+    >
+      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[hsl(0,60%,50%)] block mb-4">Cost per live interaction</span>
+      <motion.span
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7, duration: 0.5 }}
+        className="text-5xl font-bold text-[hsl(220,15%,20%)] block"
+        style={{ fontFamily: "'Instrument Sans', sans-serif" }}
       >
-        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[hsl(0,60%,50%)] block mb-4">Cost per live interaction</span>
-        <motion.span
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.5 }}
-          className="text-5xl font-bold text-[hsl(220,15%,20%)] block"
-          style={{ fontFamily: "'Instrument Sans', sans-serif" }}
-        >
-          $8 – $12
-        </motion.span>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.1, duration: 0.5 }}
-          className="text-xs text-[hsl(220,10%,50%)] mt-4 leading-relaxed"
-        >
-          Every routine call costs time and money.<br />Hiring more agents only increases that cost.
-        </motion.p>
-      </motion.div>
-    </div>
-  </EmmaBackground>
-);
-
-const TabsSlide: React.FC = () => (
-  <EmmaBackground>
-    <div className="absolute inset-0 z-20">
-      <ClutteredTabs visible />
-    </div>
-  </EmmaBackground>
+        $8 – $12
+      </motion.span>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.1, duration: 0.5 }}
+        className="text-xs text-[hsl(220,10%,50%)] mt-4 leading-relaxed"
+      >
+        Every routine call costs time and money.<br />Hiring more agents only increases that cost.
+      </motion.p>
+    </motion.div>
+  </div>
 );
 
 const WelcomeSlide: React.FC = () => (
@@ -476,83 +418,66 @@ const ChatSlide: React.FC = () => {
   );
 };
 
-/* ── Scene definitions ── */
-const MadRobSlide: React.FC = () => (
-  <div className="absolute inset-0 overflow-hidden">
-    <div className="absolute inset-0 bg-white">
-      <div className="absolute -top-[300px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[#38bdcd]/25 blur-[180px]" />
-      <div className="absolute -top-[100px] left-[20%] w-[600px] h-[600px] rounded-full bg-[#38bdcd]/15 blur-[160px]" />
-      <div className="absolute bottom-[-150px] right-[20%] w-[600px] h-[600px] rounded-full bg-[#1f6eac]/15 blur-[160px]" />
-      <div className="absolute top-[20%] left-[30%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/10 blur-[140px]" />
-    </div>
-    {/* Rob on left */}
-    <div className="absolute left-0 bottom-0 z-10 h-full flex items-end" style={{ paddingLeft: 40 }}>
-      <img src={robImg} alt="Rob" className="h-[90%] w-auto object-contain" />
-    </div>
-
-    {/* Stats on right */}
-    <div className="absolute right-0 top-0 bottom-0 z-20 flex items-center pr-12" style={{ width: '480px' }}>
-      <div className="flex flex-col gap-4 w-full">
-        <motion.p
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-[10px] font-bold uppercase tracking-[0.2em] text-[hsl(25,80%,50%)] mb-1"
-        >
-          The Problem
-        </motion.p>
-        <motion.h3
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.5 }}
-          className="text-xl font-semibold text-[hsl(220,15%,20%)] leading-snug"
-          style={{ fontFamily: "'Instrument Sans', sans-serif" }}
-        >
-          Hiring more agents<br />only increases cost.
-        </motion.h3>
-
-        {/* Stat cards */}
-        <div className="grid grid-cols-2 gap-3 mt-2">
-          {[
-            { label: "Routine Calls", value: "35%", desc: "of daily volume", delay: 0.6, color: "#C686F8" },
-            { label: "Cost Per Call", value: "$8–12", desc: "live agent rate", delay: 0.8, color: "#43B5BF" },
-            { label: "Agent Utilization", value: "62%", desc: "on repetitive tasks", delay: 1.0, color: "#27698F" },
-            { label: "Annual Waste", value: "$140K+", desc: "on automatable calls", delay: 1.2, color: "#C686F8" },
-          ].map((s, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ delay: s.delay, duration: 0.5, type: "spring", stiffness: 120 }}
-              className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-4"
+/* ── MadRob Slide — overlay only ── */
+const MadRobSlideOverlay: React.FC = () => (
+  <div className="absolute right-0 top-0 bottom-0 z-20 flex items-center pr-12" style={{ width: '480px' }}>
+    <div className="flex flex-col gap-4 w-full">
+      <motion.p
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        className="text-[10px] font-bold uppercase tracking-[0.2em] text-[hsl(25,80%,50%)] mb-1"
+      >
+        The Problem
+      </motion.p>
+      <motion.h3
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.4, duration: 0.5 }}
+        className="text-xl font-semibold text-[hsl(220,15%,20%)] leading-snug"
+        style={{ fontFamily: "'Instrument Sans', sans-serif" }}
+      >
+        Hiring more agents<br />only increases cost.
+      </motion.h3>
+      <div className="grid grid-cols-2 gap-3 mt-2">
+        {[
+          { label: "Routine Calls", value: "35%", desc: "of daily volume", delay: 0.6, color: "#C686F8" },
+          { label: "Cost Per Call", value: "$8–12", desc: "live agent rate", delay: 0.8, color: "#43B5BF" },
+          { label: "Agent Utilization", value: "62%", desc: "on repetitive tasks", delay: 1.0, color: "#27698F" },
+          { label: "Annual Waste", value: "$140K+", desc: "on automatable calls", delay: 1.2, color: "#C686F8" },
+        ].map((s, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: s.delay, duration: 0.5, type: "spring", stiffness: 120 }}
+            className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-4"
+          >
+            <p className="text-[9px] font-bold uppercase tracking-wider text-[hsl(220,10%,55%)] mb-2">{s.label}</p>
+            <span
+              className="text-2xl font-bold block"
+              style={{
+                fontFamily: "'Instrument Sans', sans-serif",
+                background: `linear-gradient(135deg, ${s.color}, #27698F)`,
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
             >
-              <p className="text-[9px] font-bold uppercase tracking-wider text-[hsl(220,10%,55%)] mb-2">{s.label}</p>
-              <span
-                className="text-2xl font-bold block"
-                style={{
-                  fontFamily: "'Instrument Sans', sans-serif",
-                  background: `linear-gradient(135deg, ${s.color}, #27698F)`,
-                  WebkitBackgroundClip: 'text',
-                  WebkitTextFillColor: 'transparent',
-                  backgroundClip: 'text',
-                }}
-              >
-                {s.value}
-              </span>
-              <p className="text-[10px] text-[hsl(220,10%,50%)] mt-1">{s.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.6, duration: 0.5 }}
-          className="text-xs text-[hsl(220,10%,50%)] leading-relaxed mt-1 italic"
-        >
-          Simple requests still tie up live agents — there has to be a better way.
-        </motion.p>
+              {s.value}
+            </span>
+            <p className="text-[10px] text-[hsl(220,10%,50%)] mt-1">{s.desc}</p>
+          </motion.div>
+        ))}
       </div>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6, duration: 0.5 }}
+        className="text-xs text-[hsl(220,10%,50%)] leading-relaxed mt-1 italic"
+      >
+        Simple requests still tie up live agents — there has to be a better way.
+      </motion.p>
     </div>
   </div>
 );
@@ -738,13 +663,16 @@ const LogoSlide: React.FC = () => (
   </div>
 );
 
+// Scenes 1-5 are "Rob scenes" — they only render overlays; Rob + bg are persistent
+const ROB_SCENE_INDICES = new Set([1, 2, 3, 4, 5]);
+
 const SCENE_COMPONENTS: React.FC[] = [
   TitleSlide,
-  EmmaSlide,
-  DashboardSlide,
-  RoutineCallsSlide,
-  CostSlide,
-  MadRobSlide,
+  EmmaSlideOverlay,
+  DashboardSlideOverlay,
+  RoutineCallsSlideOverlay,
+  CostSlideOverlay,
+  MadRobSlideOverlay,
   GoEngageIntroSlide,
   VoiceScene1_NaturalCall,
   VoiceScene2_IntentCapture,
@@ -888,19 +816,37 @@ const Index = () => {
   }, []);
 
   const SceneComponent = SCENE_COMPONENTS[sceneIndex];
+  const isRobScene = ROB_SCENE_INDICES.has(sceneIndex);
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-white relative overflow-hidden">
       <audio ref={audioElRef} src="/audio/narration.mp3" preload="auto" />
       <div className="absolute inset-0 sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 w-full h-full sm:w-[1024px] sm:h-[768px] overflow-hidden sm:rounded-[40px] sm:border-[16px] border-white/40 shadow-none sm:shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] backdrop-blur-md bg-white/10">
+
+        {/* Persistent Rob + background layer for scenes 1-5 */}
+        <div
+          className="absolute inset-0 z-0 transition-opacity duration-500"
+          style={{ opacity: isRobScene ? 1 : 0, pointerEvents: isRobScene ? 'auto' : 'none' }}
+        >
+          <div className="absolute inset-0 bg-white">
+            <div className="absolute -top-[300px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[#38bdcd]/25 blur-[180px] will-change-transform" />
+            <div className="absolute bottom-[-150px] right-[20%] w-[600px] h-[600px] rounded-full bg-[#1f6eac]/15 blur-[160px] will-change-transform" />
+            <div className="absolute top-[20%] left-[30%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/10 blur-[140px] will-change-transform" />
+          </div>
+          <div className="absolute inset-0 flex items-end justify-center z-10">
+            <img src={robImg} alt="Rob" className="h-[95%] w-auto object-contain" style={{ transform: 'translateZ(0)' }} />
+          </div>
+        </div>
+
         <AnimatePresence mode="wait">
           <motion.div
             key={sceneIndex}
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.01 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             className="w-full h-full relative"
+            style={{ zIndex: isRobScene ? 20 : 0 }}
           >
             <SceneComponent />
           </motion.div>
