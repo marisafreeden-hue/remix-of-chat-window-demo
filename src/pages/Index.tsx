@@ -17,6 +17,7 @@ import emmaImg from "@/assets/emma-illustration.svg";
 import broadvoiceLogo from "@/assets/broadvoice-logo.png";
 import goLogo from "@/assets/go-logo.png";
 import robImg from "@/assets/rob-illustration.png";
+import madRobImg from "@/assets/mad-rob.png";
 import corgiImg from "@/assets/corgi.png";
 import catImg from "@/assets/cat.png";
 import dotsImg from "@/assets/dots.png";
@@ -295,11 +296,28 @@ const ChatSlide: React.FC = () => {
 };
 
 /* ── Scene definitions ── */
+const MadRobSlide: React.FC = () => (
+  <div className="absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 bg-white">
+      <div className="absolute -top-[300px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[#38bdcd]/25 blur-[180px]" />
+      <div className="absolute -top-[100px] left-[20%] w-[600px] h-[600px] rounded-full bg-[#38bdcd]/15 blur-[160px]" />
+      <div className="absolute bottom-[-150px] right-[20%] w-[600px] h-[600px] rounded-full bg-[#1f6eac]/15 blur-[160px]" />
+      <div className="absolute top-[20%] left-[30%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/10 blur-[140px]" />
+    </div>
+    <div className="absolute inset-0 flex items-end justify-center z-10" style={{ paddingLeft: 8 }}>
+      <img src={madRobImg} alt="Rob" className="h-[95%] w-auto object-contain" />
+    </div>
+    <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
+    <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
+  </div>
+);
+
 const SCENE_LABELS = [
   "Title",
   "Meet Emma",
   "Video",
   "Dashboard",
+  "Mad Rob",
   "Welcome",
   "Chat",
   "Summary",
@@ -309,6 +327,7 @@ const SCENE_COMPONENTS: React.FC[] = [
   TitleSlide,
   EmmaSlide,
   DashboardSlide,
+  MadRobSlide,
   WelcomeSlide,
   ChatSlide,
   () => <SummaryScreen visible />,
