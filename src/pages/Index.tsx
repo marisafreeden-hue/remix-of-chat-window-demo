@@ -396,14 +396,6 @@ const ChatSlide: React.FC = () => {
 const MadRobSlideOverlay: React.FC = () => (
   <div className="absolute top-0 bottom-0 z-20 flex items-center pr-6" style={{ left: '60%', right: 0 }}>
     <div className="flex flex-col gap-4 w-full">
-      <motion.p
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2, duration: 0.5 }}
-        className="text-[10px] font-bold uppercase tracking-[0.2em] text-[hsl(25,80%,50%)] mb-1"
-      >
-        The Problem
-      </motion.p>
       <div className="grid grid-cols-2 gap-3 mt-2">
         {[
           { label: "Routine Calls", value: "35%", desc: "of daily volume", delay: 0.6, color: "#C686F8" },
