@@ -55,7 +55,7 @@ const TitleSlide: React.FC = () => {
       </div>
 
       {/* Right: Static conversation preview */}
-      <div className="absolute right-[30px] top-[calc(12%+25px)] w-[420px] h-[76%] flex flex-col rounded-3xl overflow-hidden p-4" style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.25) 100%)', backdropFilter: 'blur(28px) saturate(1.6)', WebkitBackdropFilter: 'blur(28px) saturate(1.6)', boxShadow: '0 8px 32px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -1px 0 rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.35)' }}>
+      <div className="absolute right-[30px] top-[calc(12%+25px)] w-[420px] h-[76%] flex flex-col rounded-3xl overflow-hidden p-4" style={{ background: 'linear-gradient(135deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.55) 100%)', backdropFilter: 'blur(28px) saturate(1.6)', WebkitBackdropFilter: 'blur(28px) saturate(1.6)', boxShadow: '0 8px 32px rgba(0,0,0,0.04), inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -1px 0 rgba(255,255,255,0.2)', border: '1px solid rgba(255,255,255,0.45)' }}>
         <div className="flex-1 px-3 py-3 space-y-3 overflow-hidden">
           {bubbles.map((b, i) => (
             <div
