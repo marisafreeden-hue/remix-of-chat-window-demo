@@ -116,7 +116,7 @@ const EmmaSlideOverlay: React.FC = () => (
   </div>
 );
 
-/* EmmaBackground - no longer needed, Rob is persistent */
+
 
 const DashboardSlideOverlay: React.FC = () => (
   <div className="absolute inset-0 z-20 flex items-end justify-between px-16 pb-8">
