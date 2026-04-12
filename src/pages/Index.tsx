@@ -404,15 +404,6 @@ const MadRobSlideOverlay: React.FC = () => (
       >
         The Problem
       </motion.p>
-      <motion.h3
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.4, duration: 0.5 }}
-        className="text-xl font-semibold text-[hsl(220,15%,20%)] leading-snug"
-        style={{ fontFamily: "'Instrument Sans', sans-serif" }}
-      >
-        Hiring more agents<br />only increases cost.
-      </motion.h3>
       <div className="grid grid-cols-2 gap-3 mt-2">
         {[
           { label: "Routine Calls", value: "35%", desc: "of daily volume", delay: 0.6, color: "#C686F8" },
