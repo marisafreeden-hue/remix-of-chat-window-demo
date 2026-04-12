@@ -221,7 +221,7 @@ const RoutineCallsSlideOverlay: React.FC = () => {
 
 /* ── Cost Slide — overlay only ── */
 const CostSlideOverlay: React.FC = () => (
-  <div className="absolute top-0 bottom-0 z-20 flex items-center justify-center" style={{ left: '55%', right: 0 }}>
+  <div className="absolute top-0 bottom-0 z-20 flex items-center justify-center" style={{ left: '60%', right: 0 }}>
     <motion.div
       initial={{ opacity: 0, scale: 0.85 }}
       animate={{ opacity: 1, scale: 1 }}
