@@ -607,9 +607,9 @@ const ResultsSlide: React.FC = () => {
   }, []);
 
   const results = [
-    { icon: "📉", label: "Fewer routine calls", desc: "AI handles the simple stuff" },
-    { icon: "💰", label: "Lower costs", desc: "No more $8–$12 per routine call" },
-    { icon: "⚡", label: "Faster resolution", desc: "Seconds, not minutes" },
+    { Icon: TrendingDown, label: "Fewer routine calls", desc: "AI handles the simple stuff" },
+    { Icon: DollarSign, label: "Lower costs", desc: "No more $8–$12 per routine call" },
+    { Icon: Zap, label: "Faster resolution", desc: "Seconds, not minutes" },
   ];
 
   return (
@@ -618,6 +618,14 @@ const ResultsSlide: React.FC = () => {
       <div className="absolute bottom-[-150px] right-[-100px] w-[800px] h-[800px] rounded-full bg-[hsl(185,55%,50%)]/22 blur-[180px]" />
       <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[hsl(270,55%,55%)]/12 blur-[120px]" />
       <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[hsl(280,50%,55%)]/15 blur-[140px]" />
+      <svg width="0" height="0" className="absolute">
+        <defs>
+          <linearGradient id="results-icon-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#43B5BF" />
+            <stop offset="100%" stopColor="#C686F8" />
+          </linearGradient>
+        </defs>
+      </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-12">
         <motion.p
           initial={{ opacity: 0 }}
@@ -636,7 +644,7 @@ const ResultsSlide: React.FC = () => {
               transition={{ duration: 0.5, type: "spring", stiffness: 120 }}
               className="flex items-center gap-5 bg-white/80 backdrop-blur-md rounded-2xl border border-[hsl(220,15%,88%)] shadow-sm p-6"
             >
-              <span className="text-3xl">{r.icon}</span>
+              <r.Icon className="w-7 h-7 flex-shrink-0" style={{ stroke: "url(#results-icon-grad)" }} />
               <div>
                 <span className="text-lg font-bold text-[hsl(220,15%,20%)] block" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>{r.label}</span>
                 <span className="text-xs text-[hsl(220,10%,50%)]">{r.desc}</span>
