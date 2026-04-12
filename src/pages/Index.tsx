@@ -55,7 +55,7 @@ const TitleSlide: React.FC = () => {
       </div>
 
       {/* Right: Static conversation preview */}
-      <div className="absolute right-[20px] top-[calc(8%+10px)] w-[480px] h-[84%] flex flex-col">
+      <div className="absolute right-[20px] top-[calc(8%+25px)] w-[480px] h-[84%] flex flex-col">
         <div className="flex-1 px-4 py-4 space-y-4 overflow-hidden">
           {bubbles.map((b, i) => (
             <div
