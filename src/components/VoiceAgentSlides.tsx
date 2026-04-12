@@ -507,18 +507,9 @@ export const VoiceScene5_Speed: React.FC = () => {
     const timers = [
       setTimeout(() => setPhase(1), 800),
       setTimeout(() => setPhase(2), 2500),
-      setTimeout(() => setPhase(3), 4500),
-      setTimeout(() => setPhase(4), 7000),
     ];
     return () => timers.forEach(clearTimeout);
   }, []);
-
-  const metrics = [
-    { label: "Avg Response Time", value: "<300ms", icon: Zap },
-    { label: "Calls Handled", value: "End-to-End", icon: CheckCircle },
-    { label: "Agent Workload", value: "Reduced 60%", icon: User },
-    { label: "Resolution Speed", value: "3x Faster", icon: Clock },
-  ];
 
   return (
     <BrandBg>
@@ -556,41 +547,24 @@ export const VoiceScene5_Speed: React.FC = () => {
           <VoiceWaveform active={phase >= 1} color="#43B5BF" barCount={40} />
         </motion.div>
 
-        {/* Metrics grid */}
-        <div className="grid grid-cols-4 gap-5 w-full max-w-[700px]">
-          {metrics.map((m, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: phase >= 2 ? 1 : 0, y: phase >= 2 ? 0 : 20 }}
-              transition={{ delay: 0.2 * i, duration: 0.5, type: "spring" }}
-              className="bg-white/80 rounded-xl border border-[hsl(220,15%,88%)] p-4 text-center shadow-sm"
-            >
-              <m.icon className="w-5 h-5 text-[#43B5BF] mx-auto mb-2" />
-              <span className="text-lg font-bold text-[hsl(220,15%,20%)] block" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>{m.value}</span>
-              <span className="text-[10px] text-[hsl(220,10%,55%)] font-medium">{m.label}</span>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Tagline */}
+        {/* GoEngage Voice in Besley italic with gradient */}
         <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: phase >= 3 ? 1 : 0 }}
-          transition={{ duration: 0.5 }}
-          className="mt-8 text-sm text-[hsl(220,10%,45%)] text-center max-w-md"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: phase >= 2 ? 1 : 0, y: phase >= 2 ? 0 : 10 }}
+          transition={{ duration: 0.6 }}
+          className="text-5xl text-center"
+          style={{
+            fontFamily: "'Besley', serif",
+            fontStyle: 'italic',
+            fontWeight: 400,
+            background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}
         >
-          GoEngage Voice handles the task end-to-end — reducing agent workload while delivering faster resolution.
+          GoEngage Voice
         </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: phase >= 4 ? 1 : 0 }}
-          className="mt-6 flex items-center gap-3"
-        >
-          <img src={goLogo} alt="Go" className="h-8 rounded" />
-          <span className="text-sm font-semibold text-[hsl(220,15%,25%)]" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>GoEngage Voice</span>
-        </motion.div>
       </div>
     </BrandBg>
   );
