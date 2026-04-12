@@ -60,10 +60,10 @@ const EmmaSlide: React.FC = () => (
     <div className="absolute left-10 top-1/2 -translate-y-1/2 z-10">
       <motion.h2 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5, duration: 0.6 }}>
         <span className="text-5xl font-bold text-[#38bdcd]">Meet </span>
-        <span className="text-5xl font-bold text-[hsl(220,15%,25%)]">Emma</span>
+        <span className="text-5xl font-bold text-[hsl(220,15%,25%)]">Rob</span>
       </motion.h2>
       <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.6 }} className="text-sm text-[hsl(220,10%,45%)] mt-3 max-w-xs leading-relaxed">
-        Call center supervisor · Team of 20 · Omnichannel support
+        Call Center Operations Manager · Multilocation Veterinary Clinic
       </motion.p>
     </div>
     <motion.img src={dotsImg} alt="" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 0.5 }} className="absolute bottom-8 left-10 h-12 w-auto z-10" />
