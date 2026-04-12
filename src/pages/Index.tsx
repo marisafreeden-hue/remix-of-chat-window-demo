@@ -17,6 +17,8 @@ import emmaImg from "@/assets/emma-illustration.svg";
 import broadvoiceLogo from "@/assets/broadvoice-logo.png";
 import goLogo from "@/assets/go-logo.png";
 import robImg from "@/assets/rob-illustration.png";
+import corgiImg from "@/assets/corgi.png";
+import catImg from "@/assets/cat.png";
 import dotsImg from "@/assets/dots.png";
 import bvIcon from "@/assets/bv-icon.png";
 
@@ -98,8 +100,23 @@ const EmmaBackground: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
 const DashboardSlide: React.FC = () => (
   <EmmaBackground>
-    <div className="absolute inset-0 z-20">
-      <AbstractDashboard visible />
+    <div className="absolute inset-0 z-20 flex items-end justify-between px-16 pb-8">
+      <motion.img
+        src={corgiImg}
+        alt="Corgi"
+        initial={{ opacity: 0, x: -80, scale: 0.8 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        transition={{ delay: 0.3, duration: 0.7, type: "spring", stiffness: 80 }}
+        className="h-[55%] w-auto object-contain"
+      />
+      <motion.img
+        src={catImg}
+        alt="Cat"
+        initial={{ opacity: 0, x: 80, scale: 0.8 }}
+        animate={{ opacity: 1, x: 0, scale: 1 }}
+        transition={{ delay: 0.6, duration: 0.7, type: "spring", stiffness: 80 }}
+        className="h-[50%] w-auto object-contain"
+      />
     </div>
   </EmmaBackground>
 );
