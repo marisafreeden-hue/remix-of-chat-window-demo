@@ -88,7 +88,7 @@ const EmmaBackground: React.FC<{ children: React.ReactNode }> = ({ children }) =
       <div className="absolute top-[20%] left-[30%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/10 blur-[140px]" />
     </div>
     <div className="absolute inset-0 flex items-end justify-center z-10" style={{ paddingLeft: 8 }}>
-      <img src={emmaImg} alt="Emma" className="h-[95%] w-auto object-contain" />
+      <img src={robImg} alt="Rob" className="h-[95%] w-auto object-contain" />
     </div>
     <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
     <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
