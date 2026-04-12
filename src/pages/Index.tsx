@@ -643,7 +643,7 @@ const ResultsSlide: React.FC = () => {
         >
           The Result
         </motion.p>
-        <div className="flex flex-col gap-6 w-full max-w-lg">
+        <div className="flex flex-col gap-6 w-full max-w-sm mx-auto">
           {results.map((r, i) => (
             <motion.div
               key={i}
