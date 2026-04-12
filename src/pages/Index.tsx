@@ -292,7 +292,6 @@ const SCENE_LABELS = [
 const SCENE_COMPONENTS: React.FC[] = [
   TitleSlide,
   EmmaSlide,
-  VideoSlide,
   DashboardSlide,
   TabsSlide,
   WelcomeSlide,
