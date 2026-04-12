@@ -696,8 +696,8 @@ const SCENE_CUE_TIMES = [
   -1,   // 0: Title (no audio)
   0,    // 1: Meet Rob
   3.5,  // 2: Dashboard — animals appear as VO says "veterinary clinic"
-  9,    // 3: Routine Calls (vaccination, teeth, nails)
-  13,   // 4: Cost ($8-$12)
+  11,   // 3: Routine Calls (vaccination, teeth, nails)
+  15,   // 4: Cost ($8-$12)
   17,   // 5: Mad Rob (hiring pain)
   21,   // 6: GoEngage Intro
   27,   // 7: Natural Call
