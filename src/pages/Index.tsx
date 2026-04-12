@@ -325,8 +325,28 @@ const SCENE_LABELS = [
   "Voice: Escalation",
   "Voice: Flow Builder",
   "Voice: Speed",
-  "Summary",
+  "Logo",
 ];
+
+const LogoSlide: React.FC = () => (
+  <div className="absolute inset-0 bg-white flex items-center justify-center overflow-hidden">
+    <div className="absolute -top-[450px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[hsl(180,60%,50%)]/25 blur-[180px]" />
+    <div className="absolute bottom-[-150px] right-[-100px] w-[800px] h-[800px] rounded-full bg-[hsl(185,55%,50%)]/22 blur-[180px]" />
+    <div className="absolute top-[45%] left-[8%] w-[250px] h-[250px] rounded-full bg-[hsl(175,60%,50%)]/18 blur-[80px]" />
+    <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[hsl(270,55%,55%)]/12 blur-[120px]" />
+    <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[hsl(280,50%,55%)]/15 blur-[140px]" />
+    <div className="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[hsl(180,55%,50%)]/12 blur-[140px]" />
+    <motion.img
+      src={broadvoiceLogo}
+      alt="Broadvoice"
+      className="h-10 relative z-10"
+      style={{ filter: "brightness(0) saturate(100%) invert(22%) sepia(12%) saturate(640%) hue-rotate(169deg) brightness(96%) contrast(89%)" }}
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.6 }}
+    />
+  </div>
+);
 
 const SCENE_COMPONENTS: React.FC[] = [
   TitleSlide,
@@ -339,7 +359,7 @@ const SCENE_COMPONENTS: React.FC[] = [
   VoiceScene4_Escalation,
   FlowBuilderSlide,
   VoiceScene5_Speed,
-  () => <SummaryScreen visible />,
+  LogoSlide,
 ];
 
 const Index = () => {
