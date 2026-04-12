@@ -121,6 +121,17 @@ const DashboardSlide: React.FC = () => (
         className="h-[50%] w-auto object-contain"
       />
     </div>
+    {/* Cost overlay */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 1.2, duration: 0.6 }}
+      className="absolute top-8 right-8 z-30 bg-white/90 backdrop-blur-md rounded-2xl border border-[hsl(220,15%,88%)] shadow-lg p-5 max-w-[260px]"
+    >
+      <span className="text-[10px] font-bold uppercase tracking-wider text-[hsl(0,60%,50%)] block mb-2">Cost per live interaction</span>
+      <span className="text-3xl font-bold text-[hsl(220,15%,20%)]" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>$8 – $12</span>
+      <p className="text-xs text-[hsl(220,10%,50%)] mt-2 leading-relaxed">Every routine call costs time and money — even the simple ones.</p>
+    </motion.div>
   </EmmaBackground>
 );
 
@@ -311,6 +322,21 @@ const MadRobSlide: React.FC = () => (
     </div>
     <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
     <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
+    {/* Pain point overlay */}
+    <motion.div
+      initial={{ opacity: 0, x: -30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: 0.8, duration: 0.6 }}
+      className="absolute top-12 left-10 z-30 bg-white/90 backdrop-blur-md rounded-2xl border border-[hsl(220,15%,88%)] shadow-lg p-5 max-w-[280px]"
+    >
+      <span className="text-[10px] font-bold uppercase tracking-wider text-[hsl(25,80%,50%)] block mb-3">The Problem</span>
+      <p className="text-sm text-[hsl(220,15%,25%)] leading-relaxed font-medium" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>
+        Hiring more agents only increases cost.
+      </p>
+      <p className="text-xs text-[hsl(220,10%,50%)] mt-2 leading-relaxed">
+        35% of calls are routine — simple requests that still tie up live agents at $8–$12 each.
+      </p>
+    </motion.div>
   </div>
 );
 
