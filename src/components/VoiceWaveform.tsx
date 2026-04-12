@@ -17,7 +17,7 @@ const VoiceWaveform: React.FC<VoiceWaveformProps> = ({ active, color = "hsl(180,
           height: [8, 20 + Math.random() * 20, 8, 14 + Math.random() * 16, 8],
         } : { height: 4 }}
         transition={active ? {
-          duration: 0.6 + Math.random() * 0.4,
+          duration: 1.2 + Math.random() * 0.6,
           repeat: Infinity,
           repeatType: "mirror",
           delay: i * 0.03,
