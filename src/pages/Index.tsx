@@ -222,45 +222,35 @@ const RoutineCallsSlideOverlay: React.FC = () => {
   );
 };
 
-/* ── Cost Slide — shows cost per interaction ── */
-const CostSlide: React.FC = () => (
-  <EmmaBackground>
-    <div className="absolute inset-0 z-20 flex items-center justify-end pr-16">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 0.3, duration: 0.6, type: "spring", stiffness: 100 }}
-        className="bg-white/90 backdrop-blur-md rounded-2xl border border-[hsl(220,15%,88%)] shadow-xl p-8 max-w-[320px] text-center"
+/* ── Cost Slide — overlay only ── */
+const CostSlideOverlay: React.FC = () => (
+  <div className="absolute inset-0 z-20 flex items-center justify-end pr-16">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.85 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ delay: 0.3, duration: 0.6, type: "spring", stiffness: 100 }}
+      className="bg-white/90 backdrop-blur-md rounded-2xl border border-[hsl(220,15%,88%)] shadow-xl p-8 max-w-[320px] text-center"
+    >
+      <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[hsl(0,60%,50%)] block mb-4">Cost per live interaction</span>
+      <motion.span
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.7, duration: 0.5 }}
+        className="text-5xl font-bold text-[hsl(220,15%,20%)] block"
+        style={{ fontFamily: "'Instrument Sans', sans-serif" }}
       >
-        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[hsl(0,60%,50%)] block mb-4">Cost per live interaction</span>
-        <motion.span
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.7, duration: 0.5 }}
-          className="text-5xl font-bold text-[hsl(220,15%,20%)] block"
-          style={{ fontFamily: "'Instrument Sans', sans-serif" }}
-        >
-          $8 – $12
-        </motion.span>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.1, duration: 0.5 }}
-          className="text-xs text-[hsl(220,10%,50%)] mt-4 leading-relaxed"
-        >
-          Every routine call costs time and money.<br />Hiring more agents only increases that cost.
-        </motion.p>
-      </motion.div>
-    </div>
-  </EmmaBackground>
-);
-
-const TabsSlide: React.FC = () => (
-  <EmmaBackground>
-    <div className="absolute inset-0 z-20">
-      <ClutteredTabs visible />
-    </div>
-  </EmmaBackground>
+        $8 – $12
+      </motion.span>
+      <motion.p
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.1, duration: 0.5 }}
+        className="text-xs text-[hsl(220,10%,50%)] mt-4 leading-relaxed"
+      >
+        Every routine call costs time and money.<br />Hiring more agents only increases that cost.
+      </motion.p>
+    </motion.div>
+  </div>
 );
 
 const WelcomeSlide: React.FC = () => (
