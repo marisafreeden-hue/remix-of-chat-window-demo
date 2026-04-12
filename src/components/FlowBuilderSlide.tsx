@@ -2,8 +2,6 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Phone, PhoneOff, Sparkles, ArrowDown, Settings, Brain, Wrench, LogOut } from "lucide-react";
 import broadvoiceLogo from "@/assets/broadvoice-logo.png";
-import dotsImg from "@/assets/dots.png";
-import bvIcon from "@/assets/bv-icon.png";
 
 /* ─── Brand background ─── */
 const BrandBg: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -14,8 +12,6 @@ const BrandBg: React.FC<{ children: React.ReactNode }> = ({ children }) => (
     <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[hsl(270,55%,55%)]/12 blur-[120px]" />
     <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[hsl(280,50%,55%)]/15 blur-[140px]" />
     <div className="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[hsl(180,55%,50%)]/12 blur-[140px]" />
-    <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
-    <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
     {children}
   </div>
 );

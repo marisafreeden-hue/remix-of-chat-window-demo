@@ -10,8 +10,6 @@ import ClutteredTabs from "./ClutteredTabs";
 import broadvoiceLogo from "@/assets/broadvoice-logo.png";
 import goLogo from "@/assets/go-logo.png";
 import emmaImg from "@/assets/emma-illustration.svg";
-import dotsImg from "@/assets/dots.png";
-import bvIcon from "@/assets/bv-icon.png";
 
 interface Message {
   id: number;
@@ -226,9 +224,7 @@ const ChatInterface = forwardRef<ChatInterfaceHandle, ChatInterfaceProps>(({ onD
           </div>
 
           {/* Decorative dots — lower left */}
-          <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
           {/* BV icon — lower right */}
-          <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
 
           {/* Phase-specific overlays */}
           <AnimatePresence mode="wait">

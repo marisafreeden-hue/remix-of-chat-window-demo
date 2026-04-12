@@ -23,8 +23,6 @@ import robImg from "@/assets/rob-illustration.png";
 import madRobImg from "@/assets/mad-rob.png";
 import corgiImg from "@/assets/corgi.png";
 import catImg from "@/assets/cat.png";
-import dotsImg from "@/assets/dots.png";
-import bvIcon from "@/assets/bv-icon.png";
 
 /* ── Individual Scene Components ── */
 
@@ -102,8 +100,6 @@ const TitleSlide: React.FC = () => {
         </div>
       </div>
 
-      <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
-      <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
     </div>
   );
 };
@@ -129,8 +125,6 @@ const EmmaSlide: React.FC = () => (
         Call Center Operations Manager<br />Multilocation Veterinary Clinic
       </motion.p>
     </div>
-    <motion.img src={dotsImg} alt="" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 0.5 }} className="absolute bottom-8 left-10 h-12 w-auto z-10" />
-    <motion.img src={bvIcon} alt="" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 0.5 }} className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-10" />
   </div>
 );
 
@@ -152,8 +146,6 @@ const EmmaBackground: React.FC<{ children: React.ReactNode }> = ({ children }) =
     <div className="absolute inset-0 flex items-end justify-center z-10" style={{ paddingLeft: 8 }}>
       <img src={robImg} alt="Rob" className="h-[95%] w-auto object-contain" />
     </div>
-    <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
-    <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
     {children}
   </div>
 );
@@ -452,8 +444,6 @@ const MadRobSlide: React.FC = () => (
     <div className="absolute inset-0 flex items-end justify-center z-10" style={{ paddingLeft: 8 }}>
       <img src={madRobImg} alt="Rob" className="h-[95%] w-auto object-contain" />
     </div>
-    <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
-    <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
     {/* Pain point overlay */}
     <motion.div
       initial={{ opacity: 0, x: -30 }}
@@ -480,8 +470,6 @@ const GoEngageIntroSlide: React.FC = () => (
     <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[hsl(270,55%,55%)]/12 blur-[120px]" />
     <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[hsl(280,50%,55%)]/15 blur-[140px]" />
     <div className="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[hsl(180,55%,50%)]/12 blur-[140px]" />
-    <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
-    <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
     <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-12">
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
@@ -548,8 +536,6 @@ const ResultsSlide: React.FC = () => {
       <div className="absolute bottom-[-150px] right-[-100px] w-[800px] h-[800px] rounded-full bg-[hsl(185,55%,50%)]/22 blur-[180px]" />
       <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[hsl(270,55%,55%)]/12 blur-[120px]" />
       <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[hsl(280,50%,55%)]/15 blur-[140px]" />
-      <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
-      <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
       <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-12">
         <motion.p
           initial={{ opacity: 0 }}
@@ -589,8 +575,6 @@ const TaglineSlide: React.FC = () => (
     <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[hsl(270,55%,55%)]/12 blur-[120px]" />
     <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[hsl(280,50%,55%)]/15 blur-[140px]" />
     <div className="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[hsl(180,55%,50%)]/12 blur-[140px]" />
-    <img src={dotsImg} alt="" className="absolute bottom-8 left-10 h-12 w-auto z-30" />
-    <img src={bvIcon} alt="" className="absolute bottom-6 right-6 h-10 w-10 rounded-full z-30" />
     <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-12">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
