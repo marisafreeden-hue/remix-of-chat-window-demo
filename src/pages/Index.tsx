@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide
 import { AnimatePresence, motion } from "framer-motion";
 import { Send, Search, HelpCircle, Bell, Settings, X, Phone, Mic, Zap } from "lucide-react";
 import '@fontsource/besley/400-italic.css';
+import '@fontsource/instrument-sans/500.css';
 import VoiceWaveform from "@/components/VoiceWaveform";
 
 import ChatMessage, { RichContent } from "@/components/ChatMessage";
