@@ -439,6 +439,127 @@ const GoEngageIntroSlide: React.FC = () => (
   </div>
 );
 
+/* ── Speech-to-Speech AI Slide ── */
+const SpeechToSpeechSlide: React.FC = () => {
+  const [phase, setPhase] = useState(0);
+  useEffect(() => {
+    const timers = [
+      setTimeout(() => setPhase(1), 600),
+      setTimeout(() => setPhase(2), 1800),
+      setTimeout(() => setPhase(3), 3200),
+      setTimeout(() => setPhase(4), 5000),
+    ];
+    return () => timers.forEach(clearTimeout);
+  }, []);
+
+  const features = [
+    { label: "No Latency", desc: "Responses in under 500ms", icon: "⚡" },
+    { label: "Natural Tone", desc: "Human-like voice synthesis", icon: "🎙️" },
+    { label: "Real-Time Understanding", desc: "Processes speech as it's spoken", icon: "🧠" },
+  ];
+
+  return (
+    <div className="absolute inset-0 bg-white overflow-hidden">
+      <div className="absolute -top-[450px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[hsl(180,60%,50%)]/25 blur-[180px]" />
+      <div className="absolute bottom-[-150px] right-[-100px] w-[800px] h-[800px] rounded-full bg-[hsl(185,55%,50%)]/22 blur-[180px]" />
+      <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[hsl(270,55%,55%)]/12 blur-[120px]" />
+      <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[hsl(280,50%,55%)]/15 blur-[140px]" />
+      <div className="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[hsl(180,55%,50%)]/12 blur-[140px]" />
+
+      <div className="absolute inset-0 z-20 flex items-center justify-center px-12">
+        <div className="flex items-center gap-16 max-w-[900px] w-full">
+          {/* Left: Visual */}
+          <div className="flex-1 flex flex-col items-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, type: "spring", damping: 20 }}
+              className="relative mb-6"
+            >
+              {/* Pulsing ring */}
+              <motion.div
+                animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.15, 0.3] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute inset-[-20px] rounded-full border-2 border-[#43B5BF]/30"
+              />
+              <motion.div
+                animate={{ scale: [1, 1.25, 1], opacity: [0.2, 0.08, 0.2] }}
+                transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.3 }}
+                className="absolute inset-[-40px] rounded-full border border-[#C686F8]/20"
+              />
+              <div className="w-24 h-24 rounded-full bg-gradient-to-br from-[#43B5BF] to-[#27698F] flex items-center justify-center shadow-xl shadow-[#43B5BF]/25">
+                <Mic className="w-10 h-10 text-white" />
+              </div>
+            </motion.div>
+
+            <VoiceWaveform active={phase >= 1} color="#43B5BF" barCount={32} />
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: phase >= 2 ? 1 : 0 }}
+              className="mt-4 flex items-center gap-2"
+            >
+              <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-xs font-medium text-[hsl(220,10%,45%)]">Speech-to-Speech Active</span>
+            </motion.div>
+          </div>
+
+          {/* Right: Info */}
+          <div className="flex-1">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="mb-2"
+            >
+              <span className="text-3xl block pb-1" style={{ fontFamily: "'Instrument Sans', sans-serif", fontWeight: 500, background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+                Speech-to-Speech AI
+              </span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="text-sm text-[hsl(220,10%,45%)] mb-8 leading-relaxed"
+            >
+              Not text-to-speech. True voice-to-voice processing — instant, natural, human-like.
+            </motion.p>
+
+            <div className="space-y-4">
+              {features.map((f, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: phase >= 2 ? 1 : 0, x: phase >= 2 ? 0 : 20 }}
+                  transition={{ delay: i * 0.3, duration: 0.5, type: "spring" }}
+                  className="flex items-start gap-3 p-3 rounded-xl bg-white/80 border border-[hsl(220,15%,90%)] shadow-sm"
+                >
+                  <span className="text-lg">{f.icon}</span>
+                  <div>
+                    <span className="text-sm font-semibold text-[hsl(220,15%,25%)] block">{f.label}</span>
+                    <span className="text-xs text-[hsl(220,10%,50%)]">{f.desc}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {phase >= 4 && (
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-6 flex items-center gap-2"
+              >
+                <Zap className="w-4 h-4 text-[#C686F8]" />
+                <span className="text-xs font-semibold text-[#C686F8]">Sub-500ms response time</span>
+              </motion.div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 /* ── Results Slide ── */
 const ResultsSlide: React.FC = () => {
   const [phase, setPhase] = useState(0);
@@ -556,6 +677,7 @@ const SCENE_LABELS = [
   "Voice: Escalation",
   "Voice: Flow Builder",
   "Voice: Speed",
+  "Speech-to-Speech AI",
   "Results",
   "Tagline",
   "Logo",
@@ -596,6 +718,7 @@ const SCENE_COMPONENTS: React.FC[] = [
   VoiceScene4_Escalation,
   FlowBuilderSlide,
   VoiceScene5_Speed,
+  SpeechToSpeechSlide,
   ResultsSlide,
   TaglineSlide,
   LogoSlide,
@@ -616,13 +739,14 @@ const SCENE_CUE_TIMES = [
   14.5,  // 4: Mad Rob — "every live interaction can cost 8-12 dollars"
   22.5,  // 5: GoEngage Intro — "So Rob implemented Go Engage Voice"
   35.8,  // 6: Natural Call — "no IVR, no menus, just a natural conversation"
-  52,    // 7: API Execution — "schedules the appointment directly"
-  66.8,  // 8: Escalation — "emergency, the AI recognizes it instantly"
+  53.3,  // 7: API Execution — held 1.3s longer (was 52)
+  68.1,  // 8: Escalation — shifted accordingly (was 66.8)
   76.5,  // 9: Flow Builder — "no-code flow builder"
   100.7, // 10: Speed — "speech-to-speech AI, responses are immediate"
-  109,   // 11: Results — "The result? Fewer routine calls"
-  115,   // 12: Tagline — "Your IVR routes calls. Go Engage resolves them."
-  116.5, // 13: Logo
+  105,   // 11: Speech-to-Speech AI — new visual slide
+  109,   // 12: Results — "The result? Fewer routine calls"
+  115,   // 13: Tagline — "Your IVR routes calls. Go Engage resolves them."
+  116.5, // 14: Logo
 ];
 
 const Index = () => {
