@@ -121,17 +121,92 @@ const DashboardSlide: React.FC = () => (
         className="h-[50%] w-auto object-contain"
       />
     </div>
-    {/* Cost overlay */}
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 1.2, duration: 0.6 }}
-      className="absolute top-8 right-8 z-30 bg-white/90 backdrop-blur-md rounded-2xl border border-[hsl(220,15%,88%)] shadow-lg p-5 max-w-[260px]"
-    >
-      <span className="text-[10px] font-bold uppercase tracking-wider text-[hsl(0,60%,50%)] block mb-2">Cost per live interaction</span>
-      <span className="text-3xl font-bold text-[hsl(220,15%,20%)]" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>$8 – $12</span>
-      <p className="text-xs text-[hsl(220,10%,50%)] mt-2 leading-relaxed">Every routine call costs time and money — even the simple ones.</p>
-    </motion.div>
+  </EmmaBackground>
+);
+
+/* ── Routine Calls Slide — ticket cards flying in ── */
+const RoutineCallsSlide: React.FC = () => {
+  const tickets = [
+    { icon: "📋", title: "Vaccination Records", desc: "Request for Max's vaccination history", tag: "Records", delay: 0.4 },
+    { icon: "🦷", title: "Teeth Cleaning", desc: "Schedule dental cleaning for Bella", tag: "Grooming", delay: 0.9 },
+    { icon: "✂️", title: "Nail Clipping", desc: "Book a nail trim for Charlie", tag: "Grooming", delay: 1.4 },
+    { icon: "📅", title: "Annual Checkup", desc: "Schedule yearly wellness exam", tag: "Appointment", delay: 1.9 },
+  ];
+
+  return (
+    <EmmaBackground>
+      <div className="absolute inset-0 z-20 flex items-center justify-end pr-12">
+        <div className="flex flex-col gap-3 w-[320px]">
+          <motion.p
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(220,10%,55%)] mb-1"
+          >
+            Today's Call Queue
+          </motion.p>
+          {tickets.map((t, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: 60, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ delay: t.delay, duration: 0.5, type: "spring", stiffness: 120 }}
+              className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-4 flex items-start gap-3"
+            >
+              <span className="text-2xl">{t.icon}</span>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-sm font-semibold text-[hsl(220,15%,20%)] truncate" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>{t.title}</span>
+                  <span className="text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#43B5BF]/10 text-[#27698F] flex-shrink-0">{t.tag}</span>
+                </div>
+                <p className="text-[11px] text-[hsl(220,10%,50%)] mt-0.5">{t.desc}</p>
+              </div>
+            </motion.div>
+          ))}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 2.5, duration: 0.5 }}
+            className="text-[11px] text-[hsl(220,10%,50%)] text-center mt-1 italic"
+          >
+            35% of daily calls are routine requests like these
+          </motion.p>
+        </div>
+      </div>
+    </EmmaBackground>
+  );
+};
+
+/* ── Cost Slide — shows cost per interaction ── */
+const CostSlide: React.FC = () => (
+  <EmmaBackground>
+    <div className="absolute inset-0 z-20 flex items-center justify-end pr-16">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.85 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ delay: 0.3, duration: 0.6, type: "spring", stiffness: 100 }}
+        className="bg-white/90 backdrop-blur-md rounded-2xl border border-[hsl(220,15%,88%)] shadow-xl p-8 max-w-[320px] text-center"
+      >
+        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[hsl(0,60%,50%)] block mb-4">Cost per live interaction</span>
+        <motion.span
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.5 }}
+          className="text-5xl font-bold text-[hsl(220,15%,20%)] block"
+          style={{ fontFamily: "'Instrument Sans', sans-serif" }}
+        >
+          $8 – $12
+        </motion.span>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.1, duration: 0.5 }}
+          className="text-xs text-[hsl(220,10%,50%)] mt-4 leading-relaxed"
+        >
+          Every routine call costs time and money.<br />Hiring more agents only increases that cost.
+        </motion.p>
+      </motion.div>
+    </div>
   </EmmaBackground>
 );
 
