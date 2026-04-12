@@ -12,6 +12,7 @@ import AbstractDashboard from "@/components/AbstractDashboard";
 import ClutteredTabs from "@/components/ClutteredTabs";
 import SummaryScreen from "@/components/SummaryScreen";
 import { VoiceScene1_NaturalCall, VoiceScene2_IntentCapture, VoiceScene3_APIExecution, VoiceScene4_Escalation, VoiceScene5_Speed } from "@/components/VoiceAgentSlides";
+import { FlowBuilderSlide } from "@/components/FlowBuilderSlide";
 
 import dashboardPreview from "@/assets/dashboard-preview.png";
 import emmaImg from "@/assets/emma-illustration.svg";
@@ -322,6 +323,7 @@ const SCENE_LABELS = [
   "Voice: Intent Capture",
   "Voice: API Execution",
   "Voice: Escalation",
+  "Voice: Flow Builder",
   "Voice: Speed",
   "Summary",
 ];
@@ -335,6 +337,7 @@ const SCENE_COMPONENTS: React.FC[] = [
   VoiceScene2_IntentCapture,
   VoiceScene3_APIExecution,
   VoiceScene4_Escalation,
+  FlowBuilderSlide,
   VoiceScene5_Speed,
   () => <SummaryScreen visible />,
 ];
