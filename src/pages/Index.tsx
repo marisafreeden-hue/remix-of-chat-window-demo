@@ -622,7 +622,7 @@ const SCENE_CUE_TIMES = [
   100.7, // 10: Speed — "speech-to-speech AI, responses are immediate"
   109,   // 11: Results — "The result? Fewer routine calls"
   115,   // 12: Tagline — "Your IVR routes calls. Go Engage resolves them."
-  118,   // 13: Logo
+  116.5, // 13: Logo
 ];
 
 const Index = () => {
