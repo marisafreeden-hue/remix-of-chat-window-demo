@@ -677,6 +677,7 @@ const SCENE_LABELS = [
   "Voice: Escalation",
   "Voice: Flow Builder",
   "Voice: Speed",
+  "Speech-to-Speech AI",
   "Results",
   "Tagline",
   "Logo",
