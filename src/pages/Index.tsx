@@ -16,7 +16,7 @@ import dashboardPreview from "@/assets/dashboard-preview.png";
 import emmaImg from "@/assets/emma-illustration.svg";
 import broadvoiceLogo from "@/assets/broadvoice-logo.png";
 import goLogo from "@/assets/go-logo.png";
-import dotsImg from "@/assets/dots.png";
+import robImg from "@/assets/rob-illustration.png";
 import bvIcon from "@/assets/bv-icon.png";
 
 /* ── Individual Scene Components ── */
