@@ -547,17 +547,27 @@ const SCENE_COMPONENTS: React.FC[] = [
   LogoSlide,
 ];
 
+
+// Audio cue points: [sceneIndex] = start time in seconds
+// Title(0) → Meet Rob(3s) → Dashboard(8s) → Mad Rob(16s) → GoEngage Intro(22s)
+// → Natural Call(28s) → Intent Capture(36s) → API Execution(42s) → Escalation(48s)
+// → Flow Builder(55s) → Speed(66s) → Results(72s) → Tagline(78s) → Logo(84s)
+const SCENE_CUE_TIMES = [0, 3, 8, 16, 22, 28, 36, 42, 48, 55, 66, 72, 78, 84];
+
 const Index = () => {
   const [sceneIndex, setSceneIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
+  const manualOverrideRef = useRef(false);
 
   const goNext = useCallback(() => {
+    manualOverrideRef.current = true;
     setSceneIndex(i => Math.min(i + 1, SCENE_COMPONENTS.length - 1));
   }, []);
 
   const goPrev = useCallback(() => {
+    manualOverrideRef.current = true;
     setSceneIndex(i => Math.max(i - 1, 0));
   }, []);
 
@@ -567,6 +577,7 @@ const Index = () => {
     if (isPlaying) {
       audio.pause();
     } else {
+      manualOverrideRef.current = false;
       audio.play();
     }
     setIsPlaying(!isPlaying);
@@ -579,19 +590,43 @@ const Index = () => {
     setIsMuted(!isMuted);
   }, [isMuted]);
 
+  // Auto-advance scenes based on audio currentTime
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
+
+    const onTime = () => {
+      if (manualOverrideRef.current) return;
+      const t = audio.currentTime;
+      // Find the highest cue index whose time has passed
+      let target = 0;
+      for (let i = SCENE_CUE_TIMES.length - 1; i >= 0; i--) {
+        if (t >= SCENE_CUE_TIMES[i]) {
+          target = i;
+          break;
+        }
+      }
+      setSceneIndex(prev => (prev !== target ? target : prev));
+    };
+
     const onEnd = () => setIsPlaying(false);
+    const onPlay = () => { manualOverrideRef.current = false; };
+
+    audio.addEventListener("timeupdate", onTime);
     audio.addEventListener("ended", onEnd);
-    return () => audio.removeEventListener("ended", onEnd);
+    audio.addEventListener("play", onPlay);
+    return () => {
+      audio.removeEventListener("timeupdate", onTime);
+      audio.removeEventListener("ended", onEnd);
+      audio.removeEventListener("play", onPlay);
+    };
   }, []);
 
   const SceneComponent = SCENE_COMPONENTS[sceneIndex];
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-white relative overflow-hidden">
-      <audio ref={audioRef} src="/audio/narration.mp3" preload="metadata" />
+      <audio ref={audioRef} src={`/audio/narration.mp3?v=${Date.now()}`} preload="metadata" />
       <div className="absolute inset-0 sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 w-full h-full sm:w-[1024px] sm:h-[768px] overflow-hidden sm:rounded-[40px] sm:border-[16px] border-white/40 shadow-none sm:shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] backdrop-blur-md bg-white/10">
         <AnimatePresence mode="wait">
           <motion.div
