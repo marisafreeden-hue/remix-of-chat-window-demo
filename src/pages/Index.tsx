@@ -139,8 +139,8 @@ const DashboardSlideOverlay: React.FC = () => (
   </div>
 );
 
-/* ── Routine Calls Slide — call center dashboard style ── */
-const RoutineCallsSlide: React.FC = () => {
+/* ── Routine Calls Slide — overlay only ── */
+const RoutineCallsSlideOverlay: React.FC = () => {
   const tickets = [
     { icon: ClipboardList, title: "Vaccination Records", desc: "Request for Max's vaccination history", tag: "Records", pct: "12%", delay: 0.4, color: "#43B5BF" },
     { icon: Stethoscope, title: "Teeth Cleaning", desc: "Schedule dental cleaning for Bella", tag: "Grooming", pct: "9%", delay: 0.7, color: "#27698F" },
@@ -149,95 +149,74 @@ const RoutineCallsSlide: React.FC = () => {
   ];
 
   return (
-    <div className="absolute inset-0 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-white">
-        <div className="absolute -top-[300px] -left-[200px] w-[700px] h-[700px] rounded-full bg-[#38bdcd]/25 blur-[180px]" />
-        <div className="absolute -top-[100px] left-[20%] w-[600px] h-[600px] rounded-full bg-[#38bdcd]/15 blur-[160px]" />
-        <div className="absolute bottom-[-150px] right-[20%] w-[600px] h-[600px] rounded-full bg-[#1f6eac]/15 blur-[160px]" />
-        <div className="absolute top-[20%] left-[30%] w-[500px] h-[500px] rounded-full bg-[#38bdcd]/10 blur-[140px]" />
-      </div>
-
-      {/* Rob on the left */}
-      <div className="absolute left-0 bottom-0 z-10 h-full flex items-end" style={{ paddingLeft: 40 }}>
-        <img src={robImg} alt="Rob" className="h-[90%] w-auto object-contain" />
-      </div>
-
-      {/* Call queue on the right */}
-      <div className="absolute right-0 top-0 bottom-0 z-20 flex items-center pr-12" style={{ width: '420px' }}>
-        <div className="flex flex-col gap-3 w-full">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className="flex items-center justify-between mb-1"
-          >
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(220,10%,55%)]">
-              Today's Call Queue
-            </p>
-            <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#43B5BF]/10 border border-[#43B5BF]/20">
-              <Phone className="w-3 h-3 text-[#27698F]" />
-              <span className="text-[10px] font-bold text-[#27698F]">127 calls today</span>
+    <div className="absolute right-0 top-0 bottom-0 z-20 flex items-center pr-12" style={{ width: '420px' }}>
+      <div className="flex flex-col gap-3 w-full">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="flex items-center justify-between mb-1"
+        >
+          <p className="text-xs font-bold uppercase tracking-[0.2em] text-[hsl(220,10%,55%)]">
+            Today's Call Queue
+          </p>
+          <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#43B5BF]/10 border border-[#43B5BF]/20">
+            <Phone className="w-3 h-3 text-[#27698F]" />
+            <span className="text-[10px] font-bold text-[#27698F]">127 calls today</span>
+          </div>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, scaleX: 0 }}
+          animate={{ opacity: 1, scaleX: 1 }}
+          transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          style={{ transformOrigin: "left" }}
+          className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-3 flex items-center gap-4"
+        >
+          <div className="flex-1">
+            <p className="text-[10px] font-bold uppercase tracking-wider text-[hsl(220,10%,55%)]">Routine Call Volume</p>
+            <div className="flex items-baseline gap-1.5 mt-1">
+              <span className="text-2xl font-bold text-[hsl(220,15%,20%)]" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>35%</span>
+              <span className="text-[10px] text-[hsl(220,10%,50%)]">of total calls</span>
             </div>
-          </motion.div>
-
-          {/* Stat bar */}
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 1, scaleX: 1 }}
-            transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            style={{ transformOrigin: "left" }}
-            className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-3 flex items-center gap-4"
-          >
-            <div className="flex-1">
-              <p className="text-[10px] font-bold uppercase tracking-wider text-[hsl(220,10%,55%)]">Routine Call Volume</p>
-              <div className="flex items-baseline gap-1.5 mt-1">
-                <span className="text-2xl font-bold text-[hsl(220,15%,20%)]" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>35%</span>
-                <span className="text-[10px] text-[hsl(220,10%,50%)]">of total calls</span>
-              </div>
-            </div>
-            <div className="w-[100px] h-2 rounded-full bg-[hsl(220,15%,92%)] overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: "35%" }}
-                transition={{ delay: 0.6, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                className="h-full rounded-full bg-gradient-to-r from-[#43B5BF] to-[#27698F]"
-              />
-            </div>
-          </motion.div>
-
-          {/* Ticket cards */}
-          {tickets.map((t, i) => {
-            const IconComp = t.icon;
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, x: 60, scale: 0.9 }}
-                animate={{ opacity: 1, x: 0, scale: 1 }}
-                transition={{ delay: t.delay, duration: 0.5, type: "spring", stiffness: 120 }}
-                className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-3.5 flex items-center gap-3"
-              >
-                <svg width="0" height="0" className="absolute">
-                  <defs>
-                    <linearGradient id={`icon-grad-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#43B5BF" />
-                      <stop offset="100%" stopColor="#C686F8" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-                <IconComp className="w-5 h-5 flex-shrink-0" style={{ stroke: `url(#icon-grad-${i})` }} />
-                <div className="flex-1 min-w-0">
-                  <span className="text-sm font-semibold text-[hsl(220,15%,20%)] truncate block" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>{t.title}</span>
-                  <div className="flex items-center justify-between mt-0.5">
-                    <p className="text-[11px] text-[hsl(220,10%,50%)]">{t.desc}</p>
-                    <span className="text-[11px] font-bold text-[hsl(220,15%,30%)] ml-2 flex-shrink-0">{t.pct}</span>
-                  </div>
+          </div>
+          <div className="w-[100px] h-2 rounded-full bg-[hsl(220,15%,92%)] overflow-hidden">
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "35%" }}
+              transition={{ delay: 0.6, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="h-full rounded-full bg-gradient-to-r from-[#43B5BF] to-[#27698F]"
+            />
+          </div>
+        </motion.div>
+        {tickets.map((t, i) => {
+          const IconComp = t.icon;
+          return (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, x: 60, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              transition={{ delay: t.delay, duration: 0.5, type: "spring", stiffness: 120 }}
+              className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-3.5 flex items-center gap-3"
+            >
+              <svg width="0" height="0" className="absolute">
+                <defs>
+                  <linearGradient id={`icon-grad-${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#43B5BF" />
+                    <stop offset="100%" stopColor="#C686F8" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <IconComp className="w-5 h-5 flex-shrink-0" style={{ stroke: `url(#icon-grad-${i})` }} />
+              <div className="flex-1 min-w-0">
+                <span className="text-sm font-semibold text-[hsl(220,15%,20%)] truncate block" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>{t.title}</span>
+                <div className="flex items-center justify-between mt-0.5">
+                  <p className="text-[11px] text-[hsl(220,10%,50%)]">{t.desc}</p>
+                  <span className="text-[11px] font-bold text-[hsl(220,15%,30%)] ml-2 flex-shrink-0">{t.pct}</span>
                 </div>
-              </motion.div>
-            );
-          })}
-        </div>
+              </div>
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
