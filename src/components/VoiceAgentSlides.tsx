@@ -316,7 +316,15 @@ export const VoiceScene3_APIExecution: React.FC = () => {
                     </motion.div>
                   )}
                   {step.status === "active" && (
-                    <div className="w-5 h-5 border-2 border-[#43B5BF] border-t-transparent rounded-full animate-spin" />
+                    <svg className="w-5 h-5 animate-spin" viewBox="0 0 24 24">
+                      <defs>
+                        <linearGradient id="spinner-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#43B5BF" />
+                          <stop offset="100%" stopColor="#C686F8" />
+                        </linearGradient>
+                      </defs>
+                      <circle cx="12" cy="12" r="10" stroke="url(#spinner-grad)" strokeWidth="2.5" fill="none" strokeLinecap="round" strokeDasharray="50 20" />
+                    </svg>
                   )}
                 </motion.div>
               ))}
