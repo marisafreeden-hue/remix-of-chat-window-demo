@@ -611,21 +611,21 @@ const TITLE_DELAY_MS = 3000;
 
 // Maps scene index → audio currentTime. Scene 0 (Title) = -1 means "before audio".
 const SCENE_CUE_TIMES = [
-  -1,   // 0: Title (no audio)
-  0,    // 1: Meet Rob
-  3.5,  // 2: Dashboard — animals appear as VO says "veterinary clinic"
-  11,   // 3: Routine Calls (vaccination, teeth, nails)
-  15,   // 4: Mad Rob (hiring pain)
-  21,   // 5: GoEngage Intro
-  35,   // 6: Natural Call — demo begins
-  78,   // 7: Intent Capture — "Hi thanks for calling" simulated call
-  85,   // 8: API Execution
-  98,   // 9: Escalation
-  104,  // 10: Flow Builder
-  108,  // 11: Speed ("This isn't just automation")
-  112,  // 12: Results
-  116,  // 13: Tagline
-  119,  // 14: Logo
+  -1,    // 0: Title (no audio)
+  0,     // 1: Meet Rob — "Meet Rob. Rob manages a call center..."
+  3.5,   // 2: Dashboard — "veterinary clinic with 40 locations"
+  8,     // 3: Routine Calls — "large portion of his calls are routine"
+  14.5,  // 4: Mad Rob — "every live interaction can cost 8-12 dollars"
+  22.5,  // 5: GoEngage Intro — "So Rob implemented Go Engage Voice"
+  29.6,  // 6: Natural Call — "no IVR, no menus, just a natural conversation"
+  39,    // 7: Intent Capture — "Hi, thanks for calling..."
+  52,    // 8: API Execution — "schedules the appointment directly"
+  67.7,  // 9: Escalation — "emergency, the AI recognizes it instantly"
+  76.5,  // 10: Flow Builder — "no-code flow builder"
+  100.7, // 11: Speed — "speech-to-speech AI, responses are immediate"
+  109,   // 12: Results — "The result? Fewer routine calls"
+  115,   // 13: Tagline — "Your IVR routes calls. Go Engage resolves them."
+  118,   // 14: Logo
 ];
 
 const Index = () => {
