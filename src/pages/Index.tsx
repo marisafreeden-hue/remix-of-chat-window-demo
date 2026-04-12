@@ -12,7 +12,7 @@ import WelcomeScreen from "@/components/WelcomeScreen";
 import AbstractDashboard from "@/components/AbstractDashboard";
 import ClutteredTabs from "@/components/ClutteredTabs";
 import SummaryScreen from "@/components/SummaryScreen";
-import { VoiceScene1_NaturalCall, VoiceScene2_IntentCapture, VoiceScene3_APIExecution, VoiceScene4_Escalation, VoiceScene5_Speed } from "@/components/VoiceAgentSlides";
+import { VoiceScene1_NaturalCall, VoiceScene3_APIExecution, VoiceScene4_Escalation, VoiceScene5_Speed } from "@/components/VoiceAgentSlides";
 import { FlowBuilderSlide } from "@/components/FlowBuilderSlide";
 
 import dashboardPreview from "@/assets/dashboard-preview.png";
@@ -552,7 +552,6 @@ const SCENE_LABELS = [
   "Mad Rob",
   "GoEngage Intro",
   "Voice: Natural Call",
-  "Voice: Intent Capture",
   "Voice: API Execution",
   "Voice: Escalation",
   "Voice: Flow Builder",
@@ -593,7 +592,6 @@ const SCENE_COMPONENTS: React.FC[] = [
   MadRobSlideOverlay,
   GoEngageIntroSlide,
   VoiceScene1_NaturalCall,
-  VoiceScene2_IntentCapture,
   VoiceScene3_APIExecution,
   VoiceScene4_Escalation,
   FlowBuilderSlide,
@@ -618,14 +616,13 @@ const SCENE_CUE_TIMES = [
   14.5,  // 4: Mad Rob — "every live interaction can cost 8-12 dollars"
   22.5,  // 5: GoEngage Intro — "So Rob implemented Go Engage Voice"
   35.8,  // 6: Natural Call — "no IVR, no menus, just a natural conversation"
-  47,    // 7: Intent Capture — "Hi, thanks for calling..."
-  52,    // 8: API Execution — "schedules the appointment directly"
-  66.8,  // 9: Escalation — "emergency, the AI recognizes it instantly"
-  76.5,  // 10: Flow Builder — "no-code flow builder"
-  100.7, // 11: Speed — "speech-to-speech AI, responses are immediate"
-  109,   // 12: Results — "The result? Fewer routine calls"
-  115,   // 13: Tagline — "Your IVR routes calls. Go Engage resolves them."
-  118,   // 14: Logo
+  52,    // 7: API Execution — "schedules the appointment directly"
+  66.8,  // 8: Escalation — "emergency, the AI recognizes it instantly"
+  76.5,  // 9: Flow Builder — "no-code flow builder"
+  100.7, // 10: Speed — "speech-to-speech AI, responses are immediate"
+  109,   // 11: Results — "The result? Fewer routine calls"
+  115,   // 12: Tagline — "Your IVR routes calls. Go Engage resolves them."
+  118,   // 13: Logo
 ];
 
 const Index = () => {
