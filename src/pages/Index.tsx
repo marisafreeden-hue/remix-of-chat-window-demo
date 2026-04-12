@@ -417,7 +417,7 @@ const ChatSlide: React.FC = () => {
 
 /* ── MadRob Slide — overlay only ── */
 const MadRobSlideOverlay: React.FC = () => (
-  <div className="absolute top-0 bottom-0 z-20 flex items-center pr-8" style={{ left: '50%', right: 0 }}>
+  <div className="absolute top-0 bottom-0 z-20 flex items-center pr-6" style={{ left: '60%', right: 0 }}>
     <div className="flex flex-col gap-4 w-full">
       <motion.p
         initial={{ opacity: 0, y: -10 }}
