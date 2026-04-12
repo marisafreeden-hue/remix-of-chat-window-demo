@@ -548,18 +548,37 @@ const SCENE_COMPONENTS: React.FC[] = [
 ];
 
 
-// Audio cue points: [sceneIndex] = start time in seconds
-// Title(0) → Meet Rob(3s) → Dashboard(8s) → Mad Rob(16s) → GoEngage Intro(22s)
-// → Natural Call(28s) → Intent Capture(36s) → API Execution(42s) → Escalation(48s)
-// → Flow Builder(55s) → Speed(66s) → Results(72s) → Tagline(78s) → Logo(84s)
-const SCENE_CUE_TIMES = [0, 3, 8, 16, 22, 28, 36, 42, 48, 55, 66, 72, 78, 84];
+// Audio cue points: [sceneIndex] = audio currentTime in seconds
+// Scene 0 (Title) has no audio — it's a visual-only intro with a delay.
+// Audio starts at scene 1 (Meet Rob). Cue times are relative to audio start (0s = "Meet Rob").
+// Title shows for TITLE_DELAY_MS before advancing to Meet Rob + starting audio.
+const TITLE_DELAY_MS = 3000;
+
+// Maps scene index → audio currentTime. Scene 0 (Title) = -1 means "before audio".
+const SCENE_CUE_TIMES = [
+  -1,   // 0: Title (no audio)
+  0,    // 1: Meet Rob
+  5,    // 2: Dashboard
+  13,   // 3: Mad Rob
+  19,   // 4: GoEngage Intro
+  25,   // 5: Natural Call
+  33,   // 6: Intent Capture
+  39,   // 7: API Execution
+  45,   // 8: Escalation
+  52,   // 9: Flow Builder
+  63,   // 10: Speed
+  69,   // 11: Results
+  75,   // 12: Tagline
+  81,   // 13: Logo
+];
 
 const Index = () => {
   const [sceneIndex, setSceneIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const audioRef = useRef<HTMLAudioElement>(null);
-  const audioVersionRef = useRef(Date.now());
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const audioElRef = useRef<HTMLAudioElement>(null);
+  const titleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const manualOverrideRef = useRef(false);
 
   const goNext = useCallback(() => {
@@ -572,73 +591,88 @@ const Index = () => {
     setSceneIndex((i) => Math.max(i - 1, 0));
   }, []);
 
-  const togglePlay = useCallback(async () => {
-    const audio = audioRef.current;
+  // Play button: starts presentation from Title, waits TITLE_DELAY_MS, then starts audio + advances
+  const togglePlay = useCallback(() => {
+    const audio = audioElRef.current;
     if (!audio) return;
 
-    if (audio.paused) {
-      manualOverrideRef.current = false;
-      try {
-        await audio.play();
-      } catch (error) {
-        console.error("Audio playback failed", error);
+    if (isPlaying) {
+      // Pause everything
+      audio.pause();
+      if (titleTimerRef.current) {
+        clearTimeout(titleTimerRef.current);
+        titleTimerRef.current = null;
       }
+      setIsPlaying(false);
       return;
     }
 
-    audio.pause();
-  }, []);
+    // Start presentation
+    manualOverrideRef.current = false;
+    setIsPlaying(true);
+
+    // If we're at the title slide, wait before starting audio
+    if (sceneIndex === 0) {
+      setSceneIndex(0); // ensure we're on title
+      titleTimerRef.current = setTimeout(() => {
+        titleTimerRef.current = null;
+        setSceneIndex(1); // advance to Meet Rob
+        audio.currentTime = 0;
+        audio.play().catch((e) => console.error("Audio play failed:", e));
+      }, TITLE_DELAY_MS);
+    } else {
+      // Resume from current position
+      audio.play().catch((e) => console.error("Audio play failed:", e));
+    }
+  }, [isPlaying, sceneIndex]);
 
   const toggleMute = useCallback(() => {
-    if (audioRef.current) {
-      audioRef.current.muted = !isMuted;
+    if (audioElRef.current) {
+      audioElRef.current.muted = !isMuted;
     }
     setIsMuted(!isMuted);
   }, [isMuted]);
 
+  // Sync scenes to audio currentTime
   useEffect(() => {
-    const audio = audioRef.current;
+    const audio = audioElRef.current;
     if (!audio) return;
 
     const onTime = () => {
       if (manualOverrideRef.current) return;
-
       const t = audio.currentTime;
       let target = 0;
       for (let i = SCENE_CUE_TIMES.length - 1; i >= 0; i--) {
-        if (t >= SCENE_CUE_TIMES[i]) {
+        if (SCENE_CUE_TIMES[i] >= 0 && t >= SCENE_CUE_TIMES[i]) {
           target = i;
           break;
         }
       }
-
       setSceneIndex((prev) => (prev !== target ? target : prev));
     };
 
-    const onPlay = () => {
-      manualOverrideRef.current = false;
-      setIsPlaying(true);
-    };
-
-    const onPause = () => setIsPlaying(false);
     const onEnded = () => {
       setIsPlaying(false);
       manualOverrideRef.current = false;
     };
+
     const onError = () => console.error("Narration audio failed to load");
 
     audio.addEventListener("timeupdate", onTime);
-    audio.addEventListener("play", onPlay);
-    audio.addEventListener("pause", onPause);
     audio.addEventListener("ended", onEnded);
     audio.addEventListener("error", onError);
 
     return () => {
       audio.removeEventListener("timeupdate", onTime);
-      audio.removeEventListener("play", onPlay);
-      audio.removeEventListener("pause", onPause);
       audio.removeEventListener("ended", onEnded);
       audio.removeEventListener("error", onError);
+    };
+  }, []);
+
+  // Cleanup timers on unmount
+  useEffect(() => {
+    return () => {
+      if (titleTimerRef.current) clearTimeout(titleTimerRef.current);
     };
   }, []);
 
@@ -646,7 +680,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen w-full flex flex-col items-center justify-center bg-white relative overflow-hidden">
-      <audio ref={audioRef} src={`/audio/narration.mp3?v=${audioVersionRef.current}`} preload="auto" />
+      <audio ref={audioElRef} src="/audio/narration.mp3" preload="auto" />
       <div className="absolute inset-0 sm:inset-auto sm:top-1/2 sm:left-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 w-full h-full sm:w-[1024px] sm:h-[768px] overflow-hidden sm:rounded-[40px] sm:border-[16px] border-white/40 shadow-none sm:shadow-[0_8px_32px_rgba(0,0,0,0.15),inset_0_1px_1px_rgba(255,255,255,0.6)] backdrop-blur-md bg-white/10">
         <AnimatePresence mode="wait">
           <motion.div
