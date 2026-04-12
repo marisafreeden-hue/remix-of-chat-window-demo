@@ -690,7 +690,7 @@ const TaglineSlide: React.FC = () => (
         transition={{ delay: 0.6, duration: 0.6 }}
         className="text-center"
       >
-        <span className="text-5xl font-medium block" style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400, background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+        <span className="text-5xl font-medium block pb-3" style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400, lineHeight: 1.3, background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
           GoEngage resolves them.
         </span>
       </motion.h2>
