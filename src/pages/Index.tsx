@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Play, Pause, Volume2, VolumeX } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Send, Search, HelpCircle, Bell, Settings, X, Phone, Mic, Zap } from "lucide-react";
+import { Send, Search, HelpCircle, Bell, Settings, X, Phone, Mic, Zap, ClipboardList, Scissors, Calendar, Stethoscope } from "lucide-react";
 import '@fontsource/besley/400-italic.css';
 import '@fontsource/instrument-sans/500.css';
 import VoiceWaveform from "@/components/VoiceWaveform";
