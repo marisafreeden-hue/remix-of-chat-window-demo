@@ -88,9 +88,6 @@ const TitleSlide: React.FC = () => {
 
         {/* Speech-to-Speech card */}
         <div className="mx-4 mb-4 bg-gradient-to-br from-[#43B5BF]/5 to-[#27698F]/5 rounded-2xl border border-[#43B5BF]/15 p-5 flex flex-col items-center gap-3">
-          <div className="w-14 h-14 rounded-full bg-gradient-to-br from-[#43B5BF] to-[#27698F] flex items-center justify-center shadow-lg shadow-[#43B5BF]/20">
-            <Mic className="w-6 h-6 text-white" />
-          </div>
           <VoiceWaveform active color="#43B5BF" barCount={24} />
           <span className="text-xs font-medium text-[hsl(220,10%,45%)]">Speech-to-Speech AI</span>
           <div className="flex items-center gap-1.5">
