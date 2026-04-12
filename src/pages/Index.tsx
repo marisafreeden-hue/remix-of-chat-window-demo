@@ -63,7 +63,7 @@ const EmmaSlide: React.FC = () => (
         <span className="text-5xl font-bold text-[hsl(220,15%,25%)]">Rob</span>
       </motion.h2>
       <motion.p initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.6 }} className="text-sm text-[hsl(220,10%,45%)] mt-3 max-w-xs leading-relaxed">
-        Call Center Operations Manager · Multilocation Veterinary Clinic
+        Call Center Operations Manager<br />Multilocation Veterinary Clinic
       </motion.p>
     </div>
     <motion.img src={dotsImg} alt="" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2, duration: 0.5 }} className="absolute bottom-8 left-10 h-12 w-auto z-10" />
