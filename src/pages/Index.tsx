@@ -149,7 +149,7 @@ const RoutineCallsSlideOverlay: React.FC = () => {
   ];
 
   return (
-    <div className="absolute top-0 bottom-0 z-20 flex items-center pr-6" style={{ left: '60%', right: 0 }}>
+    <div className="absolute top-0 bottom-0 z-20 flex items-center pl-4 pr-4" style={{ left: '66%', right: 0 }}>
       <div className="flex flex-col gap-3 w-full">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -165,29 +165,6 @@ const RoutineCallsSlideOverlay: React.FC = () => {
             <span className="text-[10px] font-bold text-[#27698F]">127 calls today</span>
           </div>
         </motion.div>
-        <motion.div
-          initial={{ opacity: 0, scaleX: 0 }}
-          animate={{ opacity: 1, scaleX: 1 }}
-          transition={{ delay: 0.3, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          style={{ transformOrigin: "left" }}
-          className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-3 flex items-center gap-4"
-        >
-          <div className="flex-1">
-            <p className="text-[10px] font-bold uppercase tracking-wider text-[hsl(220,10%,55%)]">Routine Call Volume</p>
-            <div className="flex items-baseline gap-1.5 mt-1">
-              <span className="text-2xl font-bold text-[hsl(220,15%,20%)]" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>35%</span>
-              <span className="text-[10px] text-[hsl(220,10%,50%)]">of total calls</span>
-            </div>
-          </div>
-          <div className="w-[100px] h-2 rounded-full bg-[hsl(220,15%,92%)] overflow-hidden">
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "35%" }}
-              transition={{ delay: 0.6, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="h-full rounded-full bg-gradient-to-r from-[#43B5BF] to-[#27698F]"
-            />
-          </div>
-        </motion.div>
         {tickets.map((t, i) => {
           const IconComp = t.icon;
           return (
@@ -196,7 +173,7 @@ const RoutineCallsSlideOverlay: React.FC = () => {
               initial={{ opacity: 0, x: 60, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               transition={{ delay: t.delay, duration: 0.5, type: "spring", stiffness: 120 }}
-              className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-3.5 flex items-center gap-3"
+              className="bg-white/90 backdrop-blur-md rounded-xl border border-[hsl(220,15%,88%)] shadow-sm p-3 flex items-center gap-3"
             >
               <svg width="0" height="0" className="absolute">
                 <defs>
@@ -206,10 +183,10 @@ const RoutineCallsSlideOverlay: React.FC = () => {
                   </linearGradient>
                 </defs>
               </svg>
-              <IconComp className="w-5 h-5 flex-shrink-0" style={{ stroke: `url(#icon-grad-${i})` }} />
+              <IconComp className="w-4 h-4 flex-shrink-0" style={{ stroke: `url(#icon-grad-${i})` }} />
               <div className="flex-1 min-w-0">
-                <span className="text-sm font-semibold text-[hsl(220,15%,20%)] truncate block" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>{t.title}</span>
-                <p className="text-[11px] text-[hsl(220,10%,50%)] mt-0.5">{t.desc}</p>
+                <span className="text-xs font-semibold text-[hsl(220,15%,20%)] truncate block" style={{ fontFamily: "'Instrument Sans', sans-serif" }}>{t.title}</span>
+                <p className="text-[10px] text-[hsl(220,10%,50%)] mt-0.5">{t.desc}</p>
               </div>
             </motion.div>
           );
