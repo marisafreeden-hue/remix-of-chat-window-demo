@@ -149,7 +149,7 @@ const RoutineCallsSlideOverlay: React.FC = () => {
   ];
 
   return (
-    <div className="absolute right-0 top-0 bottom-0 z-20 flex items-center pr-12" style={{ width: '420px' }}>
+    <div className="absolute top-0 bottom-0 z-20 flex items-center pr-8" style={{ left: '55%', right: 0 }}>
       <div className="flex flex-col gap-3 w-full">
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -224,7 +224,7 @@ const RoutineCallsSlideOverlay: React.FC = () => {
 
 /* ── Cost Slide — overlay only ── */
 const CostSlideOverlay: React.FC = () => (
-  <div className="absolute inset-0 z-20 flex items-center justify-end pr-16">
+  <div className="absolute top-0 bottom-0 z-20 flex items-center justify-center" style={{ left: '55%', right: 0 }}>
     <motion.div
       initial={{ opacity: 0, scale: 0.85 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -420,7 +420,7 @@ const ChatSlide: React.FC = () => {
 
 /* ── MadRob Slide — overlay only ── */
 const MadRobSlideOverlay: React.FC = () => (
-  <div className="absolute right-0 top-0 bottom-0 z-20 flex items-center pr-12" style={{ width: '480px' }}>
+  <div className="absolute top-0 bottom-0 z-20 flex items-center pr-8" style={{ left: '50%', right: 0 }}>
     <div className="flex flex-col gap-4 w-full">
       <motion.p
         initial={{ opacity: 0, y: -10 }}
