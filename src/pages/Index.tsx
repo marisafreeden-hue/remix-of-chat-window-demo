@@ -632,6 +632,8 @@ const Index = () => {
   const [sceneIndex, setSceneIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [audioTime, setAudioTime] = useState(0);
+  const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioElRef = useRef<HTMLAudioElement>(null);
   const titleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
