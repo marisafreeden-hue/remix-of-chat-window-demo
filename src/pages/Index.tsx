@@ -663,13 +663,16 @@ const LogoSlide: React.FC = () => (
   </div>
 );
 
+// Scenes 1-5 are "Rob scenes" — they only render overlays; Rob + bg are persistent
+const ROB_SCENE_INDICES = new Set([1, 2, 3, 4, 5]);
+
 const SCENE_COMPONENTS: React.FC[] = [
   TitleSlide,
-  EmmaSlide,
-  DashboardSlide,
-  RoutineCallsSlide,
-  CostSlide,
-  MadRobSlide,
+  EmmaSlideOverlay,
+  DashboardSlideOverlay,
+  RoutineCallsSlideOverlay,
+  CostSlideOverlay,
+  MadRobSlideOverlay,
   GoEngageIntroSlide,
   VoiceScene1_NaturalCall,
   VoiceScene2_IntentCapture,
