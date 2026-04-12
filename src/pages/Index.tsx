@@ -618,7 +618,7 @@ const SCENE_CUE_TIMES = [
   15,   // 4: Mad Rob (hiring pain)
   21,   // 5: GoEngage Intro
   35,   // 6: Natural Call — demo begins
-  80,   // 7: Intent Capture — "Hi thanks for calling" simulated call
+  78,   // 7: Intent Capture — "Hi thanks for calling" simulated call
   90,   // 8: API Execution
   96,   // 9: Escalation
   102,  // 10: Flow Builder
