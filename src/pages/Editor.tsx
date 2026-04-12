@@ -2,12 +2,32 @@ import { useState, useCallback } from "react";
 import { SceneConfig, defaultSceneConfigs } from "@/config/sceneConfig";
 import SceneCard from "@/components/editor/SceneCard";
 import AudioTimeline from "@/components/editor/AudioTimeline";
+import CueTimeline from "@/components/editor/CueTimeline";
 import { Button } from "@/components/ui/button";
 import { Film, Download, RotateCcw } from "lucide-react";
+
+const DEFAULT_CUE_TIMES = [
+  -1,    // 0: Title
+  0,     // 1: Meet Rob
+  3.5,   // 2: Dashboard
+  8,     // 3: Routine Calls
+  14.5,  // 4: Mad Rob
+  22.5,  // 5: GoEngage Intro
+  29.6,  // 6: Natural Call
+  39,    // 7: Intent Capture
+  52,    // 8: API Execution
+  67.7,  // 9: Escalation
+  76.5,  // 10: Flow Builder
+  100.7, // 11: Speed
+  109,   // 12: Results
+  115,   // 13: Tagline
+  118,   // 14: Logo
+];
 
 const Editor = () => {
   const [scenes, setScenes] = useState<SceneConfig[]>(defaultSceneConfigs);
   const [expandedScene, setExpandedScene] = useState<string | null>(null);
+  const [cueTimes, setCueTimes] = useState<number[]>(DEFAULT_CUE_TIMES);
 
   const handleUpdateScene = useCallback((id: string, updated: Partial<SceneConfig>) => {
     setScenes((prev) =>
@@ -18,6 +38,7 @@ const Editor = () => {
   const handleReset = useCallback(() => {
     setScenes(defaultSceneConfigs);
     setExpandedScene(null);
+    setCueTimes(DEFAULT_CUE_TIMES);
   }, []);
 
   const totalFrames = scenes.reduce((sum, s) => sum + s.durationFrames, 0);
@@ -72,7 +93,13 @@ const Editor = () => {
         </div>
       </header>
 
-      {/* Audio Timeline */}
+      {/* Cue Timeline */}
+      <div className="max-w-6xl mx-auto px-6 pt-6">
+        <h2 className="text-sm font-semibold text-white/70 mb-3">🎯 Audio Cue Timeline — Drag markers to adjust slide timing</h2>
+        <CueTimeline cueTimes={cueTimes} onCueTimesChange={setCueTimes} />
+      </div>
+
+      {/* Audio Timeline (existing) */}
       <AudioTimeline scenes={scenes} />
 
       {/* Scene Cards */}

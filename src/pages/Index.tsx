@@ -611,27 +611,28 @@ const TITLE_DELAY_MS = 3000;
 
 // Maps scene index → audio currentTime. Scene 0 (Title) = -1 means "before audio".
 const SCENE_CUE_TIMES = [
-  -1,   // 0: Title (no audio)
-  0,    // 1: Meet Rob
-  3.5,  // 2: Dashboard — animals appear as VO says "veterinary clinic"
-  11,   // 3: Routine Calls (vaccination, teeth, nails)
-  15,   // 4: Mad Rob (hiring pain)
-  21,   // 5: GoEngage Intro
-  35,   // 6: Natural Call — demo begins
-  78,   // 7: Intent Capture — "Hi thanks for calling" simulated call
-  85,   // 8: API Execution
-  98,   // 9: Escalation
-  104,  // 10: Flow Builder
-  108,  // 11: Speed ("This isn't just automation")
-  112,  // 12: Results
-  116,  // 13: Tagline
-  119,  // 14: Logo
+  -1,    // 0: Title (no audio)
+  0,     // 1: Meet Rob — "Meet Rob. Rob manages a call center..."
+  3.5,   // 2: Dashboard — "veterinary clinic with 40 locations"
+  8,     // 3: Routine Calls — "large portion of his calls are routine"
+  14.5,  // 4: Mad Rob — "every live interaction can cost 8-12 dollars"
+  22.5,  // 5: GoEngage Intro — "So Rob implemented Go Engage Voice"
+  29.6,  // 6: Natural Call — "no IVR, no menus, just a natural conversation"
+  39,    // 7: Intent Capture — "Hi, thanks for calling..."
+  52,    // 8: API Execution — "schedules the appointment directly"
+  67.7,  // 9: Escalation — "emergency, the AI recognizes it instantly"
+  76.5,  // 10: Flow Builder — "no-code flow builder"
+  100.7, // 11: Speed — "speech-to-speech AI, responses are immediate"
+  109,   // 12: Results — "The result? Fewer routine calls"
+  115,   // 13: Tagline — "Your IVR routes calls. Go Engage resolves them."
+  118,   // 14: Logo
 ];
 
 const Index = () => {
   const [sceneIndex, setSceneIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [audioTime, setAudioTime] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const audioElRef = useRef<HTMLAudioElement>(null);
   const titleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -695,8 +696,9 @@ const Index = () => {
     if (!audio) return;
 
     const onTime = () => {
-      if (manualOverrideRef.current) return;
       const t = audio.currentTime;
+      setAudioTime(t);
+      if (manualOverrideRef.current) return;
       let target = 0;
       for (let i = SCENE_CUE_TIMES.length - 1; i >= 0; i--) {
         if (SCENE_CUE_TIMES[i] >= 0 && t >= SCENE_CUE_TIMES[i]) {
@@ -793,6 +795,9 @@ const Index = () => {
         </button>
         <span className="text-xs text-[hsl(220,10%,45%)] font-medium min-w-[80px] text-center">
           {sceneIndex + 1} / {SCENE_COMPONENTS.length}
+        </span>
+        <span className="text-xs font-mono text-[hsl(220,10%,45%)] bg-white/80 backdrop-blur-sm shadow-md px-3 py-2 rounded-full min-w-[60px] text-center">
+          {Math.floor(audioTime / 60)}:{String(Math.floor(audioTime % 60)).padStart(2, '0')}.{Math.floor((audioTime % 1) * 10)}
         </span>
         <button
           onClick={goNext}
