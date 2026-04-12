@@ -617,15 +617,15 @@ const SCENE_CUE_TIMES = [
   11,   // 3: Routine Calls (vaccination, teeth, nails)
   15,   // 4: Mad Rob (hiring pain)
   21,   // 5: GoEngage Intro
-  29,   // 6: Natural Call
-  33,   // 7: Intent Capture
-  39,   // 8: API Execution
-  45,   // 9: Escalation
-  52,   // 10: Flow Builder
-  63,   // 11: Speed
-  69,   // 12: Results
-  75,   // 13: Tagline
-  81,   // 14: Logo
+  27,   // 6: Natural Call (needs ~13s for full conversation)
+  40,   // 7: Intent Capture (needs ~7s for field detection)
+  48,   // 8: API Execution (needs ~8s for pipeline steps)
+  56,   // 9: Escalation (needs ~10s for emergency flow)
+  66,   // 10: Flow Builder (needs ~12s for build animation)
+  78,   // 11: Speed ("This isn't just automation")
+  84,   // 12: Results
+  90,   // 13: Tagline
+  96,   // 14: Logo
 ];
 
 const Index = () => {
