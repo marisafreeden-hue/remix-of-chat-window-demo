@@ -560,11 +560,12 @@ export const VoiceScene5_Speed: React.FC = () => {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: phase >= 2 ? 1 : 0, y: phase >= 2 ? 0 : 10 }}
           transition={{ duration: 0.6 }}
-          className="text-5xl text-center"
+          className="text-5xl text-center pb-3"
           style={{
             fontFamily: "'Besley', serif",
             fontStyle: 'italic',
             fontWeight: 400,
+            lineHeight: 1.3,
             background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
