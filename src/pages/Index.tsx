@@ -572,13 +572,13 @@ const GoEngageIntroSlide: React.FC = () => (
     <div className="absolute -top-[200px] left-[30%] w-[400px] h-[400px] rounded-full bg-[hsl(270,55%,55%)]/12 blur-[120px]" />
     <div className="absolute top-[10%] right-[10%] w-[500px] h-[500px] rounded-full bg-[hsl(280,50%,55%)]/15 blur-[140px]" />
     <div className="absolute top-[20%] right-[-5%] w-[500px] h-[500px] rounded-full bg-[hsl(180,55%,50%)]/12 blur-[140px]" />
-    <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-12" style={{ marginTop: -60 }}>
+    <div className="absolute inset-0 flex flex-col items-center justify-center z-20 px-12">
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3, duration: 0.6 }}
       >
-        <span className="text-5xl block text-center" style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400, background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+        <span className="text-5xl block text-center pb-2" style={{ fontFamily: "'Besley', serif", fontStyle: 'italic', fontWeight: 400, lineHeight: 1.3, background: 'linear-gradient(90.4deg, #43B5BF 2.76%, #27698F 41.13%, #C686F8 82.58%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
           GoEngage Voice
         </span>
       </motion.h2>
@@ -586,10 +586,18 @@ const GoEngageIntroSlide: React.FC = () => (
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.5 }}
-        className="text-sm text-[hsl(220,10%,45%)] mt-6 max-w-md text-center leading-relaxed"
+        className="text-sm text-[hsl(220,10%,45%)] mt-4 max-w-md text-center leading-relaxed"
       >
         An AI-powered inbound voice assistant that doesn't just route calls — it resolves them.
       </motion.p>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2, duration: 0.5 }}
+        className="mt-8"
+      >
+        <VoiceWaveform active color="#43B5BF" barCount={40} />
+      </motion.div>
     </div>
   </div>
 );
