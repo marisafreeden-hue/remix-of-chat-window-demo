@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { SceneConfig, defaultSceneConfigs } from "@/config/sceneConfig";
 import SceneCard from "@/components/editor/SceneCard";
 import AudioTimeline from "@/components/editor/AudioTimeline";
-import CueTimeline from "@/components/editor/CueTimeline";
+import SlideTimeline from "@/components/editor/SlideTimeline";
 import { Button } from "@/components/ui/button";
 import { Film, Download, RotateCcw } from "lucide-react";
 
@@ -93,10 +93,18 @@ const Editor = () => {
         </div>
       </header>
 
-      {/* Cue Timeline */}
+      {/* Slide Timeline — Canva-style drag editor */}
       <div className="max-w-6xl mx-auto px-6 pt-6">
-        <h2 className="text-sm font-semibold text-white/70 mb-3">🎯 Audio Cue Timeline — Drag markers to adjust slide timing</h2>
-        <CueTimeline cueTimes={cueTimes} onCueTimesChange={setCueTimes} />
+        <h2 className="text-sm font-semibold text-white/70 mb-3">🎬 Slide Timeline — Drag slides to adjust timing</h2>
+        <SlideTimeline
+          cueTimes={cueTimes}
+          onCueTimesChange={setCueTimes}
+          sceneNames={[
+            "Title", "Meet Rob", "Dashboard", "Routine Calls", "Mad Rob",
+            "GoEngage Intro", "Natural Call", "GoEngage Reprise", "API Execution",
+            "Escalation", "Flow Builder", "Speed", "Speech-to-Speech", "Tagline", "Logo",
+          ]}
+        />
       </div>
 
       {/* Audio Timeline (existing) */}
