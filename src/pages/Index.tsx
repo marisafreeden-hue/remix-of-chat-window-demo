@@ -738,7 +738,7 @@ const SCENE_CUE_TIMES = [
   8,     // 3: Routine Calls — "large portion of his calls are routine"
   14.5,  // 4: Mad Rob — "every live interaction can cost 8-12 dollars"
   28,    // 5: GoEngage Intro
-  35.8,  // 6: Natural Call — "no IVR, no menus, just a natural conversation"
+  25,    // 6: Natural Call — "no IVR, no menus, just a natural conversation"
   53.3,  // 7: API Execution — held 1.3s longer (was 52)
   65.6,  // 8: Escalation — 2.5s earlier (was 68.1)
   76.5,  // 9: Flow Builder — "no-code flow builder"
