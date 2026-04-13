@@ -737,14 +737,14 @@ const SCENE_CUE_TIMES = [
   8,     // 3: Routine Calls
   14.5,  // 4: Mad Rob
   25,    // 5: GoEngage Intro (held 5s)
-  30.5,  // 6: Natural Call
-  42.5,  // 7: API Execution
-  50.5,  // 8: Escalation
-  76.5,  // 9: Flow Builder
-  100.7, // 10: Speed
-  102,   // 11: Speech-to-Speech AI
-  113,   // 12: Tagline
-  114.5, // 13: Logo
+  30.5,  // 6: Natural Call (held 2.5s longer)
+  45,    // 7: API Execution
+  53,    // 8: Escalation
+  79,    // 9: Flow Builder
+  103.2, // 10: Speed
+  104.5, // 11: Speech-to-Speech AI
+  115.5, // 12: Tagline
+  117,   // 13: Logo
 ];
 
 const Index = () => {
