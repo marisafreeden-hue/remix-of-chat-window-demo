@@ -711,16 +711,15 @@ const SCENE_COMPONENTS: React.FC[] = [
   DashboardSlideOverlay,
   RoutineCallsSlideOverlay,
   MadRobSlideOverlay,
-  GoEngageIntroSlide,        // 5: GoEngage Intro
+  GoEngageIntroSlide,        // 5: GoEngage Intro (held 5s total)
   VoiceScene1_NaturalCall,   // 6: Natural Call
-  GoEngageIntroSlide,        // 7: GoEngage Voice Intro (reprise)
-  VoiceScene3_APIExecution,  // 8: API Execution
-  VoiceScene4_Escalation,    // 9: Escalation
-  FlowBuilderSlide,          // 10: Flow Builder
-  VoiceScene5_Speed,         // 11: Speed
-  SpeechToSpeechSlide,       // 12: Speech-to-Speech AI
-  TaglineSlide,              // 13: Tagline
-  LogoSlide,                 // 14: Logo
+  VoiceScene3_APIExecution,  // 7: API Execution
+  VoiceScene4_Escalation,    // 8: Escalation
+  FlowBuilderSlide,          // 9: Flow Builder
+  VoiceScene5_Speed,         // 10: Speed
+  SpeechToSpeechSlide,       // 11: Speech-to-Speech AI
+  TaglineSlide,              // 12: Tagline
+  LogoSlide,                 // 13: Logo
 ];
 
 
@@ -737,16 +736,15 @@ const SCENE_CUE_TIMES = [
   3.5,   // 2: Dashboard
   8,     // 3: Routine Calls
   14.5,  // 4: Mad Rob
-  25,    // 5: GoEngage Intro
-  28,    // 6: Natural Call
-  39,    // 7: GoEngage Voice Intro (reprise) — held 2.5s
-  42.5,  // 8: API Execution
-  50.5,  // 9: Escalation
-  76.5,  // 10: Flow Builder
-  100.7, // 11: Speed
-  102,   // 12: Speech-to-Speech AI — timed at 1:42
-  113,   // 13: Tagline
-  114.5, // 14: Logo
+  25,    // 5: GoEngage Intro (held 5s)
+  30.5,  // 6: Natural Call
+  42.5,  // 7: API Execution
+  50.5,  // 8: Escalation
+  76.5,  // 9: Flow Builder
+  100.7, // 10: Speed
+  102,   // 11: Speech-to-Speech AI
+  113,   // 12: Tagline
+  114.5, // 13: Logo
 ];
 
 const Index = () => {
