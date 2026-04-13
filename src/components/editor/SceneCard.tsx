@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
+import SlideThumbnail from "./SlideThumbnail";
 
 interface SceneCardProps {
   scene: SceneConfig;
@@ -80,11 +81,8 @@ const SceneCard: React.FC<SceneCardProps> = ({
         onClick={onToggle}
         className="w-full flex items-center gap-4 px-5 py-4 text-left hover:bg-white/[0.02] transition-colors rounded-xl"
       >
-        {/* Color indicator */}
-        <div
-          className="w-1.5 h-10 rounded-full flex-shrink-0"
-          style={{ background: color }}
-        />
+        {/* Slide thumbnail */}
+        <SlideThumbnail sceneId={scene.id} color={color} title={scene.title} />
 
         <div className="flex-1 min-w-0">
           <h3 className="text-sm font-semibold text-white/90 truncate">
