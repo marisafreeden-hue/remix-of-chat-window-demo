@@ -1,8 +1,8 @@
 import React from "react";
 import {
-  User, LayoutDashboard, Phone, Frown, Zap, Mic,
-  Bot, ArrowRightLeft, GitBranch, Gauge, BarChart3,
-  Quote, Award
+  User, LayoutDashboard, Frown, Zap, Mic,
+  Bot, ArrowRightLeft, GitBranch, BarChart3,
+  Award
 } from "lucide-react";
 
 // Maps scene id → thumbnail visual
@@ -29,9 +29,9 @@ interface SlideThumbnailProps {
 }
 
 const SlideThumbnail: React.FC<SlideThumbnailProps> = ({ sceneId, color, title }) => {
-  const config = SCENE_THUMBNAILS[sceneId] || { icon: GitBranch, layout: "center" };
+  const config = SCENE_THUMBNAILS[sceneId] || { icon: GitBranch, layout: "center" as const };
   const Icon = config.icon;
-  const accent = config.accent || color;
+  const accent = config.accent ?? color;
 
   return (
     <div

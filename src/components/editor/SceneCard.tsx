@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React from "react";
 import { SceneConfig } from "@/config/sceneConfig";
 import { ChevronDown, ChevronRight, Clock, MessageSquare, Type, BarChart3 } from "lucide-react";
 import { Input } from "@/components/ui/input";
