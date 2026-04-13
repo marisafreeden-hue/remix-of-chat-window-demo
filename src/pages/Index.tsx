@@ -743,8 +743,8 @@ const SCENE_CUE_TIMES = [
   79,    // 9: Flow Builder
   104.5, // 10: Speech-to-Speech AI
   111,   // 11: Results (starts at 1:51)
-  122,   // 12: Tagline
-  124,   // 13: Logo
+  118,   // 12: Tagline (starts at 1:58)
+  120,   // 13: Logo (starts at 2:00)
 ];
 
 const Index = () => {
