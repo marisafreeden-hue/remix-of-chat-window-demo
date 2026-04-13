@@ -717,8 +717,9 @@ const SCENE_COMPONENTS: React.FC[] = [
   VoiceScene4_Escalation,    // 8: Escalation
   FlowBuilderSlide,          // 9: Flow Builder
   SpeechToSpeechSlide,       // 10: Speech-to-Speech AI
-  TaglineSlide,              // 11: Tagline
-  LogoSlide,                 // 12: Logo
+  ResultsSlide,              // 11: Results
+  TaglineSlide,              // 12: Tagline
+  LogoSlide,                 // 13: Logo
 ];
 
 
@@ -741,8 +742,9 @@ const SCENE_CUE_TIMES = [
   63,    // 8: Escalation (starts at 1:03)
   79,    // 9: Flow Builder
   104.5, // 10: Speech-to-Speech AI
-  115.5, // 11: Tagline
-  117,   // 12: Logo
+  116,   // 11: Results (starts at 1:56)
+  122,   // 12: Tagline
+  124,   // 13: Logo
 ];
 
 const Index = () => {
