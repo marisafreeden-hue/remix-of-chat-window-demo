@@ -29,9 +29,9 @@ interface SlideThumbnailProps {
 }
 
 const SlideThumbnail: React.FC<SlideThumbnailProps> = ({ sceneId, color, title }) => {
-  const config = SCENE_THUMBNAILS[sceneId] || { icon: GitBranch, layout: "center" as const };
+  const config = SCENE_THUMBNAILS[sceneId] ?? { icon: GitBranch, layout: "center" as const, accent: undefined };
   const Icon = config.icon;
-  const accent = config.accent ?? color;
+  const accent = ("accent" in config ? config.accent : undefined) ?? color;
 
   return (
     <div
