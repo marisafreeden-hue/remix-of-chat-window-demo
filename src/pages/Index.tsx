@@ -740,7 +740,7 @@ const SCENE_CUE_TIMES = [
   28,    // 5: GoEngage Intro
   25,    // 6: Natural Call — "no IVR, no menus, just a natural conversation"
   53.3,  // 7: API Execution — held 1.3s longer (was 52)
-  65.6,  // 8: Escalation — 2.5s earlier (was 68.1)
+  50.5,  // 8: Escalation
   76.5,  // 9: Flow Builder — "no-code flow builder"
   100.7, // 10: Speed
   105,   // 11: Results
