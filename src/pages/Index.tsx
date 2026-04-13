@@ -742,7 +742,7 @@ const SCENE_CUE_TIMES = [
   63,    // 8: Escalation (starts at 1:03)
   79,    // 9: Flow Builder
   104.5, // 10: Speech-to-Speech AI
-  116,   // 11: Results (starts at 1:56)
+  111,   // 11: Results (starts at 1:51)
   122,   // 12: Tagline
   124,   // 13: Logo
 ];
