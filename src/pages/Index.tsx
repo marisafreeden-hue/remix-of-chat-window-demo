@@ -740,7 +740,7 @@ const SCENE_CUE_TIMES = [
   25,    // 5: GoEngage Intro
   28,    // 6: Natural Call
   39,    // 7: GoEngage Voice Intro (reprise) — held 2.5s
-  41.5,  // 8: API Execution
+  42.5,  // 8: API Execution
   50.5,  // 9: Escalation
   76.5,  // 10: Flow Builder
   100.7, // 11: Speed
