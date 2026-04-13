@@ -736,8 +736,8 @@ const SCENE_CUE_TIMES = [
   3.5,   // 2: Dashboard
   8,     // 3: Routine Calls
   14.5,  // 4: Mad Rob
-  25,    // 5: GoEngage Intro (held 5s)
-  30.5,  // 6: Natural Call (held 2.5s longer)
+  25,    // 5: GoEngage Intro (extended to 37s)
+  37,    // 6: Natural Call (starts at 37s)
   45,    // 7: API Execution (extended to fill until 1:03)
   63,    // 8: Escalation (starts at 1:03)
   79,    // 9: Flow Builder
