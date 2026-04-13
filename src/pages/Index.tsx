@@ -711,15 +711,16 @@ const SCENE_COMPONENTS: React.FC[] = [
   DashboardSlideOverlay,
   RoutineCallsSlideOverlay,
   MadRobSlideOverlay,
-  GoEngageIntroSlide,
-  VoiceScene1_NaturalCall,
-  VoiceScene3_APIExecution,
-  VoiceScene4_Escalation,
-  FlowBuilderSlide,
-  VoiceScene5_Speed,
-  SpeechToSpeechSlide,
-  TaglineSlide,
-  LogoSlide,
+  GoEngageIntroSlide,        // 5: GoEngage Intro
+  VoiceScene1_NaturalCall,   // 6: Natural Call
+  GoEngageIntroSlide,        // 7: GoEngage Voice Intro (reprise)
+  VoiceScene3_APIExecution,  // 8: API Execution
+  VoiceScene4_Escalation,    // 9: Escalation
+  FlowBuilderSlide,          // 10: Flow Builder
+  VoiceScene5_Speed,         // 11: Speed
+  SpeechToSpeechSlide,       // 12: Speech-to-Speech AI
+  TaglineSlide,              // 13: Tagline
+  LogoSlide,                 // 14: Logo
 ];
 
 
@@ -729,22 +730,23 @@ const SCENE_COMPONENTS: React.FC[] = [
 const TITLE_DELAY_MS = 3000;
 
 // Maps scene index → audio currentTime. Scene 0 (Title) = -1 means "before audio".
+// IMPORTANT: cue times MUST be in ascending order for the matching algorithm to work.
 const SCENE_CUE_TIMES = [
   -1,    // 0: Title (no audio)
-  0,     // 1: Meet Rob — "Meet Rob. Rob manages a call center..."
-  3.5,   // 2: Dashboard — "veterinary clinic with 40 locations"
-  8,     // 3: Routine Calls — "large portion of his calls are routine"
-  14.5,  // 4: Mad Rob — "every live interaction can cost 8-12 dollars"
-  28,    // 5: GoEngage Intro
-  25,    // 6: Natural Call — "no IVR, no menus, just a natural conversation"
-  53.3,  // 7: API Execution — held 1.3s longer (was 52)
-  50.5,  // 8: Escalation
-  76.5,  // 9: Flow Builder — "no-code flow builder"
-  100.7, // 10: Speed
-  102,   // 11: Speech-to-Speech AI — timed at 1:42
-  113,   // 12: Tagline
-  114.5, // 13: Logo — held longer
-  114.5, // 14: Logo — held longer
+  0,     // 1: Meet Rob
+  3.5,   // 2: Dashboard
+  8,     // 3: Routine Calls
+  14.5,  // 4: Mad Rob
+  25,    // 5: GoEngage Intro
+  28,    // 6: Natural Call
+  39,    // 7: GoEngage Voice Intro (reprise) — held 2.5s
+  41.5,  // 8: API Execution
+  50.5,  // 9: Escalation
+  76.5,  // 10: Flow Builder
+  100.7, // 11: Speed
+  102,   // 12: Speech-to-Speech AI — timed at 1:42
+  113,   // 13: Tagline
+  114.5, // 14: Logo
 ];
 
 const Index = () => {
