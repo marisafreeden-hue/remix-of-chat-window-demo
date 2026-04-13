@@ -677,7 +677,6 @@ const SCENE_LABELS = [
   "Voice: Escalation",
   "Voice: Flow Builder",
   "Voice: Speed",
-  "Results",
   "Speech-to-Speech AI",
   "Tagline",
   "Logo",
@@ -718,7 +717,6 @@ const SCENE_COMPONENTS: React.FC[] = [
   VoiceScene4_Escalation,
   FlowBuilderSlide,
   VoiceScene5_Speed,
-  ResultsSlide,
   SpeechToSpeechSlide,
   TaglineSlide,
   LogoSlide,
@@ -743,9 +741,9 @@ const SCENE_CUE_TIMES = [
   50.5,  // 8: Escalation
   76.5,  // 9: Flow Builder — "no-code flow builder"
   100.7, // 10: Speed
-  105,   // 11: Results
-  102,   // 12: Speech-to-Speech AI — timed at 1:42
-  113,   // 13: Tagline — "Your IVR routes calls. Go Engage resolves them."
+  102,   // 11: Speech-to-Speech AI — timed at 1:42
+  113,   // 12: Tagline
+  114.5, // 13: Logo — held longer
   114.5, // 14: Logo — held longer
 ];
 
