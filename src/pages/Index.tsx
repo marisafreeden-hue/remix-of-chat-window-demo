@@ -716,10 +716,9 @@ const SCENE_COMPONENTS: React.FC[] = [
   VoiceScene3_APIExecution,  // 7: API Execution
   VoiceScene4_Escalation,    // 8: Escalation
   FlowBuilderSlide,          // 9: Flow Builder
-  VoiceScene5_Speed,         // 10: Speed
-  SpeechToSpeechSlide,       // 11: Speech-to-Speech AI
-  TaglineSlide,              // 12: Tagline
-  LogoSlide,                 // 13: Logo
+  SpeechToSpeechSlide,       // 10: Speech-to-Speech AI
+  TaglineSlide,              // 11: Tagline
+  LogoSlide,                 // 12: Logo
 ];
 
 
@@ -741,10 +740,9 @@ const SCENE_CUE_TIMES = [
   45,    // 7: API Execution (extended to fill until 1:03)
   63,    // 8: Escalation (starts at 1:03)
   79,    // 9: Flow Builder
-  103.2, // 10: Speed
-  104.5, // 11: Speech-to-Speech AI
-  115.5, // 12: Tagline
-  117,   // 13: Logo
+  104.5, // 10: Speech-to-Speech AI
+  115.5, // 11: Tagline
+  117,   // 12: Logo
 ];
 
 const Index = () => {
