@@ -744,7 +744,7 @@ const SCENE_CUE_TIMES = [
   76.5,  // 9: Flow Builder — "no-code flow builder"
   100.7, // 10: Speed
   105,   // 11: Results
-  109,   // 12: Speech-to-Speech AI
+  102,   // 12: Speech-to-Speech AI — timed at 1:42
   113,   // 13: Tagline — "Your IVR routes calls. Go Engage resolves them."
   114.5, // 14: Logo — held longer
 ];
